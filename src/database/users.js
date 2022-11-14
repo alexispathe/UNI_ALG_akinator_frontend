@@ -9,13 +9,13 @@ export const usersDB =[
     },
     {
       name: "Pedro",
-      hobbies: ["Cine"]
+      hobbies: ["Cine", "videojuegos"]
     }
   ]
 
   //LOS HOBBIES ES EL FILTRO QUE TENDRA PARA LAS PREGUNTAS DEL JUEGO PARA ASI LUEGO HACER LA BUSQUEDA CON LOS HOBBIES DEL USUARIO
 export const hobbies = [ 
-  {name: "Jugar videojuegos", idUser:[]}, 
+  {name: "Jugar videojuegos", idUser:[2]}, 
   {name: "Musica", idUser:[]},
   {name:"GYM", idUser:[0,1]}, 
   {name:"Bailar", idUser:[1]}, 
