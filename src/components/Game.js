@@ -21,13 +21,13 @@ export const Game =()=>{
     const startGame=()=>{
         setStart(true);
     }
-    
+   
     return(
         <>
             <div className="container text-center">
                 <h1>Adivino tu personaje</h1>
                 
-                {!start? <button onClick={startGame} className="btn btn-primary">Comenzar juego</button>:  
+                {!start? <button onClick={startGame} className="btn btn-primary"  >Comenzar juego</button>:  
                 <GameQuestions
                     hobbiesDB={hobbiesDB}
                     users={users}
