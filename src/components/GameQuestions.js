@@ -1,5 +1,4 @@
-export const GameQuestions = ({ hobbiesDB, users, resFilter, resValue, idUsersEnHobbies, questions, setQuestions }) => {
-    
+export const GameQuestions = ({ hobbiesDB, users, resFilter, resValue, idUsersEnHobbies, questions, setQuestions,setResValue }) => { 
    
     // const preguntarAlUsuario = () => {
     //     /*Estamos haciendo un for para recorrer los hobbies ya predefinidos para preguntarle al usuario si su personaje cuenta 
@@ -29,25 +28,29 @@ export const GameQuestions = ({ hobbiesDB, users, resFilter, resValue, idUsersEn
         */
         console.log(name)
         // setValUser(...valUser, name)
-        resValue.push(name)
-        console.log("PASO 1, ",resValue)
+        setResValue([...resValue,name])
+        // console.log("PASO 1, ",resValue)
         quitarPregunta(name)
+        // resValue =["as", ""]
+
 
     }
 
     const guardarDatosAlValUser = () => {
+        
         /*
         PASO 2 DEL PROGRAMA QUE CONSISTE EN BUSCAR LAS COENCIDENCIAS QUE HAYA EL VALOR GUARDADO EN "resValue" CON
         LOS DE LA BASE DE DATOS 
        */
-        // resValue.map((valor) => {
-        //     // console.log(valor)
-        //     // "resFilter" nos permitira guardar los hobbiesDB donde haya coencidencia con lo que el usuario selecciono como verdadero
-        //     resFilter.push(...hobbiesDB.filter(hobbie => hobbie.name === valor));
-        //     // console.log("G ", hobbiesDB.filter(hobbie=> hobbie.name=== valor))
-        // })
-        // devolverIDUsuerDeHobbies();
         console.log("Paso 2", resValue)
+
+        resValue.map((valor) => {
+            // console.log(valor)
+            // "resFilter" nos permitira guardar los hobbiesDB donde haya coencidencia con lo que el usuario selecciono como verdadero
+            resFilter.push(...hobbiesDB.filter(hobbie => hobbie.name === valor));
+            // console.log("G ", hobbiesDB.filter(hobbie=> hobbie.name=== valor))
+        })
+        devolverIDUsuerDeHobbies();
     }
     /*
      con la funcion devolverIDUsuerDeHobbies estamos guardando el id de  cada personaje que se encuentra registrado en cada hobbie
@@ -98,35 +101,21 @@ export const GameQuestions = ({ hobbiesDB, users, resFilter, resValue, idUsersEn
         resValue = [];
         resFilter = []
         idUsersEnHobbies = []
+
         // setUsers([]);
         // 
         // console.log(users)
     }
     const quitarPregunta = (value) => {
         /*Con esta funcion estamos quitando la pregunta que se le mostro al usuario para pasar con la siguiente*/
-        console.log(value)
-        setQuestions(questions.filter(questions => questions.name != value));
-        console.log("Nuevas preguntas", questions)
+        // console.log(value)
+        let z = questions.filter(questions => questions.name != value)
+        setQuestions(z);
+        // console.log("Nuevas preguntas", questions)
     }
     return (
         <>
             <div>
-                {/* <h1 className="text-center">Primer pregunta</h1> */}
-                {/* <div className="questions">
-                    {
-                        questions.map((element, index) => (
-                            <div key={index}>
-                                <h2 className="text-center">¿Tu personaje le gusta {element.name}</h2>
-                                <form>
-                                    <div className="form-group d-flex justify-content-around">
-                                        <input type="button" value="NO" className="btn btn-danger" onClick={()=> quitarPregunta(element.name)} />
-                                        <input type="button" value="SI" className="btn btn-success" onClick={()=> caputarRespuesta(element.name)} />
-                                    </div>
-                                </form>
-                            </div>
-                        ))
-                    }
-                </div> */}
                 {
                     questions.length >= 1 ?
                         <div className="questions">
@@ -139,12 +128,13 @@ export const GameQuestions = ({ hobbiesDB, users, resFilter, resValue, idUsersEn
                                     </div>
                                 </form>
                             </div>
-                        </div> :
-                        <div className="w-100">
-                            <button className="btn btn-primary w-100" onClick={guardarDatosAlValUser}>Guardar resultados</button>
-                        </div>
+                        </div> : <div className="w-100">
+                    
+                    <button className="btn btn-primary w-100" onClick={guardarDatosAlValUser}>Guardar resultados</button>
+                </div>
+                        
                 }
-                <button className="btn btn-primary w-100" onClick={guardarDatosAlValUser}>Guardar resultados</button>
+                
 
             </div>
         </>

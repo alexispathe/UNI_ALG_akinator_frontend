@@ -6,8 +6,9 @@ export const Game =()=>{
     const [users, setUsers]=useState(usersDB);
     const [start, setStart]= useState(false);
     const [questions, setQuestions] = useState(hobbiesDB);
+    const [resValue, setResValue]= useState([]);
 
-    let resValue = [];
+    // let resValue = [];
     let resFilter = [];
     let idUsersEnHobbies = [];
    
@@ -26,6 +27,7 @@ export const Game =()=>{
                     hobbiesDB={hobbiesDB}
                     users={users}
                     resValue={resValue}
+                    setResValue={setResValue}
                     resFilter={resFilter}
                     idUsersEnHobbies ={idUsersEnHobbies}
                     questions = {questions}
