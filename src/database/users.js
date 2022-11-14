@@ -38,3 +38,13 @@ hacerla usuario por usuario
 2.1 Si existe 2 usuarios o mas con la misma cantidad de coencidencias, hacer mas preguntas y volver a repetir el paso 1
 
 */
+
+
+
+// 
+// const quitarPregunta =(value)=>{
+//   /*Con esta funcion estamos quitando la pregunta que se le mostro al usuario para pasar con la siguiente*/ 
+//   console
+//   // setQuestions(questions.filter(questions => questions.name != value));
+//   // console.log("Nuevas preguntas", questions)
+// }
