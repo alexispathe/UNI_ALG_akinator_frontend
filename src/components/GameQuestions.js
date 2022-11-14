@@ -1,7 +1,13 @@
+<<<<<<< HEAD
 export const GameQuestions = ({ hobbies, users, setUsers, setValUser, valUser }) => {
     let aux = [];
     let x = [];
     let idUsersEnHobbies = [];
+=======
+import { Character } from "./Character"
+export const GameQuestions = ({ hobbiesDB, users, resFilter, resValue, idUsersEnHobbies, questions, setQuestions,setResValue,characterName, setCharacterName, status, setStatus}) => { 
+    
+>>>>>>> arreglar-setValue
     // const preguntarAlUsuario = () => {
     //     /*Estamos haciendo un for para recorrer los hobbies ya predefinidos para preguntarle al usuario si su personaje cuenta 
     //       con uno de estos y si es asi guardarlos en la variable 'aux' para luego guardarlo en el 'setValUser'
@@ -29,10 +35,20 @@ export const GameQuestions = ({ hobbies, users, setUsers, setValUser, valUser })
         /*En esta funcion estan entrado el el nombre del hobbie que el usuario a dicho que su personaje cuenta 
           con uno de estos para asi guardarlos en la variable 'aux' para luego guardarlo en el 'setValUser'
         */
+<<<<<<< HEAD
         // console.log(data)
         // setValUser(...valUser, data)
         aux.push(data)
         console.log("PASO 1, ",aux)
+=======
+        // console.log(name)
+        // setValUser(...valUser, name)
+        setResValue([...resValue,name])
+        // console.log("PASO 1, ",resValue)
+        quitarPregunta(name)
+        // resValue =["as", ""]
+
+>>>>>>> arreglar-setValue
 
         
     }
@@ -47,9 +63,11 @@ export const GameQuestions = ({ hobbies, users, setUsers, setValUser, valUser })
         
     // }
     const guardarDatosAlValUser = () => {
+        
         /*
         PASO 3 DEL PROGRAMA QUE CONSISTE EN BUSCAR LAS COENCIDENCIAS QUE HAYA EL VALOR GUARDADO DEL STATE EN "valUser" CON
         LOS DE LA BASE DE DATOS 
+<<<<<<< HEAD
        */ 
         aux.map((valor) => {
             // console.log(valor)
@@ -58,6 +76,17 @@ export const GameQuestions = ({ hobbies, users, setUsers, setValUser, valUser })
             // console.log("G ", hobbies.filter(hobbie=> hobbie.name=== valor))
         })
         // console.log("Terminado", x);
+=======
+       */
+        // console.log("Paso 2", resValue)
+
+        resValue.map((valor) => {
+            // console.log(valor)
+            // "resFilter" nos permitira guardar los hobbiesDB donde haya coencidencia con lo que el usuario selecciono como verdadero
+            resFilter.push(...hobbiesDB.filter(hobbie => hobbie.name === valor));
+            // console.log("G ", hobbiesDB.filter(hobbie=> hobbie.name=== valor))
+        })
+>>>>>>> arreglar-setValue
         devolverIDUsuerDeHobbies();
     }
     /*
@@ -103,6 +132,7 @@ export const GameQuestions = ({ hobbies, users, setUsers, setValUser, valUser })
         // console.log(indexMax);
 
         // ********Buscar el id con mas coencidencias *****
+<<<<<<< HEAD
         console.log("Tu personaje es: ", users[indexMax].name);
         // DEBEMOS DE PONER EN 0 EL ARR
         aux = [];
@@ -134,6 +164,54 @@ export const GameQuestions = ({ hobbies, users, setUsers, setValUser, valUser })
                 </div>
                 <button className="btn btn-primary" onClick={guardarDatosAlValUser}>Guardar resultados</button>
                 {/* <button className="btn btn-primary" onClick={buscarPersonaje}>Ver tu personaje</button> */}
+=======
+        // console.log("Tu personaje es: ", users[indexMax].name);
+        // DEBEMOS DE PONER EN 0 LOS SIGUIENTES ARREGLOS
+        setCharacterName(users[indexMax].name);
+        setStatus(true)
+        // console.log("nombre ", characterName, " status ", status)
+        setResValue([]);
+        resFilter = []
+        idUsersEnHobbies = []
+        
+        // setUsers([]);
+        // 
+        // console.log(users)
+    }
+    const quitarPregunta = (value) => {
+        /*Con esta funcion estamos quitando la pregunta que se le mostro al usuario para pasar con la siguiente*/
+        // console.log(value)
+        let z = questions.filter(questions => questions.name != value)
+        setQuestions(z);
+        // console.log("Nuevas preguntas", questions)
+    }
+    return (
+        <>
+            <div className="">
+                {
+                    questions.length >= 1 ?
+                        <div className="questions">
+                            <div >
+                                <h2 className="">¿Tu personaje le gusta {questions[0].name}</h2>
+                                <form>
+                                    <div className="form-group d-flex justify-content-around">
+                                        <input type="button" value="NO" className="btn btn-danger" onClick={() => quitarPregunta(questions[0].name)} />
+                                        <input type="button" value="SI" className="btn btn-success" onClick={() => caputarRespuesta(questions[0].name)} />
+                                    </div>
+                                </form>
+                            </div>
+                        </div> : <div className="w-100">
+                    
+                    
+                </div>
+                }
+                { status == true && characterName? 
+                    <Character name={characterName}/>: ''
+                }
+                {
+                    status ==false && questions.length == 0?<button className="btn btn-primary w-100" onClick={guardarDatosAlValUser}>Guardar resultados</button>:''
+                }
+>>>>>>> arreglar-setValue
             </div>
         </>
     );
