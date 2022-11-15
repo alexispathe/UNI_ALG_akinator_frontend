@@ -7,6 +7,10 @@ export const usersDB =[
       name: "Fernando",
       hobbies: ["Fiestas", "Bailar", "Actuacion", "GYM", "Musica"]
     },
+    ,{
+      name: "Perla",
+      hobbies: ["Bailar", "Actuacion"]
+    },
     {
       name: "Pedro",
       hobbies: ["Cine", "videojuegos"]

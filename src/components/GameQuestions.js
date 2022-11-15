@@ -2,22 +2,24 @@ import { useState } from "react";
 import { Character } from "./Character"
 export const GameQuestions = ({ hobbiesDB, users, resFilter, resValue, idUsersEnHobbies, questions, setQuestions, setResValue, characterName, setCharacterName, status, setStatus }) => {
     const [numQuestions, setNumQuestions] = useState(0);
+    const [iterador, setIterador] = useState(1);
     const preguntaRandom = () => {
-        if (questions.length >= 1 ) {
-            let xxx = Math.floor(Math.random() * questions.length)
-            console.log("x", xxx)
-            console.log("Questions en pregunta", questions)
-            setNumQuestions(xxx)
-           
+        /*Con el iterador estamos haciendo una validacion para que solo se muestren 6 preguntas al usuario, despues lo que se hara 
+        es hacer un filtro 
+        */ 
+        // if (iterador <=6 ) {
+
+            // console.log("Questions en pregunta", questions)
+            setNumQuestions(Math.floor(Math.random() * (questions.length >=1 ? questions.length -1: questions.length )))
             //    console.log("1 ", numQuestions)
             //    console.log("Numero rando", Math.floor(Math.random()*numQuestions));
-
-        } else {
-            console.log("Se termino de hacer las preguntas")
-        }
+            setIterador(iterador+1)
+            console.log("i ", iterador)
+        // } else {
+        //     console.log("Se termino de hacer las preguntas")
+        // }
         //    
     }
-
     // const preguntarAlUsuario = () => {
     //     /*Estamos haciendo un for para recorrer los hobbies ya predefinidos para preguntarle al usuario si su personaje cuenta 
     //       con uno de estos y si es asi guardarlos en la variable 'aux' para luego guardarlo en el 'setValUser'
@@ -46,7 +48,7 @@ export const GameQuestions = ({ hobbiesDB, users, resFilter, resValue, idUsersEn
           con uno de estos para asi guardarlos en la variable 'aux' para luego guardarlo en el 'setValUser'
         */
        if(name){
-        console.log(name)
+        // console.log(name)
         // setValUser(...valUser, name)
         setResValue([...resValue, name])
         // console.log("PASO 1, ",resValue)
@@ -55,10 +57,6 @@ export const GameQuestions = ({ hobbiesDB, users, resFilter, resValue, idUsersEn
        }else{
         console.log("El nombre no existe")
        }
-       
-
-
-
     }
     // const guardarDatosAlValUser=()=>{
     //     /*PASO 2 DEL PROGRAMA*/ 
@@ -77,6 +75,7 @@ export const GameQuestions = ({ hobbiesDB, users, resFilter, resValue, idUsersEn
         LOS DE LA BASE DE DATOS 
        */
         // console.log("Paso 2", resValue)
+        console.log("Hobbies que selecciono el usuario", resValue);
 
         resValue.map((valor) => {
             // console.log(valor)
@@ -102,7 +101,8 @@ export const GameQuestions = ({ hobbiesDB, users, resFilter, resValue, idUsersEn
             // console.log("id", user)
             idUsersEnHobbies.push(...user.idUser)
         })
-        // console.log("ID " ,idUsersEnHobbies)
+        
+        console.log("ID " ,idUsersEnHobbies)
 
         buscarPersonaje();
     }
@@ -124,20 +124,21 @@ export const GameQuestions = ({ hobbiesDB, users, resFilter, resValue, idUsersEn
 
         //**********NUMERO MAXIMO DEL OBJETO ********;
         const max = Math.max(...Object.values(obj));
-        // console.log(max);
+        console.log("Valor MAx ",max);
         const indexMax = Object.values(obj).indexOf(max)
         // console.log(indexMax);
 
         // ********Buscar el id con mas coencidencias *****
         // console.log("Tu personaje es: ", users[indexMax].name);
         // DEBEMOS DE PONER EN 0 LOS SIGUIENTES ARREGLOS
+        console.log("ass", users[indexMax].name)
         setCharacterName(users[indexMax].name);
         setStatus(true)
         // console.log("nombre ", characterName, " status ", status)
         setResValue([]);
         resFilter = []
         idUsersEnHobbies = []
-
+        // console.log(users)
         // setUsers([]);
         // 
         // console.log(users)
