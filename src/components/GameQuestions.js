@@ -3,6 +3,7 @@ import { Character } from "./Character"
 export const GameQuestions = ({ hobbiesDB, users, resFilter, resValue, idUsersEnHobbies, questions, setQuestions, setResValue, characterName, setCharacterName, status, setStatus }) => {
     const [numQuestions, setNumQuestions] = useState(0);
     const [iterador, setIterador] = useState(1);
+    // const [dataHobbies, setDataHobbies] = useState([]);
     const preguntaRandom = () => {
         /*Con el iterador estamos haciendo una validacion para que solo se muestren 6 preguntas al usuario, despues lo que se hara 
         es hacer un filtro 
@@ -94,13 +95,29 @@ export const GameQuestions = ({ hobbiesDB, users, resFilter, resValue, idUsersEn
         // console.log(idCharacters[i]);
             newCharacters.push(users[idCharacters[i]])
         }
-        const dataHobbies = []
+        let dataHobbies = []
         newCharacters.map(data =>{
             dataHobbies.push(...data.hobbies)
         });
         // console.log("PASO 5 nuevos personajes", newCharacters)
-        console.log("PASO 5 todos los hobbies del los usuarios ya con el filtro ", dataHobbies);
-        
+        // "PASO 5 todos los hobbies del los usuarios ya con el filtro "
+        // console.log("PASO 5 todos los hobbies del los usuarios ya con el filtro ", dataHobbies);
+        dataHobbies = dataHobbies.reduce((prev, cur) => ((prev[cur] = prev[cur] + 1 || 1), prev), {})
+        // "PASO 5, se quitan los valores repeditos del arreglo dataHobbies"
+        // console.log("PASO 5, se quitan los valores repeditos del arreglo dataHobbies", dataHobbies)
+        dataHobbies = Object.keys(dataHobbies);
+        // console.log("devolvemos solo las keys de objeto para devolver asi solo los datos ", dataHobbies)
+        /*DESCARTAREMOS LOS HOBBIES QUE YA PASO EL PRIMER FILTRO DONDE SE OPTUVIERON LOS PRIMERO PERSONAJES*/ 
+        console.log("Todos los hobbies de los personajes ", dataHobbies)
+        console.log("Hobbies del jugador en el primer filtro", resValue)
+        resValue.map(data =>{
+            dataHobbies = dataHobbies.filter( hobbie => hobbie != data)
+        });
+        console.log("Hobbies donde ya no existen los datos que se encuentran en resValue ",dataHobbies)
+            
+
+
+
     }   
 
     const buscarPersonaje = () => {
