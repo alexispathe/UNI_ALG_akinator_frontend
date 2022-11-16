@@ -7,7 +7,7 @@ export const GameQuestions = ({ hobbiesDB, users, resFilter, resValue, idUsersEn
         /*Con el iterador estamos haciendo una validacion para que solo se muestren 6 preguntas al usuario, despues lo que se hara 
         es hacer un filtro 
         */ 
-        // if (iterador <=6 ) {
+        if (iterador <=6 ) { 
 
             // console.log("Questions en pregunta", questions)
             setNumQuestions(Math.floor(Math.random() * (questions.length >=1 ? questions.length -1: questions.length )))
@@ -15,11 +15,14 @@ export const GameQuestions = ({ hobbiesDB, users, resFilter, resValue, idUsersEn
             //    console.log("Numero rando", Math.floor(Math.random()*numQuestions));
             setIterador(iterador+1)
             // console.log("i ", iterador)
-        // } else {
-        //     console.log("Se termino de hacer las preguntas")
-        // }
+        } else {
+            console.log("Se termino de hacer las preguntas")
+            guardarDatosAlValUser();
+
+        }
         //    
     }
+    
 
     const caputarRespuesta = (name) => {
         /*PASO 1 DEL PROGRAMA*/
@@ -51,6 +54,7 @@ export const GameQuestions = ({ hobbiesDB, users, resFilter, resValue, idUsersEn
             // "resFilter" nos permitira guardar los hobbiesDB donde haya coencidencia con lo que el usuario selecciono como verdadero
             resFilter.push(...hobbiesDB.filter(hobbie => hobbie.name === valor));
         })
+        console.log("Aqui devuelve los hobbies con el id del usuario", resFilter)
         devolverIDUsuerDeHobbies();
     }
     /*
@@ -71,13 +75,36 @@ export const GameQuestions = ({ hobbiesDB, users, resFilter, resValue, idUsersEn
         })
         
         // idUsersEnHobbies nos devuelve un arreglo con los id que se encuentra en el hobbies.IDUsers de la base de datos.
-        console.log("ID " ,idUsersEnHobbies)
-
-        buscarPersonaje();
+        // console.log("ID de los personajes que tienen los hobbies seleccionados por el jugador " ,idUsersEnHobbies)
+        filtroPersonajes();
+        // buscarPersonaje(); >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
     }
+    
+    const filtroPersonajes=()=>{
+        /*PASO 5 Con el filtro de personaje lo que se hace es  devolver a todos los personajes que tienen almenos 1 hobbie con su respectivo nombre */ 
+        console.log("ID de los personajes que tienen los hobbies seleccionados por el jugador " ,idUsersEnHobbies)
+        // Con reduce estamos contando cuantas veces se repiten los numeros, al final nos devuelve un objeto
+        const obj = idUsersEnHobbies.reduce((prev, cur) => ((prev[cur] = prev[cur] + 1 || 1), prev), {});
+        // console.log("OBJETO ", obj)
+        // ***********CONVIRTIENDO LAS KEYS DE UN OBJETO A UN ARREGLO []***************+
+        const idCharacters = Object.keys(obj); 
+        const newCharacters = []; //>>> se guardan los personajes para sacar sus hobbies
+        // console.log("PASO 5 ID de los usuarios ", idCharacters)
+        for(let i = 0; i < idCharacters.length; i++){
+        // console.log(idCharacters[i]);
+            newCharacters.push(users[idCharacters[i]])
+        }
+        const dataHobbies = []
+        newCharacters.map(data =>{
+            dataHobbies.push(...data.hobbies)
+        });
+        // console.log("PASO 5 nuevos personajes", newCharacters)
+        console.log("PASO 5 todos los hobbies del los usuarios ya con el filtro ", dataHobbies);
+        
+    }   
 
     const buscarPersonaje = () => {
-        /* PASO 5 
+        /* PASO 6
    con la funcion llamda buscarPersonaje haremos la busqueda con el personaje con el ID que mas se repita
    para asi devolver el personaje encontrado 
    */
