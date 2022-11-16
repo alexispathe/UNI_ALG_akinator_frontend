@@ -14,33 +14,12 @@ export const GameQuestions = ({ hobbiesDB, users, resFilter, resValue, idUsersEn
             //    console.log("1 ", numQuestions)
             //    console.log("Numero rando", Math.floor(Math.random()*numQuestions));
             setIterador(iterador+1)
-            console.log("i ", iterador)
+            // console.log("i ", iterador)
         // } else {
         //     console.log("Se termino de hacer las preguntas")
         // }
         //    
     }
-    // const preguntarAlUsuario = () => {
-    //     /*Estamos haciendo un for para recorrer los hobbies ya predefinidos para preguntarle al usuario si su personaje cuenta 
-    //       con uno de estos y si es asi guardarlos en la variable 'aux' para luego guardarlo en el 'setValUser'
-    //     */
-    //     for (let i = 0; i < hobbies.length; i++) {
-
-    //         setValUser(...valUser, [hobbies[i]])
-    //         // console.log(i)
-    //         const val = prompt(`Tu personaje le gusta ${hobbies[i].name} `)
-    //         if (val === "si") {
-    //             aux.push(hobbies[i].name)
-
-    //         } else {
-    //             console.log("Di que no >:v")
-    //         }
-
-    //     }
-
-
-
-    // };
 
     const caputarRespuesta = (name) => {
         /*PASO 1 DEL PROGRAMA*/
@@ -58,30 +37,19 @@ export const GameQuestions = ({ hobbiesDB, users, resFilter, resValue, idUsersEn
         console.log("El nombre no existe")
        }
     }
-    // const guardarDatosAlValUser=()=>{
-    //     /*PASO 2 DEL PROGRAMA*/ 
-    //     setValUser(aux)
-    //     setTimeout(()=>{
-    //     console.log("PASO 2 ", valUser)
-
-    //     }, 2000)
-    //     // buscarCoencidencias();
-
-    // }
+   
     const guardarDatosAlValUser = () => {
 
         /*
         PASO 3 DEL PROGRAMA QUE CONSISTE EN BUSCAR LAS COENCIDENCIAS QUE HAYA EL VALOR GUARDADO DEL STATE EN "valUser" CON
         LOS DE LA BASE DE DATOS 
        */
-        // console.log("Paso 2", resValue)
-        console.log("Hobbies que selecciono el usuario", resValue);
+        // console.log("Hobbies que selecciono el usuario", resValue);
 
         resValue.map((valor) => {
             // console.log(valor)
             // "resFilter" nos permitira guardar los hobbiesDB donde haya coencidencia con lo que el usuario selecciono como verdadero
             resFilter.push(...hobbiesDB.filter(hobbie => hobbie.name === valor));
-            // console.log("G ", hobbiesDB.filter(hobbie=> hobbie.name=== valor))
         })
         devolverIDUsuerDeHobbies();
     }
@@ -117,57 +85,43 @@ export const GameQuestions = ({ hobbiesDB, users, resFilter, resValue, idUsersEn
         // Con reduce estamos contando cuantas veces se repiten los numeros, al final nos devuelve un objeto
         const obj = idUsersEnHobbies.reduce((prev, cur) => ((prev[cur] = prev[cur] + 1 || 1), prev), {});
         // console.log("OBJETO ", obj)
+
         // ***********CONVIRTIENDO LAS KEYS DE UN OBJETO A UN ARREGLO []***************+
         const keys = Object.keys(obj); 
+
         // ********CONVIRTIENDO LOS VALORES DE UN OBJETO A UN ARREGLO []*************
         const values = Object.values(obj);
 
         //**********DEVOLVER EL VALOR  MAXIMO  QUE HAY EN LA CONSTANTE "values"  ********;
         const max = Math.max(...values);
         // console.log("Valor MAx ",max);
-        // console.log("Esto contiene el Object.values(obj)", Object.values(obj))
         
         // ******** DEVOLVER EL INDICE DE LA CONSTANTE "values"************
         const indexMax = values.indexOf(max)
 
         //****** DEVOLVER LA KEY = "ID DEL PERSONAJE" CON LA AYUDA DEL 'indexMax' ********++ */ 
-        // console.log("Esto contiene el Object.values(obj).indexOf(max)", Object.values(obj).indexOf(max), "DONDE SE SUPONE QUE EL ID DEL USUARIO ES ", indexMax)
-        // console.log(Object.keys(obj))
+       
         const indexKey = keys[indexMax];
         // ****
         // console.log(indexMax);
 
-        // ********Buscar el id con mas coencidencias *****
-        // console.log("Tu personaje es: ", users[indexMax].name);
-        // DEBEMOS DE PONER EN 0 LOS SIGUIENTES ARREGLOS
-        // console.log("Tu personaje es: ", users[indexMax].name, "Con el ID ", indexMax)
         setCharacterName(users[indexKey].name);
         setStatus(true)
         // console.log("nombre ", characterName, " status ", status)
         setResValue([]);
         resFilter = []
         idUsersEnHobbies = []
-        // console.log(users)
-        // setUsers([]);
-        // 
-        // console.log(users)
+       
     }
     const quitarPregunta = (value) => {
         /*Con esta funcion estamos quitando la pregunta que se le mostro al usuario para pasar con la siguiente*/
-        // console.log(value)
-        // let z = questions.filter(questions => questions.name != value)
-        // console.log("Este es el numero ", numQuestions)
+        
         if (questions) {
             // console.log("Viendo erro 1", questions[numQuestions].name)
             setQuestions(questions.filter(questions => questions.name !== value));
             preguntaRandom(); 
-           
             // console.log("Viendo erro 2", questions[numQuestions].name)
         }
-
-
-        // console.log("Nuevas preguntas", questions)
-
     }
     return (
         <>
@@ -188,11 +142,11 @@ export const GameQuestions = ({ hobbiesDB, users, resFilter, resValue, idUsersEn
                             </div>
                         </div> : <div className="w-100"></div>
                 }
-                {status == true && characterName ?
+                {status === true && characterName ?
                     <Character name={characterName} /> : ''
                 }
                 {
-                    status == false && questions.length == 0 ? <button className="btn btn-primary w-100" onClick={guardarDatosAlValUser}>Guardar resultados</button> : ''
+                    status === false && questions.length === 0 ? <button className="btn btn-primary w-100" onClick={guardarDatosAlValUser}>Guardar resultados</button> : ''
                 }
             </div>
         </>

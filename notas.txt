@@ -1,5 +1,2 @@
-1.  debemos de solucionar el problema con el state de questions donde busca un indice que ya no existe
+2. Devolver almenos 6 preguntas y hacer un filtro donde devuelva todos los usuarios que tengan alemenos un hobbie que el usuario puso
 
-2. Devolver almenos 6 preguntas 
-
-3. AVERIGUAR POR QUE SOLO DEVUELVE EL ID 2 en el paso 4 
