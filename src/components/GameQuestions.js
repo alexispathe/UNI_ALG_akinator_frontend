@@ -102,6 +102,7 @@ export const GameQuestions = ({ hobbiesDB, users, resFilter, resValue, idUsersEn
             idUsersEnHobbies.push(...user.idUser)
         })
         
+        // idUsersEnHobbies nos devuelve un arreglo con los id que se encuentra en el hobbies.IDUsers de la base de datos.
         console.log("ID " ,idUsersEnHobbies)
 
         buscarPersonaje();
@@ -115,24 +116,32 @@ export const GameQuestions = ({ hobbiesDB, users, resFilter, resValue, idUsersEn
         // console.log("ID Guardados", idUsersEnHobbies);
         // Con reduce estamos contando cuantas veces se repiten los numeros, al final nos devuelve un objeto
         const obj = idUsersEnHobbies.reduce((prev, cur) => ((prev[cur] = prev[cur] + 1 || 1), prev), {});
-        console.log(obj)
-        // ********CONVIRTIENDO LA KEY Y EL VALOR EN ARREGLO****
-        // const arrayIDUser =  Object.keys(obj)
-        // console.log(arrayIDUser)
-        // const arrayValueIDUser = Object.values(obj);
-        // console.log(arrayValueIDUser);
+        // console.log("OBJETO ", obj)
+        // ***********CONVIRTIENDO LAS KEYS DE UN OBJETO A UN ARREGLO []***************+
+        const keys = Object.keys(obj); 
+        // ********CONVIRTIENDO LOS VALORES DE UN OBJETO A UN ARREGLO []*************
+        const values = Object.values(obj);
 
-        //**********NUMERO MAXIMO DEL OBJETO ********;
-        const max = Math.max(...Object.values(obj));
-        console.log("Valor MAx ",max);
-        const indexMax = Object.values(obj).indexOf(max)
+        //**********DEVOLVER EL VALOR  MAXIMO  QUE HAY EN LA CONSTANTE "values"  ********;
+        const max = Math.max(...values);
+        // console.log("Valor MAx ",max);
+        // console.log("Esto contiene el Object.values(obj)", Object.values(obj))
+        
+        // ******** DEVOLVER EL INDICE DE LA CONSTANTE "values"************
+        const indexMax = values.indexOf(max)
+
+        //****** DEVOLVER LA KEY = "ID DEL PERSONAJE" CON LA AYUDA DEL 'indexMax' ********++ */ 
+        // console.log("Esto contiene el Object.values(obj).indexOf(max)", Object.values(obj).indexOf(max), "DONDE SE SUPONE QUE EL ID DEL USUARIO ES ", indexMax)
+        // console.log(Object.keys(obj))
+        const indexKey = keys[indexMax];
+        // ****
         // console.log(indexMax);
 
         // ********Buscar el id con mas coencidencias *****
         // console.log("Tu personaje es: ", users[indexMax].name);
         // DEBEMOS DE PONER EN 0 LOS SIGUIENTES ARREGLOS
-        console.log("ass", users[indexMax].name)
-        setCharacterName(users[indexMax].name);
+        // console.log("Tu personaje es: ", users[indexMax].name, "Con el ID ", indexMax)
+        setCharacterName(users[indexKey].name);
         setStatus(true)
         // console.log("nombre ", characterName, " status ", status)
         setResValue([]);
