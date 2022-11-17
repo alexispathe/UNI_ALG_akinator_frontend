@@ -4,7 +4,8 @@ export const GameQuestions = ({ hobbiesDB, users, resFilter, resValue, idUsersEn
     const [numQuestions, setNumQuestions] = useState(0);
     const [iterador, setIterador] = useState(1);
     const [nuevasPreguntas, setNuevasPreguntas] = useState([]);
-    const [questions2, setQuestions2] = useState([...questions])
+    const questions2 =[]
+    let auxQuestions2 = [...questions];
     // const [dataHobbies, setDataHobbies] = useState([]);
     
     /* Con esta funcion nos permitira buscar un hobbie para la  pregunta de forma aletoria */
@@ -27,8 +28,8 @@ export const GameQuestions = ({ hobbiesDB, users, resFilter, resValue, idUsersEn
     }
     /***AQUI COMIENZA LAS NUEVAS PREGUNTAS PARA HACER EL USUARIO CONFORME A LOS HOBBIES QUE SE OBTUVIERON DEL PRIMER FILTRO***/ 
     const preguntaRandomFase2 =()=>{
-        console.log("Estos son los hobbies para las nuevas preguntas ", questions);
-        numPregunta(questions);
+        console.log("FASE 2 PREGUNTAS debe de coencidir con el aux", questions2);
+        // numPregunta(questions2);
 
     }
 
@@ -121,22 +122,14 @@ export const GameQuestions = ({ hobbiesDB, users, resFilter, resValue, idUsersEn
         });
         console.log("Hobbies donde ya no existen los datos que se encuentran en resValue ",dataHobbies)
 
-        /*GUARDAREMOS LOS DATOS DE dataHobbies en el state de questions2 para asi usarlas en la funcion 'preguntasRandomFase2()'*/ 
-        // console.log(questions2)
-        // setQuestions(dataHobbies);
-        // console.log(...dataHobbies)
+        /*GUARDAREMOS LOS DATOS DE dataHobbies en questions2 para asi usarlas en la funcion 'preguntasRandomFase2()'*/ 
+       
         const aux = [];
         dataHobbies.map(data=>{
-            // console.log("data", data)
-            // console.log("q2 ",questions2[0].name)
-            aux.push(...questions2.filter(question => question.name === data));
-            // console.log("a ", aux)
+            aux.push(...auxQuestions2.filter(question => question.name === data));
+            console.log("Estas son las nuevas preguntas  de hobbies pero desde aux  ", aux)
         })
-        // console.log("aux ", aux);
-        setQuestions2(...aux);
-        // console.log("dataHobbies", dataHobbies)
-        // console.log("questions", questions)
-
+        questions2.push(...aux);
         // /*AQUI DEBEMOS DE MANDAR A LLAMAR EL NUEVO FILTRO DE LOS HOBBIES PARA HACER LAS NUEVAS PREGUNTAS*/
         preguntaRandomFase2();
 
