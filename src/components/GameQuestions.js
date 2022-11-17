@@ -3,28 +3,36 @@ import { Character } from "./Character"
 export const GameQuestions = ({ hobbiesDB, users, resFilter, resValue, idUsersEnHobbies, questions, setQuestions, setResValue, characterName, setCharacterName, status, setStatus }) => {
     const [numQuestions, setNumQuestions] = useState(0);
     const [iterador, setIterador] = useState(1);
+    const [nuevasPreguntas, setNuevasPreguntas] = useState([]);
+    const [questions2, setQuestions2] = useState([...questions])
     // const [dataHobbies, setDataHobbies] = useState([]);
+    
+    /* Con esta funcion nos permitira buscar un hobbie para la  pregunta de forma aletoria */
+    const numPregunta=(preguntas)=> setNumQuestions(Math.floor(Math.random() * (preguntas.length >=1 ? preguntas.length -1: preguntas.length )))
+    
+
     const preguntaRandom = () => {
         /*Con el iterador estamos haciendo una validacion para que solo se muestren 6 preguntas al usuario, despues lo que se hara 
         es hacer un filtro 
         */ 
         if (iterador <=6 ) { 
-
-            // console.log("Questions en pregunta", questions)
-            setNumQuestions(Math.floor(Math.random() * (questions.length >=1 ? questions.length -1: questions.length )))
-            //    console.log("1 ", numQuestions)
-            //    console.log("Numero rando", Math.floor(Math.random()*numQuestions));
+            //**********  ESTAMOS MANDANDO A LLAMAR LA FUNCION QUE NOS PERMITIRA REALIZAR UNA PREGUNTA DE FORMA ALEATORIA******/
+            numPregunta(questions)
             setIterador(iterador+1)
-            // console.log("i ", iterador)
         } else {
             console.log("Se termino de hacer las preguntas")
-            guardarDatosAlValUser();
-
+            // devolverHobbiesConID(); >>>>>>>>>>>
         }
         //    
     }
+    /***AQUI COMIENZA LAS NUEVAS PREGUNTAS PARA HACER EL USUARIO CONFORME A LOS HOBBIES QUE SE OBTUVIERON DEL PRIMER FILTRO***/ 
+    const preguntaRandomFase2 =()=>{
+        console.log("Estos son los hobbies para las nuevas preguntas ", questions);
+        numPregunta(questions);
 
-    const caputarRespuesta = (name) => {
+    }
+
+    const capRespuestaDelJugador = (name) => {
         /*PASO 1 DEL PROGRAMA*/
         /*En esta funcion estan entrado el el nombre del hobbie que el usuario a dicho que su personaje cuenta 
           con uno de estos para asi guardarlos en la variable 'aux' para luego guardarlo en el 'setValUser'
@@ -41,20 +49,19 @@ export const GameQuestions = ({ hobbiesDB, users, resFilter, resValue, idUsersEn
        }
     }
    
-    const guardarDatosAlValUser = () => {
+    const devolverHobbiesConID = () => {
 
         /*
-        PASO 3 DEL PROGRAMA QUE CONSISTE EN BUSCAR LAS COENCIDENCIAS QUE HAYA EL VALOR GUARDADO DEL STATE EN "valUser" CON
+        PASO 3 DEL PROGRAMA QUE CONSISTE EN BUSCAR LAS COENCIDENCIAS QUE HAYA EL VALOR GUARDADO DEL STATE EN "resValue" CON
         LOS DE LA BASE DE DATOS 
        */
-        // console.log("Hobbies que selecciono el usuario", resValue);
 
         resValue.map((valor) => {
             // console.log(valor)
             // "resFilter" nos permitira guardar los hobbiesDB donde haya coencidencia con lo que el usuario selecciono como verdadero
             resFilter.push(...hobbiesDB.filter(hobbie => hobbie.name === valor));
         })
-        console.log("Aqui devuelve los hobbies con el id del usuario", resFilter)
+        // console.log("Aqui devuelve los hobbies con el id del usuario", resFilter)
         devolverIDUsuerDeHobbies();
     }
     /*
@@ -82,7 +89,7 @@ export const GameQuestions = ({ hobbiesDB, users, resFilter, resValue, idUsersEn
     
     const filtroPersonajes=()=>{
         /*PASO 5 Con el filtro de personaje lo que se hace es  devolver a todos los personajes que tienen almenos 1 hobbie con su respectivo nombre */ 
-        console.log("ID de los personajes que tienen los hobbies seleccionados por el jugador " ,idUsersEnHobbies)
+        // console.log("ID de los personajes que tienen los hobbies seleccionados por el jugador " ,idUsersEnHobbies)
         // Con reduce estamos contando cuantas veces se repiten los numeros, al final nos devuelve un objeto
         const obj = idUsersEnHobbies.reduce((prev, cur) => ((prev[cur] = prev[cur] + 1 || 1), prev), {});
         // console.log("OBJETO ", obj)
@@ -107,15 +114,31 @@ export const GameQuestions = ({ hobbiesDB, users, resFilter, resValue, idUsersEn
         dataHobbies = Object.keys(dataHobbies);
         // console.log("devolvemos solo las keys de objeto para devolver asi solo los datos ", dataHobbies)
         /*DESCARTAREMOS LOS HOBBIES QUE YA PASO EL PRIMER FILTRO DONDE SE OPTUVIERON LOS PRIMERO PERSONAJES*/ 
-        console.log("Todos los hobbies de los personajes ", dataHobbies)
-        console.log("Hobbies del jugador en el primer filtro", resValue)
+        // console.log("Todos los hobbies de los personajes ", dataHobbies)
+        // console.log("Hobbies del jugador en el primer filtro", resValue)
         resValue.map(data =>{
             dataHobbies = dataHobbies.filter( hobbie => hobbie != data)
         });
         console.log("Hobbies donde ya no existen los datos que se encuentran en resValue ",dataHobbies)
-            
 
+        /*GUARDAREMOS LOS DATOS DE dataHobbies en el state de questions2 para asi usarlas en la funcion 'preguntasRandomFase2()'*/ 
+        // console.log(questions2)
+        // setQuestions(dataHobbies);
+        // console.log(...dataHobbies)
+        const aux = [];
+        dataHobbies.map(data=>{
+            // console.log("data", data)
+            // console.log("q2 ",questions2[0].name)
+            aux.push(...questions2.filter(question => question.name === data));
+            // console.log("a ", aux)
+        })
+        // console.log("aux ", aux);
+        setQuestions2(...aux);
+        // console.log("dataHobbies", dataHobbies)
+        // console.log("questions", questions)
 
+        // /*AQUI DEBEMOS DE MANDAR A LLAMAR EL NUEVO FILTRO DE LOS HOBBIES PARA HACER LAS NUEVAS PREGUNTAS*/
+        preguntaRandomFase2();
 
     }   
 
@@ -159,11 +182,15 @@ export const GameQuestions = ({ hobbiesDB, users, resFilter, resValue, idUsersEn
     const quitarPregunta = (value) => {
         /*Con esta funcion estamos quitando la pregunta que se le mostro al usuario para pasar con la siguiente*/
         
-        if (questions) {
+        if (questions && iterador <= 6) {
             // console.log("Viendo erro 1", questions[numQuestions].name)
             setQuestions(questions.filter(questions => questions.name !== value));
             preguntaRandom(); 
             // console.log("Viendo erro 2", questions[numQuestions].name)
+        }else{
+            // "Estra a pregunta random 2 "
+            devolverHobbiesConID();
+            // preguntaRandomFase2()
         }
     }
     return (
@@ -179,7 +206,7 @@ export const GameQuestions = ({ hobbiesDB, users, resFilter, resValue, idUsersEn
                                 <form>
                                     <div className="form-group d-flex justify-content-around">
                                         <input type="button" value="NO" className="btn btn-danger" onClick={() => quitarPregunta(questions[numQuestions].name)} />
-                                        <input type="button" value="SI" className="btn btn-success" onClick={() => caputarRespuesta(questions[numQuestions].name)} />
+                                        <input type="button" value="SI" className="btn btn-success" onClick={() => capRespuestaDelJugador(questions[numQuestions].name)} />
                                     </div>
                                 </form>
                             </div>
@@ -189,7 +216,7 @@ export const GameQuestions = ({ hobbiesDB, users, resFilter, resValue, idUsersEn
                     <Character name={characterName} /> : ''
                 }
                 {
-                    status === false && questions.length === 0 ? <button className="btn btn-primary w-100" onClick={guardarDatosAlValUser}>Guardar resultados</button> : ''
+                    status === false && questions.length === 0 ? <button className="btn btn-primary w-100" onClick={devolverHobbiesConID}>Guardar resultados</button> : ''
                 }
             </div>
         </>

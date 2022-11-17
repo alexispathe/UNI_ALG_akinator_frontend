@@ -1,2 +1,8 @@
 2. Devolver almenos 6 preguntas y hacer un filtro donde devuelva todos los usuarios que tengan alemenos un hobbie que el usuario puso
 
+3. Quiza cuando pase a la fase 2 va a repetir un hobbie nuevamente, solucionar ese problema por si ese hobbie ya paso en la primera fase ya
+no se vuelva a repetir
+
+
+ESTOS SON LOS PASOS QUE LLEVA EL PROGRAMA 
+1. Se 
