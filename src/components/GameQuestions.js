@@ -8,7 +8,7 @@ export const GameQuestions = ({ hobbiesDB, users, resFilter, resValue, idUsersEn
         /*Con el iterador estamos haciendo una validacion para que solo se muestren 6 preguntas al usuario, despues lo que se hara 
         es hacer un filtro 
         */ 
-        if (iterador <=6 ) { 
+        // if (iterador <=6 ) { 
 
             // console.log("Questions en pregunta", questions)
             setNumQuestions(Math.floor(Math.random() * (questions.length >=1 ? questions.length -1: questions.length )))
@@ -16,11 +16,11 @@ export const GameQuestions = ({ hobbiesDB, users, resFilter, resValue, idUsersEn
             //    console.log("Numero rando", Math.floor(Math.random()*numQuestions));
             setIterador(iterador+1)
             // console.log("i ", iterador)
-        } else {
-            console.log("Se termino de hacer las preguntas")
-            guardarDatosAlValUser();
+        // } else {
+        //     console.log("Se termino de hacer las preguntas")
+        //     // guardarDatosAlValUser();
 
-        }
+        // }
         //    
     }
 
@@ -114,7 +114,7 @@ export const GameQuestions = ({ hobbiesDB, users, resFilter, resValue, idUsersEn
         });
         console.log("Hobbies donde ya no existen los datos que se encuentran en resValue ",dataHobbies)
             
-
+        buscarPersonaje();
 
 
     }   
