@@ -23,7 +23,6 @@ export const GameQuestions = ({ hobbiesDB, users, resFilter, resValue, idUsersEn
         }
         //    
     }
-    
 
     const caputarRespuesta = (name) => {
         /*PASO 1 DEL PROGRAMA*/
