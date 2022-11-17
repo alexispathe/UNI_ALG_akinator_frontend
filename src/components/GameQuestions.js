@@ -29,7 +29,8 @@ export const GameQuestions = ({ hobbiesDB, users, resFilter, resValue, idUsersEn
     /***AQUI COMIENZA LAS NUEVAS PREGUNTAS PARA HACER EL USUARIO CONFORME A LOS HOBBIES QUE SE OBTUVIERON DEL PRIMER FILTRO***/ 
     const preguntaRandomFase2 =()=>{
         console.log("FASE 2 PREGUNTAS debe de coencidir con el aux", questions2);
-        // numPregunta(questions2);
+        numPregunta(questions2);
+        setQuestions(questions2)
 
     }
 

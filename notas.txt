@@ -3,6 +3,8 @@
 3. Quiza cuando pase a la fase 2 va a repetir un hobbie nuevamente, solucionar ese problema por si ese hobbie ya paso en la primera fase ya
 no se vuelva a repetir
 
+3. Buscar la manera de mejorar el codigo para que evitar que no se duplique codigo, es decir hacer mas funciones y solucionar el problema que no 
+se devuelven preguntas en tiempo real
 
 ESTOS SON LOS PASOS QUE LLEVA EL PROGRAMA 
 1. Se 
