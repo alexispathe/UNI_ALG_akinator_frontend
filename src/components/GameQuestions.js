@@ -6,6 +6,7 @@ export const GameQuestions = ({ hobbiesDB, users, resFilter, resValue, idUsersEn
     const [nuevasPreguntas, setNuevasPreguntas] = useState([]);
     const questions2 =[]
     let auxQuestions2 = [...questions];
+    const aux = [];
     // const [dataHobbies, setDataHobbies] = useState([]);
     
     /* Con esta funcion nos permitira buscar un hobbie para la  pregunta de forma aletoria */
@@ -20,17 +21,27 @@ export const GameQuestions = ({ hobbiesDB, users, resFilter, resValue, idUsersEn
             //**********  ESTAMOS MANDANDO A LLAMAR LA FUNCION QUE NOS PERMITIRA REALIZAR UNA PREGUNTA DE FORMA ALEATORIA******/
             numPregunta(questions)
             setIterador(iterador+1)
+            
+
         } else {
             console.log("Se termino de hacer las preguntas")
-            // devolverHobbiesConID(); >>>>>>>>>>>
+            devolverHobbiesConID(); 
         }
         //    
     }
     /***AQUI COMIENZA LAS NUEVAS PREGUNTAS PARA HACER EL USUARIO CONFORME A LOS HOBBIES QUE SE OBTUVIERON DEL PRIMER FILTRO***/ 
     const preguntaRandomFase2 =()=>{
-        console.log("FASE 2 PREGUNTAS debe de coencidir con el aux", questions2);
-        numPregunta(questions2);
-        setQuestions(questions2)
+        if(questions.length >=0){
+            alert("Entro a la fase 2")
+            console.log("FASE 2 PREGUNTAS debe de coencidir con el aux", questions2);
+            setIterador(iterador+1)
+        // pasamos los nuevos datos al setQuestions
+            numPregunta(questions2);
+        }else{
+            alert("termino por que ya no hay mas hobbies")
+            devolverHobbiesConID();
+        }
+        
 
     }
 
@@ -124,15 +135,25 @@ export const GameQuestions = ({ hobbiesDB, users, resFilter, resValue, idUsersEn
         console.log("Hobbies donde ya no existen los datos que se encuentran en resValue ",dataHobbies)
 
         /*GUARDAREMOS LOS DATOS DE dataHobbies en questions2 para asi usarlas en la funcion 'preguntasRandomFase2()'*/ 
+        
+        if(iterador >= 6 && questions.length >=1){
+            alert("Mi iterado llego a 7")
+            dataHobbies.map(data=>{
+                aux.push(...auxQuestions2.filter(question => question.name === data));
+                console.log("Estas son las nuevas preguntas  de hobbies pero desde aux  ", aux)
+            })
+            questions2.push(...aux);
+            setQuestions(questions2);
+            // /*AQUI DEBEMOS DE MANDAR A LLAMAR EL NUEVO FILTRO DE LOS HOBBIES PARA HACER LAS NUEVAS PREGUNTAS*/
+            preguntaRandomFase2();
+            
+        }   else{
+            alert("Ya no paso por que no hay mas preguntas")
+            buscarPersonaje()
+            
+            
+        }
        
-        const aux = [];
-        dataHobbies.map(data=>{
-            aux.push(...auxQuestions2.filter(question => question.name === data));
-            console.log("Estas son las nuevas preguntas  de hobbies pero desde aux  ", aux)
-        })
-        questions2.push(...aux);
-        // /*AQUI DEBEMOS DE MANDAR A LLAMAR EL NUEVO FILTRO DE LOS HOBBIES PARA HACER LAS NUEVAS PREGUNTAS*/
-        preguntaRandomFase2();
 
     }   
 
@@ -176,15 +197,22 @@ export const GameQuestions = ({ hobbiesDB, users, resFilter, resValue, idUsersEn
     const quitarPregunta = (value) => {
         /*Con esta funcion estamos quitando la pregunta que se le mostro al usuario para pasar con la siguiente*/
         
-        if (questions && iterador <= 6) {
+        if (iterador <= 6) {
             // console.log("Viendo erro 1", questions[numQuestions].name)
             setQuestions(questions.filter(questions => questions.name !== value));
             preguntaRandom(); 
             // console.log("Viendo erro 2", questions[numQuestions].name)
-        }else{
+        }else if(iterador === 7){
             // "Estra a pregunta random 2 "
+            alert("Llego a 7 ")
+            // setQuestions(questions.filter(questions => questions.name !== value));
             devolverHobbiesConID();
-            // preguntaRandomFase2()
+            
+        }else {
+            alert("llego a 8")
+            setQuestions(questions.filter(questions => questions.name !== value));
+            console.log("Cuando el filtro llego a 8 estas eran las preguntas", questions)
+            preguntaRandomFase2();
         }
     }
     return (
