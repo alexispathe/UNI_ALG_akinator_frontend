@@ -196,8 +196,6 @@ export const GameQuestions = ({ hobbiesDB, users, resFilter, resValue, idUsersEn
             setNoValue(1);
             // quitarPregunta(value);
             // console.log("iterador del segundo if", iterador)
-            
-            
         }else{
             quitarPregunta(value);
             console.log("Ya entrooooooo")
