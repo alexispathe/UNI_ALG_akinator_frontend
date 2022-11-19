@@ -181,9 +181,9 @@ export const GameQuestions = ({ hobbiesDB, users, resFilter, resValue, idUsersEn
     return (
         <>
             <div className="">
+            {!characterName ? <h1>Adivino tu personaje</h1> : ''}
                 {
                     questions.length >= 1 && questions[numQuestions] ?
-
                         <div className="questions">
                             <div >
                                 <h2 className="">¿Tu personaje le gusta {questions[numQuestions].name}?</h2>

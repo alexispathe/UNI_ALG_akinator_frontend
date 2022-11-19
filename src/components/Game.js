@@ -25,7 +25,7 @@ export const Game =()=>{
     return(
         <>
             <div className="container text-center">
-                <h1>Adivino tu personaje</h1>
+                
                 
                 {!start? <button onClick={startGame} className="btn btn-primary"  >Comenzar juego</button>:  
                 <GameQuestions
