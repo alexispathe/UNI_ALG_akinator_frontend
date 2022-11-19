@@ -4,6 +4,8 @@ export const GameQuestions = ({ hobbiesDB, users, resFilter, resValue, idUsersEn
     const [numQuestions, setNumQuestions] = useState(0);
     const [iterador, setIterador] = useState(1);
     const [nuevasPreguntas, setNuevasPreguntas] = useState([]);
+    const [noValue, setNoValue] = useState(1);
+    
     const questions2 =[]
     let auxQuestions2 = [...questions];
     const aux = [];
@@ -14,10 +16,12 @@ export const GameQuestions = ({ hobbiesDB, users, resFilter, resValue, idUsersEn
     
 
     const preguntaRandom = () => {
-        /*Con el iterador estamos haciendo una validacion para que solo se muestren 6 preguntas al usuario, despues lo que se hara 
+        /*Con el iterador estamos haciendo una validacion para que solo se muestren 5 preguntas al usuario, despues lo que se hara 
         es hacer un filtro 
         */ 
-        if (iterador <=6 ) { 
+        if (iterador <5 ) { 
+            console.log("ITERADOR", iterador);
+
             //**********  ESTAMOS MANDANDO A LLAMAR LA FUNCION QUE NOS PERMITIRA REALIZAR UNA PREGUNTA DE FORMA ALEATORIA******/
             numPregunta(questions)
             setIterador(iterador+1)
@@ -32,13 +36,13 @@ export const GameQuestions = ({ hobbiesDB, users, resFilter, resValue, idUsersEn
     /***AQUI COMIENZA LAS NUEVAS PREGUNTAS PARA HACER EL USUARIO CONFORME A LOS HOBBIES QUE SE OBTUVIERON DEL PRIMER FILTRO***/ 
     const preguntaRandomFase2 =()=>{
         if(questions.length >=0){
-            alert("Entro a la fase 2")
+            // alert("Entro a la fase 2")
             console.log("FASE 2 PREGUNTAS debe de coencidir con el aux", questions2);
             setIterador(iterador+1)
         // pasamos los nuevos datos al setQuestions
             numPregunta(questions2);
         }else{
-            alert("termino por que ya no hay mas hobbies")
+            // alert("termino por que ya no hay mas hobbies")
             devolverHobbiesConID();
         }
         
@@ -56,6 +60,8 @@ export const GameQuestions = ({ hobbiesDB, users, resFilter, resValue, idUsersEn
         setResValue([...resValue, name])
         // console.log("PASO 1, ",resValue)
         quitarPregunta(name)
+        // En el noValue le colocamos 4 para que asi ya no pase las condiciones
+        setNoValue(5)
         // resValue =["as", ""]
        }else{
         console.log("El nombre no existe")
@@ -136,8 +142,7 @@ export const GameQuestions = ({ hobbiesDB, users, resFilter, resValue, idUsersEn
 
         /*GUARDAREMOS LOS DATOS DE dataHobbies en questions2 para asi usarlas en la funcion 'preguntasRandomFase2()'*/ 
         
-        if(iterador >= 6 && questions.length >=1){
-            alert("Mi iterado llego a 7")
+        if(iterador >= 4 && questions.length >=1){
             dataHobbies.map(data=>{
                 aux.push(...auxQuestions2.filter(question => question.name === data));
                 console.log("Estas son las nuevas preguntas  de hobbies pero desde aux  ", aux)
@@ -148,7 +153,7 @@ export const GameQuestions = ({ hobbiesDB, users, resFilter, resValue, idUsersEn
             preguntaRandomFase2();
             
         }   else{
-            alert("Ya no paso por que no hay mas preguntas")
+            // alert("Ya no paso por que no hay mas preguntas")
             buscarPersonaje()
             
             
@@ -194,22 +199,47 @@ export const GameQuestions = ({ hobbiesDB, users, resFilter, resValue, idUsersEn
         idUsersEnHobbies = []
        
     }
+    /*Con esta funcion nosotros estamos previniendo que el jugadir coloque  4 veces "no" consecutivamente desde el principo
+    para que asi nuevamente se vuelvan a repetir 5 preguntas
+    primera fase
+    */
+    const noHobbie=(value)=>{
+        if(noValue <4){
+            setNoValue(noValue+1)
+            quitarPregunta(value)
+            console.log("no", noValue)
+            console.log("i", iterador)
+        } else if(noValue === 4 && iterador === 4) {
+            console.log("ne", noValue)
+            // alert("jeje")
+            setIterador(1);
+            setNoValue(1);
+            // quitarPregunta(value);
+            console.log("iterador del segundo if", iterador)
+            
+            
+        }else{
+            quitarPregunta(value);
+            console.log("Ya entrooooooo")
+        }
+        
+    }
     const quitarPregunta = (value) => {
         /*Con esta funcion estamos quitando la pregunta que se le mostro al usuario para pasar con la siguiente*/
         
-        if (iterador <= 6) {
+        if (iterador <= 5) {
             // console.log("Viendo erro 1", questions[numQuestions].name)
             setQuestions(questions.filter(questions => questions.name !== value));
             preguntaRandom(); 
             // console.log("Viendo erro 2", questions[numQuestions].name)
-        }else if(iterador === 7){
+        }else if(iterador === 6){
             // "Estra a pregunta random 2 "
-            alert("Llego a 7 ")
+            // alert("Llego a 7 ")
             // setQuestions(questions.filter(questions => questions.name !== value));
             devolverHobbiesConID();
             
         }else {
-            alert("llego a 8")
+            // alert("llego a 8")
             setQuestions(questions.filter(questions => questions.name !== value));
             console.log("Cuando el filtro llego a 8 estas eran las preguntas", questions)
             preguntaRandomFase2();
@@ -227,7 +257,7 @@ export const GameQuestions = ({ hobbiesDB, users, resFilter, resValue, idUsersEn
                                 <h2 className="">¿Tu personaje le gusta {questions[numQuestions].name}</h2>
                                 <form>
                                     <div className="form-group d-flex justify-content-around">
-                                        <input type="button" value="NO" className="btn btn-danger" onClick={() => quitarPregunta(questions[numQuestions].name)} />
+                                        <input type="button" value="NO" className="btn btn-danger" onClick={() => noHobbie(questions[numQuestions].name)} />
                                         <input type="button" value="SI" className="btn btn-success" onClick={() => capRespuestaDelJugador(questions[numQuestions].name)} />
                                     </div>
                                 </form>

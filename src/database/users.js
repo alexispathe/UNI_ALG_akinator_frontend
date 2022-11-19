@@ -17,7 +17,7 @@ export const usersDB =[
     },
     {
       name: "Pedro",
-      hobbies: ["Cine", "Jugar videojuegos"]
+      hobbies: ["Cine", "Jugar videojuegos", "Correr"]
     },
     {
       name: "Yisus",
@@ -35,8 +35,14 @@ export const hobbies = [
   {name:"Actuacion", idUser:[1]},
   {name:"Cine", idUser:[4,5]}, 
   {name:"Peliculas", idUser:[]}, 
-  {name:"Correr", idUser:[0,2]},
-  {name: "Fiestas", idUser:[1]} 
+  {name:"Correr", idUser:[0,2,4]},
+  {name: "Autos", idUser:[1]} ,
+  {name: "Lucha Libre", idUser:[1]} ,
+  {name: "Atardeceres", idUser:[1]} ,
+  {name: "Palomitas de maiz", idUser:[1]} ,
+  {name: "Juegos Mecanicos", idUser:[1]} ,
+  {name: "Fiestas", idUser:[1]} ,
+
 
 ];
 
