@@ -187,7 +187,7 @@ export const GameQuestions = ({ hobbiesDB, users, resFilter, resValue, idUsersEn
 
                         <div className="questions">
                             <div >
-                                <h2 className="">¿Tu personaje le gusta {questions[numQuestions].name}</h2>
+                                <h2 className="">¿Tu personaje le gusta {questions[numQuestions].name}?</h2>
                                 <form>
                                     <div className="form-group d-flex justify-content-around">
                                         <input type="button" value="NO" className="btn btn-danger" onClick={() => noHobbie(questions[numQuestions].name)} />
