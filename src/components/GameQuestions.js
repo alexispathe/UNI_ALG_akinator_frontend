@@ -18,8 +18,9 @@ export const GameQuestions = ({ hobbiesDB, users, resFilter, resValue, idUsersEn
         /*Con el iterador estamos haciendo una validacion para que solo se muestren 4 preguntas al usuario, despues lo que se hara 
         es hacer un filtro 
         */ 
-        if (iterador <5 ) { 
+        if (iterador <6 ) { 
             // console.log("ITERADOR", iterador);^``
+            console.log("FASE........", noValue, iterador)
             
             numPregunta(questions); //REALIZAREMOS UNA FUNCION QUE NOS DEVUELVA UN NUMERO ALEATORIO PARA LA PREGUNTA/
             setIterador(iterador+1)//INCREMENTAMOS 1 EL ITERADOR POR CADA VEZ QUE PASE LA CONDICION
@@ -190,11 +191,18 @@ export const GameQuestions = ({ hobbiesDB, users, resFilter, resValue, idUsersEn
             // console.log("no", noValue)
             // console.log("i", iterador)
         } else if(noValue === 4 && iterador === 4) {
-            // console.log("ne", noValue)
+            console.log("Ambos valen 4")
+            quitarPregunta(value);
+
             // alert("jeje")
             setIterador(1);
             setNoValue(1);
-            // quitarPregunta(value);
+
+            // setTimeout(()=>{
+            // setQuestions(questions.filter(questions => questions.name !== value));
+            // preguntaRandom(); 
+
+            // },2000)
             // console.log("iterador del segundo if", iterador)
         }else{
             quitarPregunta(value);
@@ -205,15 +213,17 @@ export const GameQuestions = ({ hobbiesDB, users, resFilter, resValue, idUsersEn
     const quitarPregunta = (value) => {
         /*Con esta funcion estamos quitando la pregunta que se le mostro al usuario para pasar con la siguiente*/
         
-        if (iterador <= 5) {
+        if (iterador < 5) {
+            console.log("EL ITERADOR PASO ", iterador)
             // console.log("Viendo erro 1", questions[numQuestions].name)
             setQuestions(questions.filter(questions => questions.name !== value));
             preguntaRandom(); 
             // console.log("Viendo erro 2", questions[numQuestions].name)
-        }else if(iterador === 6){
+        }else if(iterador === 5){
             // "Estra a pregunta random 2 "
             // alert("Llego a 7 ")
             // setQuestions(questions.filter(questions => questions.name !== value));
+            // alert("")
             devolverHobbiesConID();
             
         }else {
