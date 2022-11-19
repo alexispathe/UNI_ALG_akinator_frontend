@@ -3,7 +3,6 @@ import { Character } from "./Character"
 export const GameQuestions = ({ hobbiesDB, users, resFilter, resValue, idUsersEnHobbies, questions, setQuestions, setResValue, characterName, setCharacterName, status, setStatus }) => {
     const [numQuestions, setNumQuestions] = useState(0);
     const [iterador, setIterador] = useState(1);
-    const [nuevasPreguntas, setNuevasPreguntas] = useState([]);
     const [noValue, setNoValue] = useState(1);
     
     const questions2 =[]
@@ -11,39 +10,37 @@ export const GameQuestions = ({ hobbiesDB, users, resFilter, resValue, idUsersEn
     const aux = [];
     // const [dataHobbies, setDataHobbies] = useState([]);
     
-    /* Con esta funcion nos permitira buscar un hobbie para la  pregunta de forma aletoria */
+    /* Con esta funcion "numPregunta()" nos permitira buscar un hobbie para la  pregunta de forma aletoria */
     const numPregunta=(preguntas)=> setNumQuestions(Math.floor(Math.random() * (preguntas.length >=1 ? preguntas.length -1: preguntas.length )))
     
 
     const preguntaRandom = () => {
-        /*Con el iterador estamos haciendo una validacion para que solo se muestren 5 preguntas al usuario, despues lo que se hara 
+        /*Con el iterador estamos haciendo una validacion para que solo se muestren 4 preguntas al usuario, despues lo que se hara 
         es hacer un filtro 
         */ 
         if (iterador <5 ) { 
-            console.log("ITERADOR", iterador);
-
-            //**********  ESTAMOS MANDANDO A LLAMAR LA FUNCION QUE NOS PERMITIRA REALIZAR UNA PREGUNTA DE FORMA ALEATORIA******/
-            numPregunta(questions)
-            setIterador(iterador+1)
+            // console.log("ITERADOR", iterador);^``
             
+            numPregunta(questions); //REALIZAREMOS UNA FUNCION QUE NOS DEVUELVA UN NUMERO ALEATORIO PARA LA PREGUNTA/
+            setIterador(iterador+1)//INCREMENTAMOS 1 EL ITERADOR POR CADA VEZ QUE PASE LA CONDICION
 
         } else {
-            console.log("Se termino de hacer las preguntas")
-            devolverHobbiesConID(); 
+            // console.log("Se termino de hacer las preguntas")
+            devolverHobbiesConID();  //CUANDO SE PASEN LAS 4 PREGUNTAS, LLAMAREMOS A LA FUNCION devolverHobbiesConID para que asi se nos devuelva UN ARREGLO CON LOS ID QUE TIENE ESE HOBBIE
         }
         //    
     }
-    /***AQUI COMIENZA LAS NUEVAS PREGUNTAS PARA HACER EL USUARIO CONFORME A LOS HOBBIES QUE SE OBTUVIERON DEL PRIMER FILTRO***/ 
+    /***CON LA FUNCION "preguntaRandomFase2()" PASAREMOS A LAS NUEVAS PREGUNTAS PARA HACER EL USUARIO CONFORME A LOS HOBBIES QUE SE OBTUVIERON DEL PRIMER FILTRO***/ 
     const preguntaRandomFase2 =()=>{
         if(questions.length >=0){
             // alert("Entro a la fase 2")
-            console.log("FASE 2 PREGUNTAS debe de coencidir con el aux", questions2);
+            // console.log("FASE 2 PREGUNTAS debe de coencidir con el aux", questions2);
             setIterador(iterador+1)
-        // pasamos los nuevos datos al setQuestions
-            numPregunta(questions2);
+        
+            numPregunta(questions2); // Pasamos un arreglo con los nuevos  hobbies que se obtuvieron  de la funcion "filtroPersonajes()"
         }else{
             // alert("termino por que ya no hay mas hobbies")
-            devolverHobbiesConID();
+            devolverHobbiesConID(); //LLAMAREMOS A LA FUNCION PARA DEVOLVER LOS ID DE LOS USUARIOS QUE COENCIDIERON CON LAS RESPUESTAS DEL JUGADOR
         }
         
 
@@ -51,18 +48,13 @@ export const GameQuestions = ({ hobbiesDB, users, resFilter, resValue, idUsersEn
 
     const capRespuestaDelJugador = (name) => {
         /*PASO 1 DEL PROGRAMA*/
-        /*En esta funcion estan entrado el el nombre del hobbie que el usuario a dicho que su personaje cuenta 
-          con uno de estos para asi guardarlos en la variable 'aux' para luego guardarlo en el 'setValUser'
-        */
+        /*En esta funcion esta entraNdo el nombre del hobbie que el usuario a respondido que su personaje tien para luego guardarlo en el 'setValUser'*/
        if(name){
         // console.log(name)
         // setValUser(...valUser, name)
-        setResValue([...resValue, name])
-        // console.log("PASO 1, ",resValue)
-        quitarPregunta(name)
-        // En el noValue le colocamos 4 para que asi ya no pase las condiciones
-        setNoValue(5)
-        // resValue =["as", ""]
+        setResValue([...resValue, name]); //Este state nos permite tener un respaldo de los hobbies que el jugador esta poniendo que tiene su personaje
+        quitarPregunta(name); //Una vez guardado el Hobbie en el state "resValue" la tendremos que eliminar para pasar a la siguente pregunta
+        setNoValue(5) // En el noValue le colocamos 4 para que asi ya no pase las condiciones de la funcion "noHobbie()"; 
        }else{
         console.log("El nombre no existe")
        }
@@ -70,18 +62,13 @@ export const GameQuestions = ({ hobbiesDB, users, resFilter, resValue, idUsersEn
    
     const devolverHobbiesConID = () => {
 
-        /*
-        PASO 3 DEL PROGRAMA QUE CONSISTE EN BUSCAR LAS COENCIDENCIAS QUE HAYA EL VALOR GUARDADO DEL STATE EN "resValue" CON
-        LOS DE LA BASE DE DATOS 
-       */
+        /* PASO 3 DEL PROGRAMA 
+        QUE CONSISTE EN BUSCAR LAS COENCIDENCIAS QUE HAYA EL VALOR GUARDADO DEL STATE EN "resValue" CON LOS DE LA BASE DE DATOS */
 
         resValue.map((valor) => {
-            // console.log(valor)
-            // "resFilter" nos permitira guardar los hobbiesDB donde haya coencidencia con lo que el usuario selecciono como verdadero
-            resFilter.push(...hobbiesDB.filter(hobbie => hobbie.name === valor));
+            resFilter.push(...hobbiesDB.filter(hobbie => hobbie.name === valor)); // "resFilter" es un filtro que nos permitira guardar los hobbiesDB donde haya coencidencia con lo que el jugadir y se devolvera con todo ID de los  personaje
         })
-        // console.log("Aqui devuelve los hobbies con el id del usuario", resFilter)
-        devolverIDUsuerDeHobbies();
+        devolverIDUsuerDeHobbies(); //Llamamos esta funcion para solo devolver los ID de personajes
     }
     /*
      con la funcion devolverIDUsuerDeHobbies estamos guardando el id de  cada personaje que se encuentra registrado en cada hobbie
@@ -94,23 +81,16 @@ export const GameQuestions = ({ hobbiesDB, users, resFilter, resValue, idUsersEn
      ] 
     */
     const devolverIDUsuerDeHobbies = () => {
-        /*PASO 4 ESTAMOS HACIENDO UNA FUNCION DONDE AHORA SE NOS DEVOLVER LOS ID DEL USUARIO DONDE ESTE PERSONAJE MENCIONO QUE ESE ERA SU PASATIEMPO*/
+        /*PASO 4 ESTAMOS HACIENDO UNA FUNCION DONDE AHORA SE NOS DEVOLVERA LOS ID DEL PERSONAJE DONDE EL JUGADOR MENCIONO QUE ESE ERA SU PASATIEMPO*/
         resFilter.map((user) => {
-            // console.log("id", user)
-            idUsersEnHobbies.push(...user.idUser)
+            idUsersEnHobbies.push(...user.idUser) // idUsersEnHobbies nos devuelve un arreglo con los id que se encuentra en el hobbies.IDUsers de la base de datos.
         })
-        
-        // idUsersEnHobbies nos devuelve un arreglo con los id que se encuentra en el hobbies.IDUsers de la base de datos.
-        // console.log("ID de los personajes que tienen los hobbies seleccionados por el jugador " ,idUsersEnHobbies)
-        filtroPersonajes();
-        // buscarPersonaje(); >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+        filtroPersonajes(); //Hacemos un filtro con toda la informacion capturada
     }
     
     const filtroPersonajes=()=>{
         /*PASO 5 Con el filtro de personaje lo que se hace es  devolver a todos los personajes que tienen almenos 1 hobbie con su respectivo nombre */ 
-        // console.log("ID de los personajes que tienen los hobbies seleccionados por el jugador " ,idUsersEnHobbies)
-        // Con reduce estamos contando cuantas veces se repiten los numeros, al final nos devuelve un objeto
-        const obj = idUsersEnHobbies.reduce((prev, cur) => ((prev[cur] = prev[cur] + 1 || 1), prev), {});
+        const obj = idUsersEnHobbies.reduce((prev, cur) => ((prev[cur] = prev[cur] + 1 || 1), prev), {});  // Con reduce estamos contando cuantas veces se repiten los numeros, al final nos devuelve un objeto
         // console.log("OBJETO ", obj)
         // ***********CONVIRTIENDO LAS KEYS DE UN OBJETO A UN ARREGLO []***************+
         const idCharacters = Object.keys(obj); 
@@ -136,7 +116,7 @@ export const GameQuestions = ({ hobbiesDB, users, resFilter, resValue, idUsersEn
         // console.log("Todos los hobbies de los personajes ", dataHobbies)
         // console.log("Hobbies del jugador en el primer filtro", resValue)
         resValue.map(data =>{
-            dataHobbies = dataHobbies.filter( hobbie => hobbie != data)
+            dataHobbies = dataHobbies.filter( hobbie => hobbie !== data)
         });
         console.log("Hobbies donde ya no existen los datos que se encuentran en resValue ",dataHobbies)
 
@@ -207,15 +187,15 @@ export const GameQuestions = ({ hobbiesDB, users, resFilter, resValue, idUsersEn
         if(noValue <4){
             setNoValue(noValue+1)
             quitarPregunta(value)
-            console.log("no", noValue)
-            console.log("i", iterador)
+            // console.log("no", noValue)
+            // console.log("i", iterador)
         } else if(noValue === 4 && iterador === 4) {
-            console.log("ne", noValue)
+            // console.log("ne", noValue)
             // alert("jeje")
             setIterador(1);
             setNoValue(1);
             // quitarPregunta(value);
-            console.log("iterador del segundo if", iterador)
+            // console.log("iterador del segundo if", iterador)
             
             
         }else{

@@ -1,10 +1,40 @@
-2. Devolver almenos 6 preguntas y hacer un filtro donde devuelva todos los usuarios que tengan alemenos un hobbie que el usuario puso
-
-3. Quiza cuando pase a la fase 2 va a repetir un hobbie nuevamente, solucionar ese problema por si ese hobbie ya paso en la primera fase ya
-no se vuelva a repetir
-
-3. Buscar la manera de mejorar el codigo para que evitar que no se duplique codigo, es decir hacer mas funciones y solucionar el problema que no 
+1. Buscar la manera de mejorar el codigo para que evitar que no se duplique codigo, es decir hacer mas funciones y solucionar el problema que no 
 se devuelven preguntas en tiempo real
 
 ESTOS SON LOS PASOS QUE LLEVA EL PROGRAMA 
-1. Se 
+
+COMPONENTES: 
+APP > COMPONENTE PRINCIPAL
+ERR > Sirve para mostrar en la pagina cuando una URL no exista
+Forms > Hay 2 componentes que nos permite guardar un personaje y otro el pasatiempos
+Home > Es el componente principal donde puedes comenzar jugar el juego, este componente llama al hijo que es "Game"
+Game > Componente padre para luego llamar las preguntas
+GameQuestions > Componente que sirve para hacer las preguntas del juego
+
+*********COMPONENTE GameQuestions ********************
+----FUNCIONES----------------------
+Este componente nosotros tenemos las funciones necesarias para darle logica a todo el juego el cual usamos las siguientes funciones
+
+numPregunta(preguntas);
+preguntaRandom();
+preguntaRandomFase2();
+capRespuestaDelJugador(name);
+devolverHobbiesConID();
+filtroPersonajes();
+buscarPersonajes();
+quitarPregunta();
+-----------------------------------
+PASOS EN COMO SE EJECUTAN LAS FUNCIONES
+>>> Si el usuario coloca que "SI" es su personaje para a la funcion "CapRespuestaJugador(name)"
+>>>>>> De ahi se va la funcion "quitarPregunta()" para asi pasar a la funcion "preguntaRandom()" 
+>>>>>> En "preguntaRandom()" devolvemos un nuevo aleatorio que viene de la funcion "numPregunta()" que tiene la 
+       cantidad de pasatiempos que existen para asi mostrar la nueva pregunta y se repite el ciclo de "CapRespuestaJugador(name)" hasta que pasen 5 preguntas
+>>>>> Cuando el "iterador" sea igual a 5  pasaremos a la funcion "devolverHobbiesConID" para luego pasar a "devolverIDUsuerDeHobbies()" y hacer el filtro con 
+      "filtroPersonajes()" y pasar la fase 2 de preguntas donde ahora solo se devolveran todos los hobbies que existen de los personajes que tuvieron coencidencia
+      de los primeros hobbies dichos por el jugador, ahi se muestran nuevas preguntas hasta que termine y nuevamente se pasa a la funcion "devolverHobbiesConID"
+      y se repite lo mismo hasta al filtro de personaje y toma otro rumbo el programa para ahora irse a la funcion  "buscarPersonaje()" y ahora si devolver el personaje.
+
+>>>>> Si la respuesta desde el inicio es "NO" entonces pasa a la funcion "noHobbie()" esto para prevenir y que se muestren mas preguntas aparte de las 5 que vienen
+      por defecto, al final el rumbo de la aplicacion cambiara hasta que almenos el usuario ponga como respuesta "SI", para que asi  la aplicacion suceda todo con normalidad 
+      comor el primer punto mencionado. 
+******************************************************
