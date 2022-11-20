@@ -1,12 +1,4 @@
-.home-icon{
-    font-size: 30px;
-    margin-left: 10px;
-    cursor: pointer;
-    transition-duration: 1s;
-}
-.home-icon:hover{
-    color: rgb(0, 153, 255)
-}
+
 .questions{
     position: relative;
     width: 100%;

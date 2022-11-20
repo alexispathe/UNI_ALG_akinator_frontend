@@ -1,5 +1,6 @@
 import {useState} from 'react';
-export const FormHobbie =()=>{
+import { AiOutlineHome } from 'react-icons/ai';
+export const FormHobbie =({btnHome})=>{
     const [name, setName]  =useState([]);
     const handleSubmit=(e)=>{
         e.preventDefault();
@@ -15,6 +16,9 @@ export const FormHobbie =()=>{
   
     return(
         <>
+        <div onClick={btnHome} className="home-icon">
+                <AiOutlineHome />
+            </div>
         <div className="container">
             <h1 className="text-center">Crear nuevo pasatiempos</h1>
             <div className="form-container">

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { hobbies } from '../../database/users';
-export const FormPersonaje = () => {
+import { AiOutlineHome } from 'react-icons/ai';
+export const FormPersonaje = ({btnHome}) => {
     const [arrayHobbies, setArryHobbies] = useState([...hobbies]);
     const [hobbiesData, setHobbiesData] = useState([]);
     const [name, setName] = useState("");
@@ -30,8 +31,11 @@ export const FormPersonaje = () => {
 
     return (
         <>
+          <div onClick={btnHome} className="home-icon">
+                <AiOutlineHome />
+            </div>
             <div className="container">
-                <h1 className="text-center">Registra tu personaje</h1>
+                <h1 className="text-center">Crea tu personaje</h1>
                 <div className="form-container">
                     <form onSubmit={handleSubmit}>
                         <div className="form-group">
