@@ -22,3 +22,9 @@
         border: 10px solid rgb(50, 131, 253);
     }
 }
+
+@media (max-width: 500px) {
+    .c{
+        display: block !important;
+    }
+}

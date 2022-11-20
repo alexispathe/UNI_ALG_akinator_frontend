@@ -31,14 +31,14 @@ export const FormPersonaje = () => {
     return (
         <>
             <div className="container">
-                <h1 className="text-center">Registrar personaje</h1>
+                <h1 className="text-center">Registra tu personaje</h1>
                 <div className="form-container">
                     <form onSubmit={handleSubmit}>
                         <div className="form-group">
                             <h2 className="text-primary">Nombre: </h2>
                             <input type="text" className="form-control" name="name" required onChange={(e) => handleChange(e)} placeholder="Escribe tu nombre" />
                         </div>
-                        <h1 className="text-primary">Pasatiempos</h1>
+                        <h1 className="text-primary">Pasatiempos:</h1>
                         {/* Contenedor donde almacena todos los checkbox */}
                         <div className="row m-auto ">
                             {arrayHobbies.map((hobbies, id) => (

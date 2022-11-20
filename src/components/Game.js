@@ -4,30 +4,20 @@ import { hobbies as hobbiesDB } from '../database/users';
 import { GameQuestions } from "./GameQuestions";
 export const Game =()=>{
     const [users, setUsers]=useState(usersDB);
-    const [start, setStart]= useState(false);
     const [questions, setQuestions] = useState(hobbiesDB);
     const [resValue, setResValue]= useState([]);
     const [status, setStatus ] = useState(false)
     const [characterName, setCharacterName]= useState('')
-    // let status = true;
-
-    // let characterName = "";
-
-    // let resValue = [];
     let resFilter = [];
     let idUsersEnHobbies = [];
-   
-    
-    const startGame=()=>{
-        setStart(true);
+    // Esta funcion nos permitira regresarnos al inicio
+    const btnHome = () => {
+        window.location.href = "/"
     }
    
     return(
         <>
-            <div className="container text-center">
-                
-                
-                {!start? <button onClick={startGame} className="btn btn-primary"  >Comenzar juego</button>:  
+            <div className="">
                 <GameQuestions
                     hobbiesDB={hobbiesDB}
                     users={users}
@@ -41,9 +31,8 @@ export const Game =()=>{
                     setCharacterName = {setCharacterName}
                     status = {status}
                     setStatus = {setStatus}
-                /> }
-        {/* <button onClick={buscarCoencidencias}>Ver coencidencia</button> */}
-      
+                    btnHome={btnHome}
+                /> 
             </div>
         </>
     )

@@ -1,0 +1,66 @@
+.home-container{
+    width: 100%;
+}
+
+.btn-container{
+    width: 100%;
+    height: 60vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+   
+}
+.b-btn{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 300px;
+    animation-name: gameBorder;
+    animation-duration: 1s;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+    border-radius: 10px;
+
+}
+.btn-link-container{
+    margin-left: 20px;
+}
+.title-container{
+    text-align: center;
+}
+@keyframes gameBorder{
+    0%{
+        border: 10px solid violet
+    }
+    50%{
+        border: 10px solid rgb(0, 95, 219)
+    }100%{
+        border: 10px solid rgb(3, 233, 61)
+    }
+}
+/* AQUI TRABAJAMOS CON EL RESPONSIVE */
+@media (max-width: 1300px){
+    .b-btn{
+        width: 70%;
+    }
+}
+@media (max-width: 1000px){
+    .b-btn{
+        width: 90%;
+    }
+}
+@media (max-width: 700px){
+    .b-btn{
+        display: block;
+        padding: 30px 0px;
+        height: 200px;
+    }
+    .btn-link-container{
+        margin:10px 0px 0px 0px;
+        text-align: center;
+        
+    }
+}

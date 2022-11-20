@@ -1,15 +1,16 @@
 import { useState } from "react";
+import { AiOutlineHome } from 'react-icons/ai';
+
 import { Character } from "./Character"
 import '../Styles/GameQuestions.css';
-export const GameQuestions = ({ hobbiesDB, users, resFilter, resValue, idUsersEnHobbies, questions, setQuestions, setResValue, characterName, setCharacterName, status, setStatus }) => {
+export const GameQuestions = ({btnHome, hobbiesDB, users, resFilter, resValue, idUsersEnHobbies, questions, setQuestions, setResValue, characterName, setCharacterName, status, setStatus }) => {
     const [numQuestions, setNumQuestions] = useState(0);
     const [iterador, setIterador] = useState(1);
     const [noValue, setNoValue] = useState(1);
     const questions2 = []
     let auxQuestions2 = [...questions];
     const aux = [];
-    // const [dataHobbies, setDataHobbies] = useState([]);
-
+    
     /* Con esta funcion "numPregunta()" nos permitira buscar un hobbie para la  pregunta de forma aletoria */
     const numPregunta = (preguntas) => setNumQuestions(Math.floor(Math.random() * (preguntas.length >= 1 ? preguntas.length - 1 : preguntas.length)))
 
@@ -177,11 +178,17 @@ export const GameQuestions = ({ hobbiesDB, users, resFilter, resValue, idUsersEn
             setQuestions(questions.filter(questions => questions.name !== value));
             preguntaRandomFase2();
         }
+        
     }
+    
     return (
         <>
-            <div className="">
-            {!characterName ? <h1>Adivino tu personaje</h1> : ''}
+            <div onClick={btnHome} className="home-icon">
+                <AiOutlineHome />
+            </div>
+
+            <div className="GameQuestions container text-center">
+                {!characterName ? <h1>Adivino tu personaje</h1> : ''}
                 {
                     questions.length >= 1 && questions[numQuestions] ?
                         <div className="questions-container">

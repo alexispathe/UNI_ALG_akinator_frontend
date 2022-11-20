@@ -1,5 +1,9 @@
 1. Buscar la manera de mejorar el codigo para que evitar que no se duplique codigo, es decir hacer mas funciones y solucionar el problema que no 
 se devuelven preguntas en tiempo real
+2. DEBEMOS DE SOLUCIONAR EL PROBLEMA DONDE EL JUGADOR COLOCA POR ERROR QUE SU PERSONAJE LE GUSTA UN HOBBIE DESDE LAS PRIMERAS 5 preguntas
+PERO AL FINAL NO SALEN MAS preguntas DE SU PERSONAJE Y EL JUEGO TERMINA DANDO COMO RESULTADO OTRO PERSONAJE Y NO EL QUE EL JUGADOR ESTA BUSCANDO
+
+
 
 ESTOS SON LOS PASOS QUE LLEVA EL PROGRAMA 
 
