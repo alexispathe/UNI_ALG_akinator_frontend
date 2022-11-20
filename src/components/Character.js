@@ -5,9 +5,6 @@ export const  Character =({name})=>{
     }
     return(
         <>
-        <div className="cuadro">
-
-        </div>
             <div className="character-container">
                 <div className="character">
                     <h1>Tu personaje es {name} </h1>

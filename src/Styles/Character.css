@@ -1,6 +1,5 @@
 .character-container{
     width: 100%;
-    height: 100vh;
 }
 
 .character{
@@ -12,26 +11,14 @@
     animation-duration: 1s;
     animation-iteration-count: infinite;
     animation-direction: alternate;
-    /* animation-play-state: paused; */
     border-radius: 10px;
 }
 
 @keyframes border{
     0%{
-        border: 5px solid rgb(2, 211, 248);
-       
-        
-    }
-    25%{
-        border: 5px solid rgb(2, 150, 248);
-       
-    }
-    50%{
-        border: 5px solid rgb(2, 100, 248);
-        
+        border: 10px solid rgb(2, 211, 248);
     }
     100%{
-        border: 5px solid rgb(50, 131, 253);
-        
+        border: 10px solid rgb(50, 131, 253);
     }
 }

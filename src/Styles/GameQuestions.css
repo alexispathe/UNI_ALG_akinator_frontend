@@ -1,0 +1,24 @@
+.questions{
+    position: relative;
+    width: 100%;
+    padding: 20px 0px;
+    /* cursor: pointer; */
+
+}
+.questions:before{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    content: "";
+    height: 5px;
+    width: 0;
+    transition:all 1s;
+    background-color: rgb(0, 153, 255);
+    display: block;
+    animation-name: borde;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+}
+.questions:hover:before{
+    width: 100%;
+}

@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Character } from "./Character"
+import '../Styles/GameQuestions.css';
 export const GameQuestions = ({ hobbiesDB, users, resFilter, resValue, idUsersEnHobbies, questions, setQuestions, setResValue, characterName, setCharacterName, status, setStatus }) => {
     const [numQuestions, setNumQuestions] = useState(0);
     const [iterador, setIterador] = useState(1);
     const [noValue, setNoValue] = useState(1);
-
     const questions2 = []
     let auxQuestions2 = [...questions];
     const aux = [];
@@ -184,8 +184,8 @@ export const GameQuestions = ({ hobbiesDB, users, resFilter, resValue, idUsersEn
             {!characterName ? <h1>Adivino tu personaje</h1> : ''}
                 {
                     questions.length >= 1 && questions[numQuestions] ?
-                        <div className="questions">
-                            <div >
+                        <div className="questions-container">
+                            <div className="questions" >
                                 <h2 className="">¿Tu personaje le gusta {questions[numQuestions].name}?</h2>
                                 <form>
                                     <div className="form-group d-flex justify-content-around">
