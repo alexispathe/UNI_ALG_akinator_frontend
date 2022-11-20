@@ -3,14 +3,15 @@ import { AiOutlineHome } from 'react-icons/ai';
 
 import { Character } from "./Character"
 import '../Styles/GameQuestions.css';
-export const GameQuestions = ({btnHome, hobbiesDB, users, resFilter, resValue, idUsersEnHobbies, questions, setQuestions, setResValue, characterName, setCharacterName, status, setStatus }) => {
+export const GameQuestions = ({btnHome, hobbiesDB, users, resValue, questions, setQuestions, setResValue, characterName, setCharacterName, status, setStatus }) => {
     const [numQuestions, setNumQuestions] = useState(0);
     const [iterador, setIterador] = useState(1);
     const [noValue, setNoValue] = useState(1);
     const questions2 = []
     let auxQuestions2 = [...questions];
     const aux = [];
-    
+    let resFilter = [];
+    let idUsersEnHobbies = [];
     /* Con esta funcion "numPregunta()" nos permitira buscar un hobbie para la  pregunta de forma aletoria */
     const numPregunta = (preguntas) => setNumQuestions(Math.floor(Math.random() * (preguntas.length >= 1 ? preguntas.length - 1 : preguntas.length)))
 
@@ -55,7 +56,7 @@ export const GameQuestions = ({btnHome, hobbiesDB, users, resFilter, resValue, i
         QUE CONSISTE EN BUSCAR LAS COENCIDENCIAS QUE HAYA EL VALOR GUARDADO DEL STATE EN "resValue" CON LOS DE LA BASE DE DATOS */
 
         resValue.map((valor) => {
-            resFilter.push(...hobbiesDB.filter(hobbie => hobbie.name === valor)); // "resFilter" es un filtro que nos permitira guardar los hobbiesDB donde haya coencidencia con lo que el jugadir y se devolvera con todo ID de los  personaje
+            return resFilter.push(...hobbiesDB.filter(hobbie => hobbie.name === valor)); // "resFilter" es un filtro que nos permitira guardar los hobbiesDB donde haya coencidencia con lo que el jugadir y se devolvera con todo ID de los  personaje
         })
         devolverIDUsuerDeHobbies(); //Llamamos esta funcion para solo devolver los ID de personajes
     }
@@ -72,7 +73,7 @@ export const GameQuestions = ({btnHome, hobbiesDB, users, resFilter, resValue, i
     const devolverIDUsuerDeHobbies = () => {
         /*PASO 4 ESTAMOS HACIENDO UNA FUNCION DONDE AHORA SE NOS DEVOLVERA LOS ID DEL PERSONAJE DONDE EL JUGADOR MENCIONO QUE ESE ERA SU PASATIEMPO*/
         resFilter.map((user) => {
-            idUsersEnHobbies.push(...user.idUser) // idUsersEnHobbies nos devuelve un arreglo con los id que se encuentra en el hobbies.IDUsers de la base de datos.
+            return idUsersEnHobbies.push(...user.idUser) // idUsersEnHobbies nos devuelve un arreglo con los id que se encuentra en el hobbies.IDUsers de la base de datos.
         })
         filtroPersonajes(); //Hacemos un filtro con toda la informacion capturada
     }
@@ -88,7 +89,7 @@ export const GameQuestions = ({btnHome, hobbiesDB, users, resFilter, resValue, i
         }
         let dataHobbies = []
         newCharacters.map(data => {
-            dataHobbies.push(...data.hobbies)
+           return dataHobbies.push(...data.hobbies)
         });
         // "PASO 5 todos los hobbies del los usuarios ya con el filtro "
         dataHobbies = dataHobbies.reduce((prev, cur) => ((prev[cur] = prev[cur] + 1 || 1), prev), {})
@@ -96,12 +97,12 @@ export const GameQuestions = ({btnHome, hobbiesDB, users, resFilter, resValue, i
         dataHobbies = Object.keys(dataHobbies);
         /*DESCARTAREMOS LOS HOBBIES QUE YA PASO EL PRIMER FILTRO DONDE SE OPTUVIERON LOS PRIMERO PERSONAJES*/
         resValue.map(data => {
-            dataHobbies = dataHobbies.filter(hobbie => hobbie !== data)
+            return dataHobbies = dataHobbies.filter(hobbie => hobbie !== data)
         });
         /*GUARDAREMOS LOS DATOS DE dataHobbies en questions2 para asi usarlas en la funcion 'preguntasRandomFase2()'*/
         if (iterador >= 4 && questions.length >= 1) {
             dataHobbies.map(data => {
-                aux.push(...auxQuestions2.filter(question => question.name === data));
+                return aux.push(...auxQuestions2.filter(question => question.name === data));
             })
             questions2.push(...aux);
             setQuestions(questions2);
@@ -143,10 +144,6 @@ export const GameQuestions = ({btnHome, hobbiesDB, users, resFilter, resValue, i
 
         setCharacterName(users[indexKey].name);
         setStatus(true)
-        setResValue([]);
-        resFilter = []
-        idUsersEnHobbies = []
-
     }
     /*Con esta funcion nosotros estamos previniendo que el jugadir coloque  4 veces "no" consecutivamente desde el principo
     para que asi nuevamente se vuelvan a repetir 5 preguntas

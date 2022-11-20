@@ -5,14 +5,9 @@ import { GameQuestions } from "./GameQuestions";
 export const Game =({btnHome})=>{
     const [users, setUsers]=useState(usersDB);
     const [questions, setQuestions] = useState(hobbiesDB);
-    const [resValue, setResValue]= useState([]);
+    const [resValue, setResValue]= useState([]); //Nos permite capturar la respuesta del jugador cuando presione  "si"
     const [status, setStatus ] = useState(false)
     const [characterName, setCharacterName]= useState('')
-    let resFilter = [];
-    let idUsersEnHobbies = [];
-    // Esta funcion nos permitira regresarnos al inicio
-    
-   
     return(
         <>
             <div className="">
@@ -21,8 +16,6 @@ export const Game =({btnHome})=>{
                     users={users}
                     resValue={resValue}
                     setResValue={setResValue}
-                    resFilter={resFilter}
-                    idUsersEnHobbies ={idUsersEnHobbies}
                     questions = {questions}
                     setQuestions = {setQuestions}
                     characterName = {characterName}
