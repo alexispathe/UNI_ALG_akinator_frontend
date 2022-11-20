@@ -1,19 +1,26 @@
 import { useState } from 'react';
 import { hobbies } from '../../database/users';
 import { AiOutlineHome } from 'react-icons/ai';
-export const FormPersonaje = ({btnHome}) => {
+import { Link } from 'react-router-dom';
+export const FormPersonaje = ({ btnHome }) => {
     const [arrayHobbies, setArryHobbies] = useState([...hobbies]);
     const [hobbiesData, setHobbiesData] = useState([]);
     const [name, setName] = useState("");
+    const [status, setStatus] = useState(false);
+    const btnDisabled = document.querySelector('input[type="submit"]'); //llamamos al boton de submit para desactivarlo o activarlo dependiendo el caso
     const handleSubmit = (e) => {
         e.preventDefault();
+        console.log(btnDisabled)
+        btnDisabled.disabled = true;
         const data = {
             name,
             hobbies: hobbiesData
         }
         console.log("Datos ", data)
+        data ? setStatus(true): setStatus(false);
     }
     const handleChange = (e) => {
+            
         if (e.target.name === "name") {
             setName(e.target.value)
         }
@@ -31,7 +38,7 @@ export const FormPersonaje = ({btnHome}) => {
 
     return (
         <>
-          <div onClick={btnHome} className="home-icon">
+            <div onClick={btnHome} className="home-icon">
                 <AiOutlineHome />
             </div>
             <div className="container">
@@ -53,12 +60,18 @@ export const FormPersonaje = ({btnHome}) => {
                             ))
 
                             }
-
-
                         </div>
+
+                        {status ?
+                            <div className='alert alert-success text-center'>
+                                <span>Personaje guardado correctamente <Link to="/jugar">Jugar ahora</Link></span>
+                            </div>
+                            : ''
+                        }
                         <div className="from-control d-flex justify-content-end ">
-                            <input type="submit" value="Guardar personaje" className="btn btn-success " />
+                            <input type="submit" value="Guardar personaje" className="btn btn-success"  />
                         </div>
+
                     </form>
                 </div>
             </div>
