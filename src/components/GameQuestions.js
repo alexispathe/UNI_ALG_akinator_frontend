@@ -193,12 +193,8 @@ export const GameQuestions = ({ btnHome, hobbiesDB, users, resValue, questions, 
                             </div>
                         </div> : <div className="w-100"></div>
                 }
-                {status === true && characterName ?
-                    <Character name={characterName} /> : ''
-                }
-                {
-                    status === false && questions.length === 0 ? <button className="btn btn-primary w-100" onClick={devolverHobbiesConID}>Guardar resultados</button> : ''
-                }
+                {status === true && characterName ? <Character name={characterName} /> : ''}
+                { status === false && questions.length === 0 ? <button className="btn btn-primary w-100" onClick={devolverHobbiesConID}>Guardar resultados</button> : ''}
             </div>
         </>
     );

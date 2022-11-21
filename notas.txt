@@ -1,8 +1,6 @@
-1. Buscar la manera de mejorar el codigo para que evitar que no se duplique codigo, es decir hacer mas funciones y solucionar el problema que no 
-se devuelven preguntas en tiempo real
 2. DEBEMOS DE SOLUCIONAR EL PROBLEMA DONDE EL JUGADOR COLOCA POR ERROR QUE SU PERSONAJE LE GUSTA UN HOBBIE DESDE LAS PRIMERAS 5 preguntas
 PERO AL FINAL NO SALEN MAS preguntas DE SU PERSONAJE Y EL JUEGO TERMINA DANDO COMO RESULTADO OTRO PERSONAJE Y NO EL QUE EL JUGADOR ESTA BUSCANDO
-
+3. Hacer un buscador de los hobbies cuando el jugador este creando su personaje
 
 
 ESTOS SON LOS PASOS QUE LLEVA EL PROGRAMA 
@@ -42,3 +40,32 @@ PASOS EN COMO SE EJECUTAN LAS FUNCIONES
       por defecto, al final el rumbo de la aplicacion cambiara hasta que almenos el usuario ponga como respuesta "SI", para que asi  la aplicacion suceda todo con normalidad 
       comor el primer punto mencionado. 
 ******************************************************
+
+
+********HOBBIES PARA AGREGAR********
+Ver Anime
+Futbol
+Autos
+Programación
+Desarrollo Web
+Jugar VideoJuegos
+Television
+Dragon Ball 
+Base de datos
+Musica 
+Fiestas
+Hacer ejercicio
+Correr 
+Estudiar
+Manejar de noche
+Manejar de dia
+Comer taquitos 
+Motos
+Viajar
+Matematicas 
+Informatica
+Ver series 
+Ver peliculas
+Comprar por internet
+
+************************************
