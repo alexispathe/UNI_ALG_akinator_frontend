@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { AiOutlineHome } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
+import { urlApi } from '../../global';
+import axios from 'axios';
 export const FormHobbie = ({ btnHome }) => {
     const [status, setStatus] = useState(false);
     const [name, setName] = useState([]);
@@ -9,14 +11,20 @@ export const FormHobbie = ({ btnHome }) => {
         const data = {
             name
         }
-        console.log("Datos ", data)
-        if(data){
-            e.target.name.value = "";
-            setStatus(true)
-        }else{
-            setStatus(false);
-        }
-       
+        // Guardado los datos al servidor
+        axios.post(urlApi,'save-hobbies/',data)
+        .then(data=>{
+            if(data){
+                e.target.name.value = "";
+                setStatus(true)
+                // console.log(data)
+            }else{
+                setStatus(false);
+            }
+        })
+        .catch(err=>{
+            alert("Ocurrio un error")
+        })
 
     }
     const handleChange = (e) => {
