@@ -12,7 +12,7 @@ export const FormHobbie = ({ btnHome }) => {
             name
         }
         // Guardado los datos al servidor
-        axios.post(urlApi,'save-hobbies/',data)
+        axios.post(urlApi+'save-hobbies/',data)
         .then(data=>{
             if(data){
                 e.target.name.value = "";

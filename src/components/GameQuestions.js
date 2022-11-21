@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { AiOutlineHome } from 'react-icons/ai';
-
 import { Character } from "./Character"
 import '../Styles/GameQuestions.css';
 export const GameQuestions = ({btnHome, hobbiesDB, users, resValue, questions, setQuestions, setResValue, characterName, setCharacterName, status, setStatus }) => {
+    
     const [numQuestions, setNumQuestions] = useState(0);
     const [iterador, setIterador] = useState(1);
     const [noValue, setNoValue] = useState(1);
