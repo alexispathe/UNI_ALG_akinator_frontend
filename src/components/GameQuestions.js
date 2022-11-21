@@ -2,8 +2,7 @@ import { useState } from "react";
 import { AiOutlineHome } from 'react-icons/ai';
 import { Character } from "./Character"
 import '../Styles/GameQuestions.css';
-export const GameQuestions = ({btnHome, hobbiesDB, users, resValue, questions, setQuestions, setResValue, characterName, setCharacterName, status, setStatus }) => {
-    
+export const GameQuestions = ({ btnHome, hobbiesDB, users, resValue, questions, setQuestions, setResValue, characterName, setCharacterName, status, setStatus }) => {
     const [numQuestions, setNumQuestions] = useState(0);
     const [iterador, setIterador] = useState(1);
     const [noValue, setNoValue] = useState(1);
@@ -35,8 +34,6 @@ export const GameQuestions = ({btnHome, hobbiesDB, users, resValue, questions, s
         } else {
             devolverHobbiesConID(); //LLAMAREMOS A LA FUNCION PARA DEVOLVER LOS ID DE LOS USUARIOS QUE COENCIDIERON CON LAS RESPUESTAS DEL JUGADOR
         }
-
-
     }
 
     const capRespuestaDelJugador = (name) => {
@@ -73,7 +70,7 @@ export const GameQuestions = ({btnHome, hobbiesDB, users, resValue, questions, s
     const devolverIDUsuerDeHobbies = () => {
         /*PASO 4 ESTAMOS HACIENDO UNA FUNCION DONDE AHORA SE NOS DEVOLVERA LOS ID DEL PERSONAJE DONDE EL JUGADOR MENCIONO QUE ESE ERA SU PASATIEMPO*/
         resFilter.map((user) => {
-            return idUsersEnHobbies.push(...user.idUser) // idUsersEnHobbies nos devuelve un arreglo con los id que se encuentra en el hobbies.IDUsers de la base de datos.
+            return idUsersEnHobbies.push(...user.idUsers) // idUsersEnHobbies nos devuelve un arreglo con los id que se encuentra en el hobbies.IDUsers de la base de datos.
         })
         filtroPersonajes(); //Hacemos un filtro con toda la informacion capturada
     }
@@ -85,11 +82,12 @@ export const GameQuestions = ({btnHome, hobbiesDB, users, resValue, questions, s
         const idCharacters = Object.keys(obj);
         const newCharacters = []; //>>> se guardan los personajes para sacar sus hobbies
         for (let i = 0; i < idCharacters.length; i++) {
-            newCharacters.push(users[idCharacters[i]])
+            // newCharacters.push(users[idCharacters[i]])
+            newCharacters.push(users[i])
         }
         let dataHobbies = []
         newCharacters.map(data => {
-           return dataHobbies.push(...data.hobbies)
+            return dataHobbies.push(...data.hobbies)
         });
         // "PASO 5 todos los hobbies del los usuarios ya con el filtro "
         dataHobbies = dataHobbies.reduce((prev, cur) => ((prev[cur] = prev[cur] + 1 || 1), prev), {})
@@ -111,11 +109,7 @@ export const GameQuestions = ({btnHome, hobbiesDB, users, resValue, questions, s
 
         } else {
             buscarPersonaje()
-
-
         }
-
-
     }
 
     const buscarPersonaje = () => {
@@ -125,7 +119,6 @@ export const GameQuestions = ({btnHome, hobbiesDB, users, resValue, questions, s
    */
         // Con reduce estamos contando cuantas veces se repiten los numeros, al final nos devuelve un objeto
         const obj = idUsersEnHobbies.reduce((prev, cur) => ((prev[cur] = prev[cur] + 1 || 1), prev), {});
-
         // ***********CONVIRTIENDO LAS KEYS DE UN OBJETO A UN ARREGLO []***************+
         const keys = Object.keys(obj);
 
@@ -141,8 +134,8 @@ export const GameQuestions = ({btnHome, hobbiesDB, users, resValue, questions, s
         //****** DEVOLVER LA KEY = "ID DEL PERSONAJE" CON LA AYUDA DEL 'indexMax' ********++ */ 
         const indexKey = keys[indexMax];
         // ****
-
-        setCharacterName(users[indexKey].name);
+        const personaje = users.filter(user => user.idUser === indexKey);
+        setCharacterName(personaje[0].name);
         setStatus(true)
     }
     /*Con esta funcion nosotros estamos previniendo que el jugadir coloque  4 veces "no" consecutivamente desde el principo
@@ -175,9 +168,9 @@ export const GameQuestions = ({btnHome, hobbiesDB, users, resValue, questions, s
             setQuestions(questions.filter(questions => questions.name !== value));
             preguntaRandomFase2();
         }
-        
+
     }
-    
+
     return (
         <>
             <div onClick={btnHome} className="home-icon">
