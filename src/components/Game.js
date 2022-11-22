@@ -1,49 +1,54 @@
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
+import { Spinner } from "./Spinner";
 // import {usersDB} from '../database/users';
 // import { hobbies as hobbiesDB } from '../database/users'; 
 import { GameQuestions } from "./GameQuestions";
 import { urlApi } from "../global";
 import axios from 'axios';
-export const Game =({btnHome})=>{
+export const Game = ({ btnHome }) => {
     const [questions, setQuestions] = useState([]);
     const [hobbiesDB, setHobbiesDB] = useState([]);
-    const [users, setUsers]=useState([]);
-    useEffect(()=>{
+    const [users, setUsers] = useState([]);
+    const [statusSpinner, setStatusSpinner] = useState(true);
+
+    useEffect(() => {
         // Estamos mandando a llamar a lo hobbies que se encuentran en la base de datos
 
-        axios.get(urlApi+'hobbies').then(res=>{
+        axios.get(urlApi + 'hobbies').then(res => {
             setQuestions([...res.data.data]);
             setHobbiesDB([...res.data.data]);
-        }).catch(err=>{
+            setStatusSpinner(false);
+        }).catch(err => {
             console.log(err)
         });
-        axios.get(urlApi+'personajes').then(res=>{
+        axios.get(urlApi + 'personajes').then(res => {
             setUsers([...res.data.data]);
-        }).catch(err=> console.log(err))
+        }).catch(err => console.log(err))
     }, [])
 
     // console.log(questions)
-    
-    const [resValue, setResValue]= useState([]); //Nos permite capturar la respuesta del jugador cuando presione  "si"
-    const [status, setStatus ] = useState(false)
-    const [characterName, setCharacterName]= useState('')
-    return(
-        <>
-            <div className="">
-                <GameQuestions
+
+    const [resValue, setResValue] = useState([]); //Nos permite capturar la respuesta del jugador cuando presione  "si"
+    const [status, setStatus] = useState(false)
+    const [characterName, setCharacterName] = useState('')
+    return (
+        <>{
+            statusSpinner ?
+                <Spinner />
+                : <GameQuestions
                     hobbiesDB={hobbiesDB}
                     users={users}
                     resValue={resValue}
                     setResValue={setResValue}
-                    questions = {questions}
-                    setQuestions = {setQuestions}
-                    characterName = {characterName}
-                    setCharacterName = {setCharacterName}
-                    status = {status}
-                    setStatus = {setStatus}
+                    questions={questions}
+                    setQuestions={setQuestions}
+                    characterName={characterName}
+                    setCharacterName={setCharacterName}
+                    status={status}
+                    setStatus={setStatus}
                     btnHome={btnHome}
-                /> 
-            </div>
+                />
+        }
         </>
     )
 }

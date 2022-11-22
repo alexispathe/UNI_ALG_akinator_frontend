@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Spinner } from '../Spinner';
 import { hobbies } from '../../database/users';
 import { AiOutlineHome } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
@@ -9,18 +10,21 @@ export const FormPersonaje = ({ btnHome }) => {
     const [hobbiesData, setHobbiesData] = useState([]);
     const [name, setName] = useState("");
     const [status, setStatus] = useState(false);
+    const [statusSpinner, setStatusSpinner] = useState(true);
     const btnDisabled = document.querySelector('input[type="submit"]'); //llamamos al boton de submit para desactivarlo o activarlo dependiendo el caso
     // AQUI LLAMAMOS A LOS HOBBIES GUARDADOS EN LA BASE DE DATOS
-    useEffect(()=>{
-        axios.get(urlApi+'hobbies').then(hobbie=>{
-            setArryHobbies([...hobbie.data.data])
+    useEffect(() => {
+        axios.get(urlApi + 'hobbies').then(hobbie => {
+            setArryHobbies([...hobbie.data.data]);
+            setStatusSpinner(false);
+
         })
-        .catch(err=> console.log("Ocurrio un error al devolver los datos"));
+            .catch(err => console.log("Ocurrio un error al devolver los datos"));
         // console.log(hobbiess);
         // setArryHobbies()
-    },[]);
+    }, []);
 
-    
+
     const handleSubmit = (e) => {
         e.preventDefault();
         // console.log(btnDisabled)
@@ -30,16 +34,16 @@ export const FormPersonaje = ({ btnHome }) => {
             hobbies: hobbiesData
         }
         // Guardado los datos al servidor
-        
-        axios.post(urlApi+'/save-personaje', data)
-        .then(data=>{
-            // console.log("Datos ", data)
-        data ? setStatus(true): setStatus(false);
-        });
-        
+
+        axios.post(urlApi + '/save-personaje', data)
+            .then(data => {
+                // console.log("Datos ", data)
+                data ? setStatus(true) : setStatus(false);
+            });
+
     }
     const handleChange = (e) => {
-            
+
         if (e.target.name === "name") {
             setName(e.target.value)
         }
@@ -60,7 +64,11 @@ export const FormPersonaje = ({ btnHome }) => {
             <div onClick={btnHome} className="home-icon">
                 <AiOutlineHome />
             </div>
-            <div className="container">
+            {
+                statusSpinner ?
+                    <Spinner/>
+                :
+                <div className="container">
                 <h1 className="text-center">Crea tu personaje</h1>
                 <div className="form-container">
                     <form onSubmit={handleSubmit}>
@@ -88,7 +96,7 @@ export const FormPersonaje = ({ btnHome }) => {
                             : ''
                         }
                         <div className="from-control d-flex justify-content-end ">
-                            <input type="submit" value="Guardar personaje" className="btn btn-success mt-4"  />
+                            <input type="submit" value="Guardar personaje" className="btn btn-success mt-4" />
                         </div>
 
                     </form>
@@ -97,6 +105,12 @@ export const FormPersonaje = ({ btnHome }) => {
                     </div>
                 </div>
             </div>
+            
+            }
+
+
+
+            
         </>
     )
 }
