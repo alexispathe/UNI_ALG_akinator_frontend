@@ -8,6 +8,7 @@ export const FormHobbie = ({ btnHome }) => {
     const [name, setName] = useState([]);
     const handleSubmit = (e) => {
         e.preventDefault();
+        document.querySelector('input[type="submit"]').disabled = true;
         const data = {
             name
         }
@@ -44,8 +45,8 @@ export const FormHobbie = ({ btnHome }) => {
                             <h2 className="text-primary">Nombre: </h2>
                             <input type="text" className="form-control" name="name" required onChange={(e) => handleChange(e)} require="true" placeholder="Escribe el nombre del pasatiempo"  />
                         </div>
-                        {status ? <div className='alert alert-success text-center'>
-                            <span>Hobbie Guardado correctamente <Link to="/jugar">Jugar ahora</Link></span>
+                        {status ? <div className='alert alert-success text-center mt-4'>
+                            <span>Guardado correctamente <Link to="/crear-nuevo-personaje">¡CREA TU PERSONAJE AHORA MISMO!</Link></span>
                         </div> : ''}
 
 

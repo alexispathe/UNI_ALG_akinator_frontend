@@ -88,10 +88,13 @@ export const FormPersonaje = ({ btnHome }) => {
                             : ''
                         }
                         <div className="from-control d-flex justify-content-end ">
-                            <input type="submit" value="Guardar personaje" className="btn btn-success"  />
+                            <input type="submit" value="Guardar personaje" className="btn btn-success mt-4"  />
                         </div>
 
                     </form>
+                    <div className=''>
+                        <Link to="/crear-hobbie">Agregar un pasatiempo</Link>
+                    </div>
                 </div>
             </div>
         </>

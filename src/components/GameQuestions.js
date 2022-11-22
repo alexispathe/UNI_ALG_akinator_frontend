@@ -2,10 +2,12 @@ import { useState } from "react";
 import { AiOutlineHome } from 'react-icons/ai';
 import { Character } from "./Character"
 import '../Styles/GameQuestions.css';
+import { Link } from "react-router-dom";
 export const GameQuestions = ({ btnHome, hobbiesDB, users, resValue, questions, setQuestions, setResValue, characterName, setCharacterName, status, setStatus }) => {
     const [numQuestions, setNumQuestions] = useState(0);
     const [iterador, setIterador] = useState(1);
     const [noValue, setNoValue] = useState(1);
+    const[alert, setAlert]= useState(false);
     const questions2 = []
     let auxQuestions2 = [...questions];
     const aux = [];
@@ -18,6 +20,7 @@ export const GameQuestions = ({ btnHome, hobbiesDB, users, resValue, questions, 
         /*Con el iterador estamos haciendo una validacion para que solo se muestren 4 preguntas al usuario, despues lo que se hara 
         es hacer un filtro 
         */
+       
         if (iterador < 6) {
             numPregunta(questions); //REALIZAREMOS UNA FUNCION QUE NOS DEVUELVA UN NUMERO ALEATORIO PARA LA PREGUNTA/
             setIterador(iterador + 1)//INCREMENTAMOS 1 EL ITERADOR POR CADA VEZ QUE PASE LA CONDICION
@@ -51,7 +54,7 @@ export const GameQuestions = ({ btnHome, hobbiesDB, users, resValue, questions, 
     const devolverHobbiesConID = () => {
         /* PASO 3 DEL PROGRAMA 
         QUE CONSISTE EN BUSCAR LAS COENCIDENCIAS QUE HAYA EL VALOR GUARDADO DEL STATE EN "resValue" CON LOS DE LA BASE DE DATOS */
-
+        if(resValue.length ===0) setAlert(true);
         resValue.map((valor) => {
             return resFilter.push(...hobbiesDB.filter(hobbie => hobbie.name === valor)); // "resFilter" es un filtro que nos permitira guardar los hobbiesDB donde haya coencidencia con lo que el jugadir y se devolvera con todo ID de los  personaje
         })
@@ -194,7 +197,8 @@ export const GameQuestions = ({ btnHome, hobbiesDB, users, resValue, questions, 
                         </div> : <div className="w-100"></div>
                 }
                 {status === true && characterName ? <Character name={characterName} /> : ''}
-                { status === false && questions.length === 0 ? <button className="btn btn-primary w-100" onClick={devolverHobbiesConID}>Guardar resultados</button> : ''}
+                {alert === true? <div className="alert alert-danger">Lo sentimos no hay ningun resultado.....<span className="link-primary" style={{"cursor":"pointer"}} onClick={btnHome}>Regresar al inicio</span></div>: ''}
+                { status === false && questions.length === 0 &&alert ===false ? <button className="btn btn-primary w-100" onClick={devolverHobbiesConID}>Guardar resultados</button> : ''}
             </div>
         </>
     );
