@@ -1,10 +1,10 @@
 import './App.css';
-import {Home} from './components/Home';
-import {FormPersonaje} from './components/forms/FormPersonaje';
-import {FormHobbie} from './components/forms/FormHobbie';
+import {Home} from './components/akinator/Home';
+import {FormPersonaje} from './components/akinator/forms/FormPersonaje';
+import {FormHobbie} from './components/akinator/forms/FormHobbie';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
-import {Error} from './components/Error';
-import { Game } from "./components/Game";
+import {Error} from './components/akinator/Error';
+import { Game } from "./components/akinator/Game";
 
 const btnHome = () => {
   window.location.href = "/"

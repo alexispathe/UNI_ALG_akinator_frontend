@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { AiOutlineHome } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
-import { urlApi } from '../../global';
+import { urlApi } from '../../../global';
 import axios from 'axios';
 export const FormHobbie = ({ btnHome }) => {
     const [status, setStatus] = useState(false);

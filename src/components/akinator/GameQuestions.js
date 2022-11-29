@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { AiOutlineHome } from 'react-icons/ai';
 import { Character } from "./Character"
-import '../Styles/GameQuestions.css';
+import '../../Styles/GameQuestions.css';
 import { Link } from "react-router-dom";
 export const GameQuestions = ({ btnHome, hobbiesDB, users, resValue, questions, setQuestions, setResValue, characterName, setCharacterName, status, setStatus }) => {
     const [numQuestions, setNumQuestions] = useState(0);
@@ -138,7 +138,7 @@ export const GameQuestions = ({ btnHome, hobbiesDB, users, resValue, questions, 
         const indexKey = keys[indexMax];
         // ****
         const personaje = users.filter(user => user.idUser === indexKey);
-        setCharacterName(personaje[0].name);
+        if(personaje.length>0) setCharacterName(personaje[0].name);
         setStatus(true)
     }
     /*Con esta funcion nosotros estamos previniendo que el jugadir coloque  4 veces "no" consecutivamente desde el principo
