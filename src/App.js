@@ -1,24 +1,36 @@
 import './App.css';
-import {Home} from './components/akinator/Home';
-import {FormPersonaje} from './components/akinator/forms/FormPersonaje';
-import {FormHobbie} from './components/akinator/forms/FormHobbie';
-import {BrowserRouter, Route, Routes} from 'react-router-dom';
-import {Error} from './components/akinator/Error';
+//******************COMPONENTES DEL JUEGO AKINATOR*********** */
+import { Home } from './components/akinator/Home';
+import { FormPersonaje } from './components/akinator/forms/FormPersonaje';
+import { FormHobbie } from './components/akinator/forms/FormHobbie';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Game } from "./components/akinator/Game";
+//******************FIN DE LOS COMPONENTES DEL JUEGO AKINATOR*********** */
+
+/******************COMPONENTES DEL CASOS COVID*********** */
+import { Covid } from './components/covid/Covid';
+/******************FIN COMPONENTES CASOS COVID*********** */
+
+
+import { Error } from './components/akinator/Error';
 
 const btnHome = () => {
   window.location.href = "/"
 }
 function App() {
-  return(
+  return (
     <>
       <BrowserRouter>
         <Routes>
-        <Route path='/' element={<Home/>}/>
-          <Route path='/jugar' element={<Game btnHome={btnHome}/>}/>
-          <Route path='/crear-nuevo-personaje' element={<FormPersonaje btnHome={btnHome}/>}/>
-          <Route path='/crear-hobbie' element={<FormHobbie btnHome={btnHome}/>}/>
-          <Route path='*' element={<Error/>}/>
+          <Route path='/' element={<Home />} />
+          {/* RUTAS AKINATOR */}
+          <Route path='/jugar' element={<Game btnHome={btnHome} />} />
+          <Route path='/crear-nuevo-personaje' element={<FormPersonaje btnHome={btnHome} />} />
+          <Route path='/crear-hobbie' element={<FormHobbie btnHome={btnHome} />} />
+          {/*RUTAS CASOS COVID  */}
+          <Route path='/casos-covid' element={<Covid/>} />
+
+          <Route path='*' element={<Error />} />
         </Routes>
       </BrowserRouter>
     </>
