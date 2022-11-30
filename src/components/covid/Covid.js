@@ -1,13 +1,12 @@
-import { Casos } from "./Casos";
-import { DataCovid} from "../../database/covid";
-import { useState } from "react";
-import { grafica } from "./Grafica";
-export const Covid = () => {
-    const [dataCovid, setDataCovid] = useState(DataCovid);
+import { Grafica } from "./Grafica";
+import {options, data } from './ConfiguracionGraficas';
+import React from 'react';
 
+export const Covid = () => {
     return (
         <>
-            <Casos dataCovid={dataCovid} setDataCovid={setDataCovid} />
+            <Grafica options={options} data={data}/>
+            {/* <Casos dataCovid={dataCovid} setDataCovid={setDataCovid} /> */}
         </>
     );
 }
