@@ -13,7 +13,6 @@ export const ConfiguracionGrafica = () => {
   useEffect(() => {
     getDatosCovidMexico().then(res => {
       setData(res);
-      console.log("res", res)
     })
   }, []);
   /***********CONFIGURACION PARA LA GRAFICA QUE SE VA A MOSTRAR*******/
@@ -25,7 +24,7 @@ export const ConfiguracionGrafica = () => {
       },
       title: {
         display: true,
-        text: 'Chart.js Line Chart',
+        text: 'Casos COVID noviembre',
       },
     },
   };
@@ -45,7 +44,7 @@ export const ConfiguracionGrafica = () => {
   /*************FIN DE CONFIGURACION GRAFICA************/
   return (
     <>
-      <Covid options={options} casosCovid={casosCovid}/>
+      <Covid options={options} casosCovid={casosCovid} />
       {/* <Casos dataCovid={dataCovid} setDataCovid={setDataCovid} /> */}
     </>
   );
