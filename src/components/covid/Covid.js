@@ -1,8 +1,8 @@
-import { Grafica } from "./Grafica";
-import {options, casosCovid } from './ConfiguracionGraficas';
+import { Grafica} from "./Grafica";
+// import {options, casosCovid } from './ConfiguracionGraficas';
 import React from 'react';
+export const Covid = ({options, casosCovid}) => {
 
-export const Covid = () => {
     return (
         <>
             <Grafica options={options} casosCovid={casosCovid}/>
