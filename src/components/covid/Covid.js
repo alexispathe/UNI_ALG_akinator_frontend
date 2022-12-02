@@ -1,11 +1,11 @@
 import { Grafica } from "./Grafica";
-import {options, data } from './ConfiguracionGraficas';
+import {options, casosCovid } from './ConfiguracionGraficas';
 import React from 'react';
 
 export const Covid = () => {
     return (
         <>
-            <Grafica options={options} data={data}/>
+            <Grafica options={options} casosCovid={casosCovid}/>
             {/* <Casos dataCovid={dataCovid} setDataCovid={setDataCovid} /> */}
         </>
     );
