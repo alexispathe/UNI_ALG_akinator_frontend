@@ -33,12 +33,28 @@ export const ConfiguracionGrafica = ({DataCovid}) => {
       }
     ]
   };
-
+  const muertesCovid = {
+    labels: DataCovid.map(data => data.Date),
+    datasets: [
+      {
+        fill: true,
+        label: 'Muertes confirmadas',
+        data: DataCovid.map(data => data.Deaths),
+        borderColor: 'rgb(255,0,0)',
+        backgroundColor: 'rgba(255,0,0, 0.5)',
+      }
+    ]
+  };
   /*************FIN DE CONFIGURACION GRAFICA************/
   return (
     <>
     <h1 className="text-center">Predicción de contagios COVID-19</h1>
-      <Grafica options={options} casosCovid={casosCovid}  />
+    <div className='row'>
+      <div className='col-sm-12 col-lg-6'> <Grafica options={options} casosCovid={casosCovid}  /></div>
+      <div className='col-sm-12 col-lg-6'> <Grafica options={options} casosCovid={muertesCovid}  /></div>
+
+    </div>
+     
       {/* <Casos dataCovid={dataCovid} setDataCovid={setDataCovid} /> */}
     </>
   );

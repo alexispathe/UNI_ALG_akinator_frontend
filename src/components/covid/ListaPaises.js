@@ -16,10 +16,10 @@ export const ListaPaises = () => {
     }, []);
     const handleChange = (option) => {
         // setPais(option.target.value)
-        console.log(option.target.value)
+        // console.log(option.target.value)
         axios.get('https://api.covid19api.com/total/country/' + option.target.value).then(res => {
             setData(res.data.filter(data => data.Date >= "2022-11-01"));
-            console.log(DataCovid)
+            // console.log(DataCovid)
         })
 
     }
