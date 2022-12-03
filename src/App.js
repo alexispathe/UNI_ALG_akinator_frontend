@@ -8,7 +8,7 @@ import { Game } from "./components/akinator/Game";
 //******************FIN DE LOS COMPONENTES DEL JUEGO AKINATOR*********** */
 
 /******************COMPONENTES DEL CASOS COVID*********** */
-import { ConfiguracionGrafica } from './components/covid/ConfiguracionGraficas';
+import { ListaPaises } from './components/covid/ListaPaises';
 /******************FIN COMPONENTES CASOS COVID*********** */
 
 
@@ -28,7 +28,7 @@ function App() {
           <Route path='/crear-nuevo-personaje' element={<FormPersonaje btnHome={btnHome} />} />
           <Route path='/crear-hobbie' element={<FormHobbie btnHome={btnHome} />} />
           {/*RUTAS CASOS COVID  */}
-          <Route path='/casos-covid' element={<ConfiguracionGrafica/>} />
+          <Route path='/casos-covid' element={<ListaPaises/>} />
 
           <Route path='*' element={<Error />} />
         </Routes>

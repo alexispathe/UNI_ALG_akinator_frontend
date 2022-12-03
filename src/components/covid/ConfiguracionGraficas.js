@@ -1,25 +1,12 @@
 import React from 'react';
 
 // import {options, casosCovid } from './ConfiguracionGraficas';
-import { useState, useEffect } from "react";
 // Estamos mandando a llamar la api donde se encuentran los datos
-import { getDatosCovidMexico,getNombresPais } from "../../database/covidDB";
 // IMPORTAMOS EL COMPONENTE DE COVID
-import { Covid } from './Covid';
+import { Grafica } from './Grafica';
+export const ConfiguracionGrafica = ({DataCovid}) => {
 
-export const ConfiguracionGrafica = () => {
-  // DEVOLVER LOS ULTIMOS 30 DIAS DE CONTAGIO 
-  const [DataCovid, setData] = useState([]);
-  const [nombrePais, setNombrePais] = useState([]);
-  useEffect(() => {
-    getDatosCovidMexico().then(res => {
-      setData(res);
-    })
-    getNombresPais().then(res=>{
-      setNombrePais(res.data);
-
-    })
-  }, []);
+  
   /***********CONFIGURACION PARA LA GRAFICA QUE SE VA A MOSTRAR*******/
   const options = {
     responsive: true,
@@ -29,7 +16,7 @@ export const ConfiguracionGrafica = () => {
       },
       title: {
         display: true,
-        text: 'Casos COVID-19 noviembre en México',
+        text: `Casos COVID-19 noviembre en ${DataCovid[0].Country}`,
       },
     },
   };
@@ -50,7 +37,8 @@ export const ConfiguracionGrafica = () => {
   /*************FIN DE CONFIGURACION GRAFICA************/
   return (
     <>
-      <Covid options={options} casosCovid={casosCovid} nombrePais={nombrePais} />
+    <h1 className="text-center">Predicción de contagios COVID-19</h1>
+      <Grafica options={options} casosCovid={casosCovid}  />
       {/* <Casos dataCovid={dataCovid} setDataCovid={setDataCovid} /> */}
     </>
   );
