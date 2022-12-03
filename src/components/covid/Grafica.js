@@ -26,11 +26,9 @@ import {
 export const Grafica = ({options, casosCovid}) => {
     return (
         <>
-            <div className="container">
-                <h1 className="text-center">Casos covid Noviembre 2022</h1>
                 <Line options={options} data={casosCovid} />
                 
-            </div>
+           
         </>
     )
 }
