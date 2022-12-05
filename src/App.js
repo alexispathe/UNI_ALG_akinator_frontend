@@ -28,7 +28,7 @@ function App() {
           <Route path='/crear-nuevo-personaje' element={<FormPersonaje btnHome={btnHome} />} />
           <Route path='/crear-hobbie' element={<FormHobbie btnHome={btnHome} />} />
           {/*RUTAS CASOS COVID  */}
-          <Route path='/casos-covid' element={<ListaPaises/>} />
+          <Route path='/casos-covid' element={<ListaPaises btnHome={btnHome} />} />
 
           <Route path='*' element={<Error />} />
         </Routes>
