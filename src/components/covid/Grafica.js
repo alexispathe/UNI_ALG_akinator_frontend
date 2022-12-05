@@ -27,8 +27,6 @@ export const Grafica = ({options, casosCovid}) => {
     return (
         <>
                 <Line options={options} data={casosCovid} />
-                
-           
         </>
     )
 }

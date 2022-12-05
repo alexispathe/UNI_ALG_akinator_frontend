@@ -10,6 +10,9 @@ import { Game } from "./components/akinator/Game";
 /******************COMPONENTES DEL CASOS COVID*********** */
 import { ListaPaises } from './components/covid/ListaPaises';
 /******************FIN COMPONENTES CASOS COVID*********** */
+/******************COMPONENTES DE LOS EJERCICIOS DE ALGORITMOS*********** */
+import { ExerciseSection } from './components/ejerciciosAlgoritmos/ExerciseSection';
+/******************FIN COMPONENTES DE LOS EJERCICIOS DE ALGORITMOS*********** */
 
 
 import { Error } from './components/akinator/Error';
