@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { urlApi } from '../../../global';
+import { urlApi } from '../../../../../global';
 import axios from 'axios';
 export const FormHobbie = () => {
     const [status, setStatus] = useState(false);

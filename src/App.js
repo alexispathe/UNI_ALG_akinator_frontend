@@ -2,17 +2,17 @@ import './App.css';
 import { Header } from './components/header/Header';
 //******************COMPONENTES DEL JUEGO AKINATOR*********** */
 import { Home } from './components/Home/Home';
-import { FormPersonaje } from './components/akinator/forms/FormPersonaje';
-import { FormHobbie } from './components/akinator/forms/FormHobbie';
+import { FormPersonaje } from './components/01_algoritmos/proyectos/akinator/forms/FormPersonaje';
+import { FormHobbie } from './components/01_algoritmos/proyectos/akinator/forms/FormHobbie';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { Game } from "./components/akinator/Game";
+import { Game } from "./components/01_algoritmos/proyectos/akinator/Game";
 //******************FIN DE LOS COMPONENTES DEL JUEGO AKINATOR*********** */
 
 /******************COMPONENTES DEL CASOS COVID*********** */
-import { ListaPaises } from './components/covid/ListaPaises';
+import { ListaPaises } from './components/01_algoritmos/proyectos/covid/ListaPaises';
 /******************FIN COMPONENTES CASOS COVID*********** */
 /******************COMPONENTES DE LOS EJERCICIOS DE ALGORITMOS*********** */
-import { ExerciseSection } from './components/ejerciciosAlgoritmos/ExerciseSection';
+import { ExerciseSection } from './components/01_algoritmos/ejerciciosAlgoritmos/ExerciseSection';
 /******************FIN COMPONENTES DE LOS EJERCICIOS DE ALGORITMOS*********** */
 
 
@@ -34,7 +34,7 @@ function App() {
           <Route path='proyectos-uaq/materia/algoritmos/akinator/crear-hobbie' element={<FormHobbie />} />
           {/*RUTAS CASOS COVID  */}
           <Route path='proyectos-uaq/materia/algoritmos/covid/casos-covid' element={<ListaPaises />} />
-          {/* RUTAS PARA ALGORITMOS */}
+          {/* RUTAS PARA EJERCICIOS ALGORITMOS */}
           <Route path='proyectos-uaq/materia/algoritmos/ejercicios' element={<ExerciseSection/>}/>
           <Route path='*' element={<Error />} />
         </Routes>

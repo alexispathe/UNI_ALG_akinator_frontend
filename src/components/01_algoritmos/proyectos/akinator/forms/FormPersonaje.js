@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Spinner } from '../Spinner';
-import { hobbies } from '../../../database/users';
+import { hobbies } from '../../../../../database/users';
 import { Link } from 'react-router-dom';
-import { urlApi } from '../../../global';
+import { urlApi } from '../../../../../global';
 import axios from 'axios';
 export const FormPersonaje = () => {
     const [arrayHobbies, setArryHobbies] = useState([]);
@@ -88,7 +88,7 @@ export const FormPersonaje = () => {
 
                         {status ?
                             <div className='alert alert-success text-center'>
-                                <span>Personaje guardado correctamente <Link to="/proyectos-uaq/materia/algoritmos/jugar">Jugar ahora</Link></span>
+                                <span>Personaje guardado correctamente <Link to="/proyectos-uaq/materia/algoritmos/akinator/jugar">Jugar ahora</Link></span>
                             </div>
                             : ''
                         }
