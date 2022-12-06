@@ -21,7 +21,7 @@ export const IndiceMasaCorporal = () => {
             <div className="container">
                 {/* EJERCIO 2 SACAR EL INDICE DE MASA CORPORAL */}
                 <form className="form-container" onSubmit={IMCSubmit}>
-                    <h2>1. Calcular tu Indice de masa corporal</h2>
+                    <h2>2. Calcular Indice de masa corporal</h2>
                     <div className="form-input-container">
                         <div className="input-container">
                             <input type="number" className="form-input" name="peso" required placeholder="Escribe tu peso en KG" onChange={(evt) => IMCChange(evt)} />
@@ -32,7 +32,7 @@ export const IndiceMasaCorporal = () => {
                         <div className="input-btn-container">
                             <input type="submit" value="calcular" className="" />
                         </div>
-                        {IMC > 0 ? <div className="input-result "><p>Tu IMC es: {IMC}</p></div> : ''}
+                        {IMC > 0 ? <div className="input-result "><p>Tu IMC es: {IMC.toFixed(2)}</p></div> : ''}
 
                     </div>
                 </form>

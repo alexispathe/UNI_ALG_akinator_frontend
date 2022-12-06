@@ -26,7 +26,7 @@ export const Media = () => {
                             <input type="number" className="form-input" name="mediaNum1" required placeholder="Escribe el primer numero" onChange={(evt) => mediaChange(evt)} />
                         </div>
                         <div className="input-container">
-                            <input type="number" className="form-input" name="mediaNum2" required placeholder="Escribe el primer numero" onChange={(evt) => mediaChange(evt)} />
+                            <input type="number" className="form-input" name="mediaNum2" required placeholder="Escribe el segundo numero" onChange={(evt) => mediaChange(evt)} />
                         </div>
                         <div className="input-btn-container">
                             <input type="submit" value="calcular" className="" />
