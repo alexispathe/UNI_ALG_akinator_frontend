@@ -11,13 +11,13 @@ export const Home = () => {
               <h1>¡BIENVENIDO!</h1>
             </div>
             <div className='btn-link-container'>
-              <Link to="/jugar" className='btn btn-primary'>Comenzar Juego</Link>
+              <Link to="proyectos-uaq/materia/algoritmos/akinator/jugar" className='btn btn-primary'>Comenzar Juego</Link>
             </div>
             <div className='btn-link-container'>
-              <Link to="/crear-nuevo-personaje" className='btn btn-warning'>Crear tu personaje</Link>
+              <Link to="proyectos-uaq/materia/algoritmos/akinator/crear-nuevo-personaje" className='btn btn-warning'>Crear tu personaje</Link>
             </div>
             <div className='btn-link-container'>
-              <Link to="/casos-covid" className='btn btn-danger'>Casos COVID 19</Link>
+              <Link to="proyectos-uaq/materia/algoritmos/covid/casos-covid" className='btn btn-danger'>Casos COVID 19</Link>
             </div>
           </div>
         </div>

@@ -1,6 +1,7 @@
 import './App.css';
+import { Header } from './components/header/Header';
 //******************COMPONENTES DEL JUEGO AKINATOR*********** */
-import { Home } from './components/akinator/Home';
+import { Home } from './components/Home/Home';
 import { FormPersonaje } from './components/akinator/forms/FormPersonaje';
 import { FormHobbie } from './components/akinator/forms/FormHobbie';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
@@ -15,7 +16,7 @@ import { ExerciseSection } from './components/ejerciciosAlgoritmos/ExerciseSecti
 /******************FIN COMPONENTES DE LOS EJERCICIOS DE ALGORITMOS*********** */
 
 
-import { Error } from './components/akinator/Error';
+import { Error } from './components/Error/Error';
 
 const btnHome = () => {
   window.location.href = "/"
@@ -23,16 +24,18 @@ const btnHome = () => {
 function App() {
   return (
     <>
+    <Header btnHome={btnHome}/>
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Home />} />
           {/* RUTAS AKINATOR */}
-          <Route path='/jugar' element={<Game btnHome={btnHome} />} />
-          <Route path='/crear-nuevo-personaje' element={<FormPersonaje btnHome={btnHome} />} />
-          <Route path='/crear-hobbie' element={<FormHobbie btnHome={btnHome} />} />
+          <Route path='proyectos-uaq/materia/algoritmos/akinator/jugar' element={<Game btnHome={btnHome} />} />
+          <Route path='proyectos-uaq/materia/algoritmos/akinator/crear-nuevo-personaje' element={<FormPersonaje btnHome={btnHome} />} />
+          <Route path='proyectos-uaq/materia/algoritmos/akinator/crear-hobbie' element={<FormHobbie />} />
           {/*RUTAS CASOS COVID  */}
-          <Route path='/casos-covid' element={<ListaPaises btnHome={btnHome} />} />
-
+          <Route path='proyectos-uaq/materia/algoritmos/covid/casos-covid' element={<ListaPaises />} />
+          {/* RUTAS PARA ALGORITMOS */}
+          <Route path='proyectos-uaq/materia/algoritmos/ejercicios' element={<ExerciseSection/>}/>
           <Route path='*' element={<Error />} />
         </Routes>
       </BrowserRouter>

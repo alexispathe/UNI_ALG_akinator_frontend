@@ -2,7 +2,7 @@ import '../../Styles/akinator/Character.css';
 import { Link } from 'react-router-dom';
 export const Character = ({ name }) => {
     const reload = () => {
-        window.location.href = '/jugar'
+        window.location.href = '/materia/algoritmos/akinator/jugar'
     }
     return (
         <>

@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { AiOutlineHome } from 'react-icons/ai';
 import { Character } from "./Character"
 import '../../Styles/akinator/GameQuestions.css';
 // import { Link } from "react-router-dom";
@@ -138,7 +137,7 @@ export const GameQuestions = ({ btnHome, hobbiesDB, users, resValue, questions, 
         const indexKey = keys[indexMax];
         // ****
         const personaje = users.filter(user => user.idUser === indexKey);
-        if(personaje.length>0) setCharacterName(personaje[0].name);
+        if (personaje.length > 0) setCharacterName(personaje[0].name);
         setStatus(true)
     }
     /*Con esta funcion nosotros estamos previniendo que el jugadir coloque  4 veces "no" consecutivamente desde el principo
@@ -176,10 +175,7 @@ export const GameQuestions = ({ btnHome, hobbiesDB, users, resValue, questions, 
 
     return (
         <>
-            <div onClick={btnHome} className="home-icon">
-                <AiOutlineHome />
-            </div>
-            
+
             <div className="GameQuestions container text-center">
                 {!characterName ? <h1>Adivino tu personaje</h1> : ''}
                 {

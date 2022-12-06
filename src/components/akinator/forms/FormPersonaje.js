@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react';
 import { Spinner } from '../Spinner';
 import { hobbies } from '../../../database/users';
-import { AiOutlineHome } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import { urlApi } from '../../../global';
 import axios from 'axios';
-export const FormPersonaje = ({ btnHome }) => {
+export const FormPersonaje = () => {
     const [arrayHobbies, setArryHobbies] = useState([]);
     const [hobbiesData, setHobbiesData] = useState([]);
     const [name, setName] = useState("");
@@ -61,9 +60,7 @@ export const FormPersonaje = ({ btnHome }) => {
 
     return (
         <>
-            <div onClick={btnHome} className="home-icon">
-                <AiOutlineHome />
-            </div>
+          
             {
                 statusSpinner ?
                     <Spinner/>
@@ -91,7 +88,7 @@ export const FormPersonaje = ({ btnHome }) => {
 
                         {status ?
                             <div className='alert alert-success text-center'>
-                                <span>Personaje guardado correctamente <Link to="/jugar">Jugar ahora</Link></span>
+                                <span>Personaje guardado correctamente <Link to="/proyectos-uaq/materia/algoritmos/jugar">Jugar ahora</Link></span>
                             </div>
                             : ''
                         }
@@ -101,7 +98,7 @@ export const FormPersonaje = ({ btnHome }) => {
 
                     </form>
                     <div className=''>
-                        <Link to="/crear-hobbie">Agregar un pasatiempo</Link>
+                        <Link to="/proyectos-uaq/materia/algoritmos/akinator/crear-hobbie">Agregar un pasatiempo</Link>
                     </div>
                 </div>
             </div>

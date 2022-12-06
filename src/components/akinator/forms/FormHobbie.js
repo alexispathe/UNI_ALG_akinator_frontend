@@ -1,9 +1,8 @@
 import { useState } from 'react';
-import { AiOutlineHome } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import { urlApi } from '../../../global';
 import axios from 'axios';
-export const FormHobbie = ({ btnHome }) => {
+export const FormHobbie = () => {
     const [status, setStatus] = useState(false);
     const [name, setName] = useState([]);
     const handleSubmit = (e) => {
@@ -34,9 +33,7 @@ export const FormHobbie = ({ btnHome }) => {
 
     return (
         <>
-            <div onClick={btnHome} className="home-icon">
-                <AiOutlineHome />
-            </div>
+            
             <div className="container">
                 <h1 className="text-center">Crear nuevo pasatiempos</h1>
                 <div className="form-container">
@@ -46,7 +43,7 @@ export const FormHobbie = ({ btnHome }) => {
                             <input type="text" className="form-control" name="name" required onChange={(e) => handleChange(e)} require="true" placeholder="Escribe el nombre del pasatiempo"  />
                         </div>
                         {status ? <div className='alert alert-success text-center mt-4'>
-                            <span>Guardado correctamente <Link to="/crear-nuevo-personaje">¡CREA TU PERSONAJE AHORA MISMO!</Link></span>
+                            <span>Guardado correctamente <Link to="/proyectos-uaq/materia/algoritmos/akinator/crear-nuevo-personaje">¡CREA TU PERSONAJE AHORA MISMO!</Link></span>
                         </div> : ''}
 
 

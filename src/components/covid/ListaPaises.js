@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react"
 import { ConfiguracionGrafica } from "./ConfiguracionGraficas";
 import { Spinner } from "../akinator/Spinner";
-import { AiOutlineHome } from "react-icons/ai";
 import axios from 'axios';
-export const ListaPaises = ({btnHome}) => {
+export const ListaPaises = () => {
     // const [pais, setPais] = useState('');
     const [DataCovid, setData] = useState([]);
     const [nombrePais, setNombrePais] = useState([]);
@@ -31,9 +30,7 @@ export const ListaPaises = ({btnHome}) => {
     }
     return (
         <>
-        <div onClick={btnHome} className="home-icon">
-                <AiOutlineHome />
-            </div>
+       
             {DataCovid.length >= 1?
                 <div className="container mt-5">
                     <form>
