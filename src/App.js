@@ -12,7 +12,8 @@ import { Game } from "./components/01_algoritmos/proyectos/akinator/Game";
 import { ListaPaises } from './components/01_algoritmos/proyectos/covid/ListaPaises';
 /******************FIN COMPONENTES CASOS COVID*********** */
 /******************COMPONENTES DE LOS EJERCICIOS DE ALGORITMOS*********** */
-import { ExerciseSection } from './components/01_algoritmos/ejerciciosAlgoritmos/ExerciseSection';
+import { ExerciseSection } from './components/01_algoritmos/ejercicios/ExerciseSection';
+import { Conversiones } from './components/01_algoritmos/ejercicios/conversiones/Conversiones';
 /******************FIN COMPONENTES DE LOS EJERCICIOS DE ALGORITMOS*********** */
 
 
@@ -36,6 +37,7 @@ function App() {
           <Route path='proyectos-uaq/materia/algoritmos/covid/casos-covid' element={<ListaPaises />} />
           {/* RUTAS PARA EJERCICIOS ALGORITMOS */}
           <Route path='proyectos-uaq/materia/algoritmos/ejercicios' element={<ExerciseSection/>}/>
+          <Route path='proyectos-uaq/materia/algoritmos/ejercicios/conversiones' element={<Conversiones/>}/>
           <Route path='*' element={<Error />} />
         </Routes>
       </BrowserRouter>
