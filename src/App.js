@@ -2,7 +2,8 @@ import './App.css';
 import { Header } from './components/header/Header';
 //******************COMPONENTES DEL JUEGO AKINATOR*********** */
 import { Home } from './components/Home/Home';
-import { FormPersonaje } from './components/proyectos/escuela/materias/01_algoritmos/proyectos/akinator/forms/FormPersonaje';
+// import { FormPersonaje } from './components/proyectos/escuela/materias/01_algoritmos/proyectos/akinator/forms/FormPersonaje';
+// import FormPersonaje from './Router/escuela/materias/algoritmos/proyectos/akinatorRoutes';
 import { FormHobbie } from './components/proyectos/escuela/materias/01_algoritmos/proyectos/akinator/forms/FormHobbie';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Game } from "./components/proyectos/escuela/materias/01_algoritmos/proyectos/akinator/Game";
@@ -30,8 +31,9 @@ function App() {
         <Routes>
           <Route path='/' element={<Home />} />
           {/* RUTAS AKINATOR */}
+          
           <Route path='proyectos-uaq/materia/algoritmos/akinator/jugar' element={<Game btnHome={btnHome} />} />
-          <Route path='proyectos-uaq/materia/algoritmos/akinator/crear-nuevo-personaje' element={<FormPersonaje btnHome={btnHome} />} />
+          {/* <Route path='proyectos-uaq/materia/algoritmos/akinator/crear-nuevo-personaje' element={<FormPersonaje btnHome={btnHome} />} /> */}
           <Route path='proyectos-uaq/materia/algoritmos/akinator/crear-hobbie' element={<FormHobbie />} />
           {/*RUTAS CASOS COVID  */}
           <Route path='proyectos-uaq/materia/algoritmos/covid/casos-covid' element={<ListaPaises />} />
