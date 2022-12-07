@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { ConfiguracionGrafica } from "./ConfiguracionGraficas";
-import { Spinner } from "../akinator/Spinner";
+import { Spinner } from "../../../../../../spinner/Spinner";
 import axios from 'axios';
 export const ListaPaises = () => {
     // const [pais, setPais] = useState('');

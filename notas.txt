@@ -71,3 +71,31 @@ Ver peliculas
 Comprar por internet
 
 ************************************
+
+CREAR 3 USUARIOS CON 6 caracteristicas iguales y 3 diferentes
+      Base de datos
+      Matematicas 
+      Ver series 
+      Futbol
+      Programación
+      Comprar por internet
+      
+Maria Jose
+      Manejar de dia
+      Motos
+      Manejar de noche
+Juan Carlos
+      musica 
+      dragon ball
+Mauricio
+      Viajar
+
+CREAR 1 usuario con 3 IGUALES y 6 diferentes
+Julisa nieto
+      Programación
+      Desarrollo Web
+      Jugar VideoJuegos
+      Television
+      Dragon Ball 
+      Base de datos
+      Futbol

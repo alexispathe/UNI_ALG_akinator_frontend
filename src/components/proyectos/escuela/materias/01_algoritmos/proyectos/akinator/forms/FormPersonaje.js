@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Spinner } from '../Spinner';
+import { Spinner } from '../../../../../../../spinner/Spinner';
 // import { hobbies } from '../../../../../../../../database/users';
 import { Link } from 'react-router-dom';
 import { urlAlgoritmos } from '../../../../../../../../Router/escuela/materias/algoritmos/urlAlgoritmos';

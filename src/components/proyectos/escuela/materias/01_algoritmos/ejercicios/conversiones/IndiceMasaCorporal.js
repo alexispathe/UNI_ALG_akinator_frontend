@@ -11,7 +11,6 @@ export const IndiceMasaCorporal = () => {
     }
     const IMCSubmit = (e) => {
         e.preventDefault();
-        const aux = parseInt(altura)/100
         setIMC(parseInt(peso) /(altura/100)**2);
 
     }

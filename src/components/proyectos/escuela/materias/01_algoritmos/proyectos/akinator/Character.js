@@ -1,8 +1,9 @@
 import '../../../../../../../Styles/akinator/Character.css';
+import { urlAlgoritmos } from '../../../../../../../Router/escuela/materias/algoritmos/urlAlgoritmos';
 import { Link } from 'react-router-dom';
 export const Character = ({ name }) => {
     const reload = () => {
-        window.location.href = '/materia/algoritmos/akinator/jugar'
+        window.location.href = urlAlgoritmos+'/akinator/jugar'
     }
     return (
         <>

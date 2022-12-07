@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Spinner } from "./Spinner";
+import { Spinner } from "../../../../../../spinner/Spinner";
 // import {usersDB} from '../database/users';
 // import { hobbies as hobbiesDB } from '../database/users'; 
 import { GameQuestions } from "./GameQuestions";

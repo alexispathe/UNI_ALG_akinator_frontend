@@ -3,7 +3,7 @@ import { Character } from "./Character"
 import '../../../../../../../Styles/akinator/GameQuestions.css';
 // import { Link } from "react-router-dom";
 export const GameQuestions = ({ btnHome, hobbiesDB, users, resValue, questions, setQuestions, setResValue, characterName, setCharacterName, status, setStatus }) => {
-    const [numQuestions, setNumQuestions] = useState(0);
+    const [numQuestions, setNumQuestions] = useState(Math.floor(Math.random()* questions.length));
     const [iterador, setIterador] = useState(1);
     const [noValue, setNoValue] = useState(1);
     const [alert, setAlert] = useState(false);
@@ -89,6 +89,7 @@ export const GameQuestions = ({ btnHome, hobbiesDB, users, resValue, questions, 
         }
         let dataHobbies = []
         newCharacters.map(data => {
+            console.log(data)
             return dataHobbies.push(...data.hobbies)
         });
         // "PASO 5 todos los hobbies del los usuarios ya con el filtro "
