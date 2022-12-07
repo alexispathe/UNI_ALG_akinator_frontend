@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Spinner } from '../Spinner';
-import { hobbies } from '../../../../../database/users';
+import { hobbies } from '../../../../../../../../database/users';
 import { Link } from 'react-router-dom';
-import { urlApi } from '../../../../../global';
+import { urlApi } from '../../../../../../../../global';
 import axios from 'axios';
 export const FormPersonaje = () => {
     const [arrayHobbies, setArryHobbies] = useState([]);

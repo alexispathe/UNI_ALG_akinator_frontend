@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Character } from "./Character"
-import '../../../../Styles/akinator/GameQuestions.css';
+import '../../../../../../../Styles/akinator/GameQuestions.css';
 // import { Link } from "react-router-dom";
 export const GameQuestions = ({ btnHome, hobbiesDB, users, resValue, questions, setQuestions, setResValue, characterName, setCharacterName, status, setStatus }) => {
     const [numQuestions, setNumQuestions] = useState(0);

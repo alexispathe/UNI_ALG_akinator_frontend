@@ -3,7 +3,7 @@ import { Spinner } from "./Spinner";
 // import {usersDB} from '../database/users';
 // import { hobbies as hobbiesDB } from '../database/users'; 
 import { GameQuestions } from "./GameQuestions";
-import { urlApi } from "../../../../global";
+import { urlApi } from "../../../../../../../global";
 import axios from 'axios';
 export const Game = ({ btnHome }) => {
     const [questions, setQuestions] = useState([]);

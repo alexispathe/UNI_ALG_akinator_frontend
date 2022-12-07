@@ -2,18 +2,18 @@ import './App.css';
 import { Header } from './components/header/Header';
 //******************COMPONENTES DEL JUEGO AKINATOR*********** */
 import { Home } from './components/Home/Home';
-import { FormPersonaje } from './components/01_algoritmos/proyectos/akinator/forms/FormPersonaje';
-import { FormHobbie } from './components/01_algoritmos/proyectos/akinator/forms/FormHobbie';
+import { FormPersonaje } from './components/proyectos/escuela/materias/01_algoritmos/proyectos/akinator/forms/FormPersonaje';
+import { FormHobbie } from './components/proyectos/escuela/materias/01_algoritmos/proyectos/akinator/forms/FormHobbie';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { Game } from "./components/01_algoritmos/proyectos/akinator/Game";
+import { Game } from "./components/proyectos/escuela/materias/01_algoritmos/proyectos/akinator/Game";
 //******************FIN DE LOS COMPONENTES DEL JUEGO AKINATOR*********** */
 
 /******************COMPONENTES DEL CASOS COVID*********** */
-import { ListaPaises } from './components/01_algoritmos/proyectos/covid/ListaPaises';
+import { ListaPaises } from './components/proyectos/escuela/materias/01_algoritmos/proyectos/covid/ListaPaises';
 /******************FIN COMPONENTES CASOS COVID*********** */
 /******************COMPONENTES DE LOS EJERCICIOS DE ALGORITMOS*********** */
-import { ExerciseSection } from './components/01_algoritmos/ejercicios/ExerciseSection';
-import { Conversiones } from './components/01_algoritmos/ejercicios/conversiones/Conversiones';
+import { ExerciseSection } from './components/proyectos/escuela/materias/01_algoritmos/ejercicios/ExerciseSection';
+import { Conversiones } from './components/proyectos/escuela/materias/01_algoritmos/ejercicios/conversiones/Conversiones';
 /******************FIN COMPONENTES DE LOS EJERCICIOS DE ALGORITMOS*********** */
 
 
