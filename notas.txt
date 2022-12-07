@@ -1,11 +1,7 @@
-1. Solucionar problema que cuando ya pasa al segundo filtro, nos vuelva a pedir almenos 5 preguntas mas y no todas como hasta ahora lo hace
-2. DEBEMOS DE SOLUCIONAR EL PROBLEMA DONDE EL JUGADOR COLOCA POR ERROR QUE SU PERSONAJE LE GUSTA UN HOBBIE DESDE LAS PRIMERAS 5 preguntas
+1. DEBEMOS DE SOLUCIONAR EL PROBLEMA DONDE EL JUGADOR COLOCA POR ERROR QUE SU PERSONAJE LE GUSTA UN HOBBIE DESDE LAS PRIMERAS 5 preguntas
 PERO AL FINAL NO SALEN MAS preguntas DE SU PERSONAJE Y EL JUEGO TERMINA DANDO COMO RESULTADO OTRO PERSONAJE Y NO EL QUE EL JUGADOR ESTA BUSCANDO
-
-3 SOLUCIONAR PROBLEMA DONDE HAY 2 O MAS COENCIDENCIAS DE PERSONAJE Y ASI HACER PREGUNTAS DE ACUERDO A ELLOS, HACERLO CON EL HOBBIE DE HAMBURGESA
-
-
-5. En la funcion buscarPersonaje() debemos de ver la manera de que si hay mas de 2 usuarios con la misma cantidad de coencidencia, haga mas preguntas
+2 SOLUCIONAR PROBLEMA DONDE HAY 2 O MAS COENCIDENCIAS DE PERSONAJE Y ASI HACER PREGUNTAS DE ACUERDO A ELLOS, HACERLO CON EL HOBBIE DE HAMBURGESA
+3. En la funcion buscarPersonaje() debemos de ver la manera de que si hay mas de 2 usuarios con la misma cantidad de coencidencia, haga mas preguntas
 
 
 ESTOS SON LOS PASOS QUE LLEVA EL PROGRAMA 

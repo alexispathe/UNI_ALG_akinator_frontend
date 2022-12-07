@@ -30,7 +30,9 @@ export const GameQuestions = ({ btnHome, hobbiesDB, users, resValue, questions, 
     }
     /***CON LA FUNCION "preguntaRandomFase2()" PASAREMOS A LAS NUEVAS PREGUNTAS PARA HACER EL USUARIO CONFORME A LOS HOBBIES QUE SE OBTUVIERON DEL PRIMER FILTRO***/
     const preguntaRandomFase2 = () => {
-        if (questions.length >= 0) {
+        // AQUI SOLO TE HARA 4 PREGUNTAS MAS 
+        if (questions.length >= 0 && iterador <=8) {
+            console.log("Este es el iterador ",iterador)
             setIterador(iterador + 1)
             numPregunta(questions2); // Pasamos un arreglo con los nuevos  hobbies que se obtuvieron  de la funcion "filtroPersonajes()"
         } else {
@@ -105,21 +107,23 @@ export const GameQuestions = ({ btnHome, hobbiesDB, users, resValue, questions, 
         });
         /**DATA HOBBIES SE ENCUENTRAS LOS HOBBIES DE TODOS LOS USUARIOS DONDE COENCIDIO ALMENOS UNO***/ 
         /*GUARDAREMOS LOS DATOS DE dataHobbies en questions2 para asi usarlas en la funcion 'preguntasRandomFase2()'*/
-        if (iterador >= 4 && questions.length >= 1) {
-            console.log("Ya entro")
-            console.log("Que tiene DATAHOBBIES? ", dataHobbies)
-            console.log("AUX 2 ", auxQuestions2)
+        if (iterador >= 4 && iterador <8&& questions.length >= 1) {
+            // console.log("Ya entro")
+            // console.log("Que tiene DATAHOBBIES? ", dataHobbies)
+            // console.log("AUX 2 ", auxQuestions2)
             dataHobbies.map(data => {
-                console.log("Data ", data)
+                // console.log("Data ", data)
                  aux.push(...auxQuestions2.filter(question => question.idHobbie == data));
             })
-            console.log("aux ", aux)
+            // console.log("aux ", aux)
             questions2.push(...aux);
             setQuestions(questions2);
+            // setIterador(1);
             // /*AQUI DEBEMOS DE MANDAR A LLAMAR EL NUEVO FILTRO DE LOS HOBBIES PARA HACER LAS NUEVAS PREGUNTAS*/
             preguntaRandomFase2();
 
         } else {
+            setQuestions([]);
             buscarPersonaje()
         }
     }
@@ -181,6 +185,7 @@ export const GameQuestions = ({ btnHome, hobbiesDB, users, resValue, questions, 
 
         } 
         else {
+            // ESTE ENTRA CUANDO YA PASAMOS AL SEGUNDO FILTRO DE LAS PREGUNTAS
             setQuestions(questions.filter(questions => questions.name !== value));
             preguntaRandomFase2();
         }
