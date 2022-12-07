@@ -1,0 +1,1 @@
+export const urlAlgoritmos = "/proyectos-uaq/materia/algoritmos";

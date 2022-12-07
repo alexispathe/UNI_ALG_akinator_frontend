@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { urlApi } from '../../../../../../../../global';
+import { urlAlgoritmos } from '../../../../../../../../Router/escuela/materias/algoritmos/urlAlgoritmos';
 import axios from 'axios';
 export const FormHobbie = () => {
     const [status, setStatus] = useState(false);
@@ -43,7 +44,7 @@ export const FormHobbie = () => {
                             <input type="text" className="form-control" name="name" required onChange={(e) => handleChange(e)} require="true" placeholder="Escribe el nombre del pasatiempo"  />
                         </div>
                         {status ? <div className='alert alert-success text-center mt-4'>
-                            <span>Guardado correctamente <Link to="/proyectos-uaq/materia/algoritmos/akinator/crear-nuevo-personaje">¡CREA TU PERSONAJE AHORA MISMO!</Link></span>
+                            <span>Guardado correctamente <Link to={urlAlgoritmos+"/akinator/crear-nuevo-personaje"}>¡CREA TU PERSONAJE AHORA MISMO!</Link></span>
                         </div> : ''}
 
 

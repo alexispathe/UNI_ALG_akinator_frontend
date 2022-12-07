@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Spinner } from '../Spinner';
-import { hobbies } from '../../../../../../../../database/users';
+// import { hobbies } from '../../../../../../../../database/users';
 import { Link } from 'react-router-dom';
+import { urlAlgoritmos } from '../../../../../../../../Router/escuela/materias/algoritmos/urlAlgoritmos';
 import { urlApi } from '../../../../../../../../global';
 import axios from 'axios';
 export const FormPersonaje = () => {
@@ -88,7 +89,7 @@ export const FormPersonaje = () => {
 
                         {status ?
                             <div className='alert alert-success text-center'>
-                                <span>Personaje guardado correctamente <Link to="/proyectos-uaq/materia/algoritmos/akinator/jugar">Jugar ahora</Link></span>
+                                <span>Personaje guardado correctamente <Link to={urlAlgoritmos+"/akinator/jugar"}>Jugar ahora</Link></span>
                             </div>
                             : ''
                         }
@@ -98,7 +99,7 @@ export const FormPersonaje = () => {
 
                     </form>
                     <div className=''>
-                        <Link to="/proyectos-uaq/materia/algoritmos/akinator/crear-hobbie">Agregar un pasatiempo</Link>
+                        <Link to={urlAlgoritmos+"/akinator/crear-hobbie"}>Agregar un pasatiempo</Link>
                     </div>
                 </div>
             </div>
