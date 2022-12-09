@@ -160,6 +160,8 @@ export const GameQuestions = ({ btnHome, hobbiesDB, users, resValue, questions, 
     primera fase
     */
     const noHobbie = (value) => {
+        setUnselectedHobbies([...unselectedHobbies, value])
+        console.log(value);
         if (noValue < 4) {
             setNoValue(noValue + 1)
             quitarPregunta(value)
@@ -176,7 +178,7 @@ export const GameQuestions = ({ btnHome, hobbiesDB, users, resValue, questions, 
         /*Con esta funcion estamos quitando la pregunta que se le mostro al usuario para pasar con la siguiente*/
 
         if (iterador < 5) {
-            setQuestions(questions.filter(questions => questions.name !== value));
+            setQuestions(questions.filter(questions => questions.idHobbie !== value));
             preguntaRandom();
         } 
 
@@ -186,7 +188,7 @@ export const GameQuestions = ({ btnHome, hobbiesDB, users, resValue, questions, 
         } 
         else {
             // ESTE ENTRA CUANDO YA PASAMOS AL SEGUNDO FILTRO DE LAS PREGUNTAS
-            setQuestions(questions.filter(questions => questions.name !== value));
+            setQuestions(questions.filter(questions => questions.idHobbie !== value));
             preguntaRandomFase2();
         }
 
@@ -204,7 +206,7 @@ export const GameQuestions = ({ btnHome, hobbiesDB, users, resValue, questions, 
                                 <h2 className="">¿Tu personaje le gusta {questions[numQuestions].name}?</h2>
                                 <form>
                                     <div className="form-group d-flex justify-content-around">
-                                        <input type="button" value="NO" className="btn btn-danger" onClick={() => noHobbie(questions[numQuestions].name)} />
+                                        <input type="button" value="NO" className="btn btn-danger" onClick={() => noHobbie(questions[numQuestions].idHobbie)} />
                                         <input type="button" value="SI" className="btn btn-success" onClick={() => capRespuestaDelJugador(questions[numQuestions].name)} />
                                     </div>
                                 </form>
