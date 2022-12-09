@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Character } from "./Character"
 import '../../../../../../../Styles/akinator/GameQuestions.css';
 // import { Link } from "react-router-dom";
-export const GameQuestions = ({ btnHome, hobbiesDB, users, resValue, questions, setQuestions, setResValue, characterName, setCharacterName, status, setStatus }) => {
+export const GameQuestions = ({ btnHome, hobbiesDB, users, resValue, questions, setQuestions, setResValue, unselectedHobbies, setUnselectedHobbies, characterName, setCharacterName, status, setStatus }) => {
     const [numQuestions, setNumQuestions] = useState(Math.floor(Math.random()* questions.length));
     const [iterador, setIterador] = useState(1);
     const [noValue, setNoValue] = useState(1);

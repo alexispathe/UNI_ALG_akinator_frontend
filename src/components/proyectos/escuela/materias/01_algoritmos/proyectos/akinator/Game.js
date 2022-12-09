@@ -10,6 +10,7 @@ export const Game = ({ btnHome }) => {
     const [hobbiesDB, setHobbiesDB] = useState([]);
     const [users, setUsers] = useState([]);
     const [statusSpinner, setStatusSpinner] = useState(true);
+    const [unselectedHobbies, setUnselectedHobbies] = useState([]); 
 
     useEffect(() => {
         // Estamos mandando a llamar a lo hobbies que se encuentran en la base de datos
@@ -47,6 +48,8 @@ export const Game = ({ btnHome }) => {
                     status={status}
                     setStatus={setStatus}
                     btnHome={btnHome}
+                    unselectedHobbies={unselectedHobbies}
+                    setUnselectedHobbies={setUnselectedHobbies}
                 />
         }
         </>
