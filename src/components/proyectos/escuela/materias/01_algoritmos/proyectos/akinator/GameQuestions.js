@@ -57,7 +57,7 @@ export const GameQuestions = ({ btnHome, hobbiesDB, users, resValue, questions, 
         QUE CONSISTE EN BUSCAR LAS COENCIDENCIAS QUE HAYA EL VALOR GUARDADO DEL STATE EN "resValue" CON LOS DE LA BASE DE DATOS */
         if (resValue.length === 0) setAlert(true);
         resValue.map((valor) => {
-            return resFilter.push(...hobbiesDB.filter(hobbie => hobbie.name === valor)); // "resFilter" es un filtro que nos permitira guardar los hobbiesDB donde haya coencidencia con lo que el jugadir y se devolvera con todo ID de los  personaje
+            return resFilter.push(...hobbiesDB.filter(hobbie => hobbie.idHobbie === valor)); // "resFilter" es un filtro que nos permitira guardar los hobbiesDB donde haya coencidencia con lo que el jugadir y se devolvera con todo ID de los  personaje
         })
         devolverIDUsuerDeHobbies(); //Llamamos esta funcion para solo devolver los ID de personajes
     }
@@ -161,7 +161,7 @@ export const GameQuestions = ({ btnHome, hobbiesDB, users, resValue, questions, 
     */
     const noHobbie = (value) => {
         setUnselectedHobbies([...unselectedHobbies, value])
-        console.log(value);
+        // console.log(value);
         if (noValue < 4) {
             setNoValue(noValue + 1)
             quitarPregunta(value)
@@ -207,7 +207,7 @@ export const GameQuestions = ({ btnHome, hobbiesDB, users, resValue, questions, 
                                 <form>
                                     <div className="form-group d-flex justify-content-around">
                                         <input type="button" value="NO" className="btn btn-danger" onClick={() => noHobbie(questions[numQuestions].idHobbie)} />
-                                        <input type="button" value="SI" className="btn btn-success" onClick={() => capRespuestaDelJugador(questions[numQuestions].name)} />
+                                        <input type="button" value="SI" className="btn btn-success" onClick={() => capRespuestaDelJugador(questions[numQuestions].idHobbie)} />
                                     </div>
                                 </form>
                             </div>
