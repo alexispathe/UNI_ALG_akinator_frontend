@@ -2,8 +2,6 @@
 
 1. DEBEMOS DE SOLUCIONAR EL PROBLEMA DONDE EL JUGADOR COLOCA POR ERROR QUE SU PERSONAJE LE GUSTA UN HOBBIE DESDE LAS PRIMERAS 5 preguntas
 PERO AL FINAL NO SALEN MAS preguntas DE SU PERSONAJE Y EL JUEGO TERMINA DANDO COMO RESULTADO OTRO PERSONAJE Y NO EL QUE EL JUGADOR ESTA BUSCANDO
-2 SOLUCIONAR PROBLEMA DONDE HAY 2 O MAS COENCIDENCIAS DE PERSONAJE Y ASI HACER PREGUNTAS DE ACUERDO A ELLOS, HACERLO CON EL HOBBIE DE HAMBURGESA
-3. En la funcion buscarPersonaje() debemos de ver la manera de que si hay mas de 2 usuarios con la misma cantidad de coencidencia, haga mas preguntas
 
 STATE DEL COMPONENTE "GAME"
 resValue > SE GUARDAN LOS HOBBIES QUE EL JUGADOR PONE QUE SI 
@@ -78,6 +76,12 @@ Ver peliculas
 Comprar por internet
 
 ************************************
+FERNANDA
+Informatica
+Comer taquitos
+Programación
+Ver peliculas
+Estudiar
 
 CREAR 3 USUARIOS CON 6 caracteristicas iguales y 3 diferentes
       Base de datos

@@ -7,7 +7,6 @@ export const GameQuestions = ({ btnHome, hobbiesDB, users, resValue, questions, 
     const [iterador, setIterador] = useState(1);
     const [noValue, setNoValue] = useState(1);
     const [alert, setAlert] = useState(false);
-    const [numUsers, setNumUsers] = useState(0);
     const questions2 = []
     let auxQuestions2 = [...questions];
     const aux = [];
@@ -20,7 +19,6 @@ export const GameQuestions = ({ btnHome, hobbiesDB, users, resValue, questions, 
         /*Con el iterador estamos haciendo una validacion para que solo se muestren 4 preguntas al usuario, despues lo que se hara 
         es hacer un filtro 
         */
-
         if (iterador < 6) {
             numPregunta(questions); //REALIZAREMOS UNA FUNCION QUE NOS DEVUELVA UN NUMERO ALEATORIO PARA LA PREGUNTA/
             setIterador(iterador + 1)//INCREMENTAMOS 1 EL ITERADOR POR CADA VEZ QUE PASE LA CONDICION
@@ -62,19 +60,9 @@ export const GameQuestions = ({ btnHome, hobbiesDB, users, resValue, questions, 
         })
         devolverIDUsuerDeHobbies(); //Llamamos esta funcion para solo devolver los ID de personajes
     }
-    /*
-     con la funcion devolverIDUsuerDeHobbies estamos guardando el id de  cada personaje que se encuentra registrado en cada hobbie
-     ya que cuando se crea un nuevo personaje sus hobbie que este tiene queda almacenado en un arreglo diferente con el id del personaje 
-     ejemplo - 3 y 20 = El ID del personaje que le gusta ver peliculas 
-     [
-      {
-        peliculas:[3, 20]
-      }
-     ] 
-    */
+
     const devolverIDUsuerDeHobbies = () => {
         /*PASO 4 ESTAMOS HACIENDO UNA FUNCION DONDE AHORA SE NOS DEVOLVERA LOS ID DEL PERSONAJE DONDE EL JUGADOR MENCIONO QUE ESE ERA SU PASATIEMPO*/
-        // console.log("4 ", resFilter)
         resFilter.map((user) => {
             return idUsersEnHobbies.push(...user.idUsers) // idUsersEnHobbies nos devuelve un arreglo con los id que se encuentra en el hobbies.IDUsers de la base de datos.
         })
@@ -84,9 +72,6 @@ export const GameQuestions = ({ btnHome, hobbiesDB, users, resValue, questions, 
     const filtroPersonajes = () => {
         /*PASO 5 Con el filtro de personaje lo que se hace es  devolver a todos los personajes que tienen almenos 1 hobbie con su respectivo nombre */
         const obj = idUsersEnHobbies.reduce((prev, cur) => ((prev[cur] = prev[cur] + 1 || 1), prev), {});  // Con reduce estamos contando cuantas veces se repiten los numeros, al final nos devuelve un objeto
-        // console.log("FiltroPersonajes OBJ " , obj)
-
-
 
         // ***********CONVIRTIENDO LAS KEYS DE UN OBJETO A UN ARREGLO []***************+
         const idCharacters = Object.keys(obj);
@@ -122,7 +107,7 @@ export const GameQuestions = ({ btnHome, hobbiesDB, users, resValue, questions, 
             preguntaRandomFase2();
 
         } else {
-            setQuestions([]);
+            // setQuestions([]); //AQUI BORRAMOS TODAS LAS PREGUNTAS QUE HAY EN EL STATE PARA QUE YA NO SIGA PREGUNTANDO 
             buscarPersonaje()
         }
     }
@@ -131,47 +116,55 @@ export const GameQuestions = ({ btnHome, hobbiesDB, users, resValue, questions, 
         /* PASO 6
    con la funcion llamda buscarPersonaje haremos la busqueda con el personaje con el ID que mas se repita
    para asi devolver el personaje encontrado 
-   */   console.log("idUsers ", idUsersEnHobbies)
+   */
+        //   console.log("idUsers ", idUsersEnHobbies)
         // Con reduce estamos contando cuantas veces se repiten los numeros, al final nos devuelve un objeto
         const obj = idUsersEnHobbies.reduce((prev, cur) => ((prev[cur] = prev[cur] + 1 || 1), prev), {});
-        console.log("Users PASO 6", obj)
-
+        // console.log("Users PASO 6", obj)
 
         // ***********CONVIRTIENDO LAS KEYS DE UN OBJETO A UN ARREGLO []***************+
         const keys = Object.keys(obj);
-        console.log("Keys ", keys)
+        // console.log("Keys ", keys)
 
         // ********CONVIRTIENDO LOS VALORES DE UN OBJETO A UN ARREGLO []*************
         const values = Object.values(obj);
-        console.log("Values", values)
+        // console.log("Values", values)
 
 
 
         //**********DEVOLVER EL VALOR  MAXIMO  QUE HAY EN LA CONSTANTE "values"  ********;
         const max = Math.max(...values);
-        /****************ESTAMOS COMPROBADO SI NO HAY MAS DE UN PERSONAJE CON LA MISMA CANTIDAD DE HOBBIES CON DIFERENCIA DE -1****************************/
-        // for(let i = 0; i<values.length;i++){
-        //     if(values[i] >= (max-1)){
-        //         setNumUsers(...numUsers+1);
-        //         console.log(`El usuario ${keys[i]} si es mayor` )
-        //     }
-        // }
-        // if(numUsers >=2){
-        //     // SI ESTA CONDICION SE CUMPLE SIGNIFICA QUE HAY MAS DE 2 USUARIOS CON LA MISMA CANTIDAD DE HOBBIES ASI QUE 
-        //     // SE DEBE DE HACER OTRAS 3 PREGUNTAS DE ESOS PERSONAJES PARA EVITAR ERRORES
-        // }else{
+        // /****************ESTAMOS COMPROBADO SI NO HAY MAS DE UN PERSONAJE CON LA MISMA CANTIDAD DE HOBBIES CON DIFERENCIA DE -1****************************/
+        let numUsers = 0;
+        for (let i = 0; i < values.length; i++) {
+            if (values[i] >= (max - 1)) {
+                numUsers+=1;
+                // console.log(`El usuario ${keys[i]} si es mayor`)
+                // console.log("Cantidad de personajes encontrados iguales ", numUsers)
+            }
+        }
+        if (numUsers >= 2 && iterador <=12 ) {
+            // SI ESTA CONDICION SE CUMPLE SIGNIFICA QUE HAY MAS DE 2 USUARIOS CON LA MISMA CANTIDAD DE HOBBIES ASI QUE 
+            // SE DEBE DE HACEN OTRAS 3 PREGUNTAS DE ESOS PERSONAJES PARA EVITAR ERRORES POR ESO EL ITERADOR SE INCREMENTA
+            setIterador(iterador+1)
+            // console.log("Se encontro coencidencia de mas de 2 personajes con la misma cantidad de hobbies")
+            // console.log("Set iterador", iterador);
+        } else {
+            // console.log("n ", numUsers)
+            setQuestions([]) //QUITAMOS TODAS LAS PREGUNTAS PARA AHORA SI DEVOLVER AL PERSONAJE
+            /******************************************/
+            // ******** DEVOLVER EL INDICE DE LA CONSTANTE "values"************
+            const indexMax = values.indexOf(max)
 
-        /******************************************/
-        // ******** DEVOLVER EL INDICE DE LA CONSTANTE "values"************
-        const indexMax = values.indexOf(max)
+            //****** DEVOLVER LA KEY = "ID DEL PERSONAJE" CON LA AYUDA DEL 'indexMax' ********++ */ 
+            const indexKey = keys[indexMax];
+            // ****
+            const personaje = users.filter(user => user.idUser === indexKey);
+            if (personaje.length > 0) setCharacterName(personaje[0].name);
+            setStatus(true)
 
-        //****** DEVOLVER LA KEY = "ID DEL PERSONAJE" CON LA AYUDA DEL 'indexMax' ********++ */ 
-        const indexKey = keys[indexMax];
-        // ****
-        const personaje = users.filter(user => user.idUser === indexKey);
-        if (personaje.length > 0) setCharacterName(personaje[0].name);
-        setStatus(true)
-        // }
+        }
+
 
     }
     /*Con esta funcion nosotros estamos previniendo que el jugadir coloque  4 veces "no" consecutivamente desde el principo
@@ -203,7 +196,6 @@ export const GameQuestions = ({ btnHome, hobbiesDB, users, resValue, questions, 
 
         else if (iterador === 5) {
             devolverHobbiesConID();
-
         }
         else {
             // ESTE ENTRA CUANDO YA PASAMOS AL SEGUNDO FILTRO DE LAS PREGUNTAS
