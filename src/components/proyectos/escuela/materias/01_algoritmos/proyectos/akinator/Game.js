@@ -5,7 +5,7 @@ import { Spinner } from "../../../../../../spinner/Spinner";
 import { GameQuestions } from "./GameQuestions";
 import { urlApi } from "../../../../../../../global";
 import axios from 'axios';
-export const Game = ({ btnHome }) => {
+export const Game = ({ btnHome}) => {
     const [questions, setQuestions] = useState([]);
     const [hobbiesDB, setHobbiesDB] = useState([]);
     const [users, setUsers] = useState([]);

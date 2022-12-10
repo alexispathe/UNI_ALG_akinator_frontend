@@ -12,7 +12,7 @@ export const GameQuestions = ({ btnHome, hobbiesDB, users, resValue, questions, 
     const aux = [];
     let resFilter = [];
     let idUsersEnHobbies = [];
-    /* Con esta funcion "numPregunta()" nos permitira buscar un hobbie para la  pregunta de forma aletoria */
+    /* Con esta funcion "numPregunta()" nos permitira un numero aletorio dependiendo de la cantidad de hobbies almacenados, con ese numero comienza la pregunta*/
     const numPregunta = (preguntas) => setNumQuestions(Math.floor(Math.random() * (preguntas.length >= 1 ? preguntas.length - 1 : preguntas.length)))
 
     const preguntaRandom = () => {
@@ -27,8 +27,9 @@ export const GameQuestions = ({ btnHome, hobbiesDB, users, resValue, questions, 
         }
         //    
     }
-    /***CON LA FUNCION "preguntaRandomFase2()" PASAREMOS A LAS NUEVAS PREGUNTAS PARA HACER EL USUARIO CONFORME A LOS HOBBIES QUE SE OBTUVIERON DEL PRIMER FILTRO***/
     const preguntaRandomFase2 = () => {
+    /***CON LA FUNCION "preguntaRandomFase2()" PASAREMOS A LAS NUEVAS PREGUNTAS PARA HACER EL USUARIO CONFORME A LOS HOBBIES QUE SE OBTUVIERON DEL PRIMER FILTRO***/
+
         // AQUI SOLO TE HARA 4 PREGUNTAS MAS 
         if (questions.length >= 0 && iterador <= 8) {
             // console.log("Este es el iterador ", iterador)
@@ -167,11 +168,12 @@ export const GameQuestions = ({ btnHome, hobbiesDB, users, resValue, questions, 
 
 
     }
-    /*Con esta funcion nosotros estamos previniendo que el jugadir coloque  4 veces "no" consecutivamente desde el principo
+   
+    const noHobbie = (value) => {
+         /*Con esta funcion nosotros estamos previniendo que el jugadir coloque  4 veces "no" consecutivamente desde el principo
     para que asi nuevamente se vuelvan a repetir 5 preguntas
     primera fase
     */
-    const noHobbie = (value) => {
         setUnselectedHobbies([...unselectedHobbies, value])
         // console.log(value);
         if (noValue < 4) {
