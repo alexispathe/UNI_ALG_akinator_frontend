@@ -3,10 +3,11 @@ import { Character } from "./Character"
 import '../../../../../../../Styles/akinator/GameQuestions.css';
 // import { Link } from "react-router-dom";
 export const GameQuestions = ({ btnHome, hobbiesDB, users, resValue, questions, setQuestions, setResValue, unselectedHobbies, setUnselectedHobbies, characterName, setCharacterName, status, setStatus }) => {
-    const [numQuestions, setNumQuestions] = useState(Math.floor(Math.random()* questions.length));
+    const [numQuestions, setNumQuestions] = useState(Math.floor(Math.random() * questions.length));
     const [iterador, setIterador] = useState(1);
     const [noValue, setNoValue] = useState(1);
     const [alert, setAlert] = useState(false);
+    const [numUsers, setNumUsers] = useState(0);
     const questions2 = []
     let auxQuestions2 = [...questions];
     const aux = [];
@@ -31,8 +32,8 @@ export const GameQuestions = ({ btnHome, hobbiesDB, users, resValue, questions, 
     /***CON LA FUNCION "preguntaRandomFase2()" PASAREMOS A LAS NUEVAS PREGUNTAS PARA HACER EL USUARIO CONFORME A LOS HOBBIES QUE SE OBTUVIERON DEL PRIMER FILTRO***/
     const preguntaRandomFase2 = () => {
         // AQUI SOLO TE HARA 4 PREGUNTAS MAS 
-        if (questions.length >= 0 && iterador <=8) {
-            console.log("Este es el iterador ",iterador)
+        if (questions.length >= 0 && iterador <= 8) {
+            // console.log("Este es el iterador ", iterador)
             setIterador(iterador + 1)
             numPregunta(questions2); // Pasamos un arreglo con los nuevos  hobbies que se obtuvieron  de la funcion "filtroPersonajes()"
         } else {
@@ -73,7 +74,7 @@ export const GameQuestions = ({ btnHome, hobbiesDB, users, resValue, questions, 
     */
     const devolverIDUsuerDeHobbies = () => {
         /*PASO 4 ESTAMOS HACIENDO UNA FUNCION DONDE AHORA SE NOS DEVOLVERA LOS ID DEL PERSONAJE DONDE EL JUGADOR MENCIONO QUE ESE ERA SU PASATIEMPO*/
-        console.log("4 ", resFilter)
+        // console.log("4 ", resFilter)
         resFilter.map((user) => {
             return idUsersEnHobbies.push(...user.idUsers) // idUsersEnHobbies nos devuelve un arreglo con los id que se encuentra en el hobbies.IDUsers de la base de datos.
         })
@@ -83,7 +84,10 @@ export const GameQuestions = ({ btnHome, hobbiesDB, users, resValue, questions, 
     const filtroPersonajes = () => {
         /*PASO 5 Con el filtro de personaje lo que se hace es  devolver a todos los personajes que tienen almenos 1 hobbie con su respectivo nombre */
         const obj = idUsersEnHobbies.reduce((prev, cur) => ((prev[cur] = prev[cur] + 1 || 1), prev), {});  // Con reduce estamos contando cuantas veces se repiten los numeros, al final nos devuelve un objeto
-        console.log("FiltroPersonajes OBJ " , obj)
+        // console.log("FiltroPersonajes OBJ " , obj)
+
+
+
         // ***********CONVIRTIENDO LAS KEYS DE UN OBJETO A UN ARREGLO []***************+
         const idCharacters = Object.keys(obj);
         const newCharacters = []; //>>> se guardan los personajes para sacar sus hobbies
@@ -93,29 +97,24 @@ export const GameQuestions = ({ btnHome, hobbiesDB, users, resValue, questions, 
         }
         let dataHobbies = []
         newCharacters.map(data => {
-            console.log(data)
+            // console.log(data)
             return dataHobbies.push(...data.hobbies)
         });
         // "PASO 5 todos los hobbies del los usuarios ya con el filtro "
         dataHobbies = dataHobbies.reduce((prev, cur) => ((prev[cur] = prev[cur] + 1 || 1), prev), {})
-        console.log("5 DH ", dataHobbies)
         // "PASO 5, se quitan los valores repeditos del arreglo dataHobbies"
         dataHobbies = Object.keys(dataHobbies);
         /*DESCARTAREMOS LOS HOBBIES QUE YA PASO EL PRIMER FILTRO DONDE SE OPTUVIERON LOS PRIMERO PERSONAJES*/
         resValue.map(data => {
             return dataHobbies = dataHobbies.filter(hobbie => hobbie !== data)
         });
-        /**DATA HOBBIES SE ENCUENTRAS LOS HOBBIES DE TODOS LOS USUARIOS DONDE COENCIDIO ALMENOS UNO***/ 
+        /**DATA HOBBIES SE ENCUENTRAS LOS HOBBIES DE TODOS LOS USUARIOS DONDE COENCIDIO ALMENOS UNO***/
         /*GUARDAREMOS LOS DATOS DE dataHobbies en questions2 para asi usarlas en la funcion 'preguntasRandomFase2()'*/
-        if (iterador >= 4 && iterador <8&& questions.length >= 1) {
-            // console.log("Ya entro")
-            // console.log("Que tiene DATAHOBBIES? ", dataHobbies)
-            // console.log("AUX 2 ", auxQuestions2)
+        if (iterador >= 4 && iterador < 8 && questions.length >= 1) {
+
             dataHobbies.map(data => {
-                // console.log("Data ", data)
-                 aux.push(...auxQuestions2.filter(question => question.idHobbie == data));
+                aux.push(...auxQuestions2.filter(question => question.idHobbie == data));
             })
-            // console.log("aux ", aux)
             questions2.push(...aux);
             setQuestions(questions2);
             // setIterador(1);
@@ -132,19 +131,37 @@ export const GameQuestions = ({ btnHome, hobbiesDB, users, resValue, questions, 
         /* PASO 6
    con la funcion llamda buscarPersonaje haremos la busqueda con el personaje con el ID que mas se repita
    para asi devolver el personaje encontrado 
-   */
+   */   console.log("idUsers ", idUsersEnHobbies)
         // Con reduce estamos contando cuantas veces se repiten los numeros, al final nos devuelve un objeto
         const obj = idUsersEnHobbies.reduce((prev, cur) => ((prev[cur] = prev[cur] + 1 || 1), prev), {});
-        // console.log("Users", obj)
+        console.log("Users PASO 6", obj)
+
+
         // ***********CONVIRTIENDO LAS KEYS DE UN OBJETO A UN ARREGLO []***************+
         const keys = Object.keys(obj);
+        console.log("Keys ", keys)
 
         // ********CONVIRTIENDO LOS VALORES DE UN OBJETO A UN ARREGLO []*************
         const values = Object.values(obj);
+        console.log("Values", values)
+
+
 
         //**********DEVOLVER EL VALOR  MAXIMO  QUE HAY EN LA CONSTANTE "values"  ********;
         const max = Math.max(...values);
+        /****************ESTAMOS COMPROBADO SI NO HAY MAS DE UN PERSONAJE CON LA MISMA CANTIDAD DE HOBBIES CON DIFERENCIA DE -1****************************/
+        // for(let i = 0; i<values.length;i++){
+        //     if(values[i] >= (max-1)){
+        //         setNumUsers(...numUsers+1);
+        //         console.log(`El usuario ${keys[i]} si es mayor` )
+        //     }
+        // }
+        // if(numUsers >=2){
+        //     // SI ESTA CONDICION SE CUMPLE SIGNIFICA QUE HAY MAS DE 2 USUARIOS CON LA MISMA CANTIDAD DE HOBBIES ASI QUE 
+        //     // SE DEBE DE HACER OTRAS 3 PREGUNTAS DE ESOS PERSONAJES PARA EVITAR ERRORES
+        // }else{
 
+        /******************************************/
         // ******** DEVOLVER EL INDICE DE LA CONSTANTE "values"************
         const indexMax = values.indexOf(max)
 
@@ -154,6 +171,8 @@ export const GameQuestions = ({ btnHome, hobbiesDB, users, resValue, questions, 
         const personaje = users.filter(user => user.idUser === indexKey);
         if (personaje.length > 0) setCharacterName(personaje[0].name);
         setStatus(true)
+        // }
+
     }
     /*Con esta funcion nosotros estamos previniendo que el jugadir coloque  4 veces "no" consecutivamente desde el principo
     para que asi nuevamente se vuelvan a repetir 5 preguntas
@@ -180,12 +199,12 @@ export const GameQuestions = ({ btnHome, hobbiesDB, users, resValue, questions, 
         if (iterador < 5) {
             setQuestions(questions.filter(questions => questions.idHobbie !== value));
             preguntaRandom();
-        } 
+        }
 
         else if (iterador === 5) {
             devolverHobbiesConID();
 
-        } 
+        }
         else {
             // ESTE ENTRA CUANDO YA PASAMOS AL SEGUNDO FILTRO DE LAS PREGUNTAS
             setQuestions(questions.filter(questions => questions.idHobbie !== value));
