@@ -1,32 +1,32 @@
 import {
-    Chart as ChartJS,
-    CategoryScale,
-    LinearScale,
-    PointElement,
-    LineElement,
-    Title,
-    Tooltip,
-    Filler,
-    Legend,
-  } from 'chart.js';
-  import { Line } from 'react-chartjs-2';
-  
-  ChartJS.register(
-    CategoryScale,
-    LinearScale,
-    PointElement,
-    LineElement,
-    Title,
-    Tooltip,
-    Filler,
-    Legend
-  );
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Filler,
+  Legend,
+} from 'chart.js';
+import { Line } from 'react-chartjs-2';
 
-  
-export const Grafica = ({options, casosCovid}) => {
-    return (
-        <>
-                <Line options={options} data={casosCovid} />
-        </>
-    )
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Filler,
+  Legend
+);
+
+
+export const Grafica = ({ options, graficaCasosCovid }) => {
+  return (
+    <>
+      <Line options={options} data={graficaCasosCovid} />
+    </>
+  )
 }

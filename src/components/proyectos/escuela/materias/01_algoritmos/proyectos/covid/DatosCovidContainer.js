@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react"
-import { ConfiguracionGrafica } from "./ConfiguracionGraficas";
+import { GraficaContainer } from "./GraficaContainer";
 import { Spinner } from "../../../../../../spinner/Spinner";
 import axios from 'axios';
 
-export const ListaPaises = () => {
+export const DatosCovidContainer = () => {
     // const [pais, setPais] = useState('');
     const [DataCovid, setData] = useState([]);
     const [nombrePais, setNombrePais] = useState([]);
@@ -13,9 +13,9 @@ export const ListaPaises = () => {
         axios.get('https://api.covid19api.com/total/country/' + "mx").then(res => {
             // console.log(res.data)
             res.data = res.data.filter(data => data.Date >= date)
-            res.data.map(datos=>{
+            res.data.map(datos => {
                 datos.Date = new Date(datos.Date);
-                datos.Date = datos.Date.getUTCMonth() +1 +"/"+ datos.Date.getUTCDate() +"/" +datos.Date.getUTCFullYear()
+                datos.Date = datos.Date.getUTCMonth() + 1 + "/" + datos.Date.getUTCDate() + "/" + datos.Date.getUTCFullYear()
                 return datos
             })
             setData(res.data);
@@ -28,12 +28,12 @@ export const ListaPaises = () => {
     }, []);
     const handleChange = (option) => {
         setStatusSpinner(false);
-       
+
         axios.get('https://api.covid19api.com/total/country/' + option.target.value).then(res => {
             res.data = res.data.filter(data => data.Date >= date)
-            res.data.map(datos=>{
+            res.data.map(datos => {
                 datos.Date = new Date(datos.Date);
-                datos.Date = datos.Date.getUTCMonth() +1 +"/"+ datos.Date.getUTCDate() +"/" +datos.Date.getUTCFullYear()
+                datos.Date = datos.Date.getUTCMonth() + 1 + "/" + datos.Date.getUTCDate() + "/" + datos.Date.getUTCFullYear()
                 return datos;
             })
             setData(res.data);
@@ -42,14 +42,15 @@ export const ListaPaises = () => {
         })
 
     }
-    
-  /***********CONFIGURACION PARA LA GRAFICA QUE SE VA A MOSTRAR*******/
-  
+
+    /***********CONFIGURACION PARA LA GRAFICA QUE SE VA A MOSTRAR*******/
+
     return (
         <>
-       
-            {DataCovid.length >= 1?
-                <div className="container mt-5">
+
+            {DataCovid.length >= 1 ?
+                <div className="container">
+                    <h1 className="text-center">Casos COVID-19</h1>
                     <form>
                         <div className="form-group">
                             <select className="form-select" onChange={(value) => handleChange(value)}>
@@ -62,11 +63,11 @@ export const ListaPaises = () => {
                         </div>
                     </form>
 
-                    {statusSpinner? <ConfiguracionGrafica DataCovid={DataCovid} />: <Spinner/>}
-                    
+                    {statusSpinner ? <GraficaContainer DataCovid={DataCovid} /> : <Spinner />}
+
                 </div>
 
-                : <Spinner/>
+                : <Spinner />
 
             }
 
