@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Character } from "./Character"
-import '../../../../../../../Styles/akinator/GameQuestions.css';
+import '../../../../../../../Styles/escuela/materias/algoritmos/proyectos/akinator/GameQuestions.css';
 // import { Link } from "react-router-dom";
 export const GameQuestions = ({ btnHome, hobbiesDB, users, resValue, questions, setQuestions, setResValue, unselectedHobbies, setUnselectedHobbies, characterName, setCharacterName, status, setStatus }) => {
     const [numQuestions, setNumQuestions] = useState(Math.floor(Math.random() * questions.length));
@@ -99,7 +99,7 @@ export const GameQuestions = ({ btnHome, hobbiesDB, users, resValue, questions, 
         if (iterador >= 4 && iterador < 8 && questions.length >= 1) {
 
             dataHobbies.map(data => {
-                aux.push(...auxQuestions2.filter(question => question.idHobbie == data));
+                return aux.push(...auxQuestions2.filter(question => question.idHobbie === data));
             })
             questions2.push(...aux);
             setQuestions(questions2);

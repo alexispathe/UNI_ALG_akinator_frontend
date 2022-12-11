@@ -4,6 +4,8 @@ import React from 'react';
 // Estamos mandando a llamar la api donde se encuentran los datos
 // IMPORTAMOS EL COMPONENTE DE COVID
 import { Grafica } from './Grafica';
+import { ExtrapolacionCasosCovid } from './ExtrapolacionCasosCovid';
+
 export const ConfiguracionGrafica = ({DataCovid}) => {
 
   
@@ -52,10 +54,10 @@ export const ConfiguracionGrafica = ({DataCovid}) => {
     <div className='row'>
       <div className='col-sm-12 col-lg-6'> <Grafica options={options} casosCovid={casosCovid}  /></div>
       <div className='col-sm-12 col-lg-6'> <Grafica options={options} casosCovid={muertesCovid}  /></div>
-
     </div>
      
       {/* <Casos dataCovid={dataCovid} setDataCovid={setDataCovid} /> */}
+     <ExtrapolacionCasosCovid DataCovid={DataCovid}  />
     </>
   );
 }

@@ -9,7 +9,7 @@ import { Error } from './components/Error/Error';
 import {akinatorRoutes} from './Router/escuela/materias/algoritmos/proyectos/akinatorRoutes';
 
 /******************RUTAS Y COMPONENTES DE LOS CASOS COVID*********** */
-import { covidRoutes } from './Router/escuela/materias/algoritmos/proyectos/urlCovid';
+import { covidRoutes } from './Router/escuela/materias/algoritmos/proyectos/covidRoutes';
 
 /******************RUTAS Y COMPONENTES DE LOS EJERCICIOS DE ALGORITMOS*********** */
 import { EjerciciosRoutes } from './Router/escuela/materias/algoritmos/ejercicios/ejerciciosRoutes';

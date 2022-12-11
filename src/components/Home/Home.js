@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import '../../Styles/akinator/Home.css';
+import '../../Styles/home/Home.css';
 export const Home = () => {
   return (
     <div className="home-container">
