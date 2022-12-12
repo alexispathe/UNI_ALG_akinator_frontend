@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react"
 import { Grafica } from "./Grafica";
 export const ExtrapolacionCasosCovid = ({ DataCovid, opcionesGrafica, graficaCasosCovid }) => {
-    const [newCasosCovid, setNewCasosCovid] = useState(DataCovid);
+    const datos = DataCovid;
+    const [newCasosCovid, setNewCasosCovid] = useState(datos);
     useEffect(() => {
         extrapolacion();
 

@@ -1,24 +1,25 @@
 import { Grafica } from "./Grafica"
 import { useEffect, useState } from "react"
 export const InterpolacionCasosCovid = ({ DataCovid, opcionesGrafica, graficaCasosCovid }) => {
-    const [casosCovid, setCasosCovid] = useState(DataCovid);
+    const datos = DataCovid;
+    const [casosCovid, setCasosCovid] = useState(datos);
     useEffect(() => {
         interpolacion();
     }, []);
     const interpolacion =()=>{
         const dia = "12/4/2022"
-        let fecha = new Date(dia) ; //Devuelve el dia "12/4/2022"
-        // console.log(fecha.getMonth()+1)
-        const fecha1 = casosCovid.filter(casos => casos.Date === (fecha.getMonth()+1)+ "/"+(fecha.getDate()-1)+"/"+fecha.getFullYear());
-        const fecha2 = casosCovid.filter(casos => casos.Date === (fecha.getMonth()+1)+ "/"+(fecha.getDate()+1)+"/"+fecha.getFullYear());
+        let fecha = new Date(dia) ; //Devuelve el dia "12/4/2022" en formato de tipo Date
 
+        //DESTRUCTURAMOS EL ARRAY CON EL OBJETO PARA SOLO DEVOLVER EL OBJETO
+        const [fecha1] = casosCovid.filter(casos => casos.Date === (fecha.getMonth()+1)+ "/"+(fecha.getDate()-1)+"/"+fecha.getFullYear());; 
+        const [fecha2] = casosCovid.filter(casos => casos.Date === (fecha.getMonth()+1)+ "/"+(fecha.getDate()+1)+"/"+fecha.getFullYear());
         let x = fecha.getDate() //DIA QUE DEBEMOS ENCONTRAR
         let y = 0;
-        let x0 = new Date(fecha1[0].Date).getDate(); //DIA
-        let y0 = fecha1[0].Confirmed; //CASOS COVID DEL DIA ANTERIOR
+        let x0 = new Date(fecha1.Date).getDate(); //DIA
+        let y0 = fecha1.Confirmed; //CASOS COVID DEL DIA ANTERIOR
 
-        let x1 = new Date(fecha2[0].Date).getDate(); // DIA ; 
-        let y1 = fecha2[0].Confirmed; //CASOS COVID DIA POSTORIOR;
+        let x1 = new Date(fecha2.Date).getDate(); // DIA ; 
+        let y1 = fecha2.Confirmed; //CASOS COVID DIA POSTORIOR;
 
         y = ((y1 - y0) / (x1 - x0)) * (x - x0) + y0;
         // console.log(y)
