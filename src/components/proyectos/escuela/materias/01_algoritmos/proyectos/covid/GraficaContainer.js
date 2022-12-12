@@ -5,6 +5,7 @@ import React from 'react';
 // IMPORTAMOS EL COMPONENTE DE COVID
 import { CasosCovid } from './CasosCovid';
 import { ExtrapolacionCasosCovid } from './ExtrapolacionCasosCovid';
+import { InterpolacionCasosCovid } from './InterpolacionCasosCovid';
 import { opcionesGrafica, datosConfirmadosCovidGrafica, datosMuertesCovidGrafica } from './ConfiguracionDeGraficas';
 export const GraficaContainer = ({ DataCovid }) => {
   return (
@@ -13,12 +14,17 @@ export const GraficaContainer = ({ DataCovid }) => {
       <CasosCovid
         DataCovid={DataCovid}
         opcionesGrafica={opcionesGrafica}
-        datosConfirmadosCovidGrafica={datosMuertesCovidGrafica}
+        datosConfirmadosCovidGrafica={datosConfirmadosCovidGrafica}
         datosMuertesCovidGrafica={datosMuertesCovidGrafica}
       />
 
+
       <ExtrapolacionCasosCovid
-        DataCovid={DataCovid} options={opcionesGrafica(`Prediccion de Casos COVID-19 noviembre en ${DataCovid[0].Country}`)}
+        DataCovid={DataCovid} opcionesGrafica={opcionesGrafica(`Prediccion de Casos COVID-19  en ${DataCovid[0].Country}`)}
+        graficaCasosCovid={datosConfirmadosCovidGrafica}
+      />
+      <InterpolacionCasosCovid
+        DataCovid={DataCovid} opcionesGrafica={opcionesGrafica(`Interpolacion de Casos COVID-19  en ${DataCovid[0].Country}`)}
         graficaCasosCovid={datosConfirmadosCovidGrafica}
       />
     </>

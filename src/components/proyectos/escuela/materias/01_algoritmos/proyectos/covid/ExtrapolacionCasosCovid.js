@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { Grafica } from "./Grafica";
-export const ExtrapolacionCasosCovid = ({ DataCovid, options, graficaCasosCovid }) => {
+export const ExtrapolacionCasosCovid = ({ DataCovid, opcionesGrafica, graficaCasosCovid }) => {
     const [newCasosCovid, setNewCasosCovid] = useState(DataCovid);
     useEffect(() => {
         extrapolacion();
@@ -30,7 +30,7 @@ export const ExtrapolacionCasosCovid = ({ DataCovid, options, graficaCasosCovid 
         <>
             <div className='row'>
                 <h1>Extrapolacion casos covid</h1>
-                <div className='col-sm-12 col-lg-6'> <Grafica options={options} graficaCasosCovid={graficaCasosCovid(newCasosCovid, "Casos con preddicion", "rgb(53, 162, 235)", "rgba(53, 162, 235, 0.5)")} /></div>
+                <div className='col-sm-12 col-lg-6'> <Grafica options={opcionesGrafica} graficaCasosCovid={graficaCasosCovid(newCasosCovid, "Casos con preddicion", "rgb(53, 162, 235)", "rgba(53, 162, 235, 0.5)")} /></div>
             </div>
         </>
     )
