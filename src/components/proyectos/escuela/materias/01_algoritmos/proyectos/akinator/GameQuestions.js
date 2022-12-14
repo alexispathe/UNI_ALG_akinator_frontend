@@ -216,7 +216,7 @@ export const GameQuestions = ({ btnHome, hobbiesDB, users, resValue, questions, 
                     questions.length >= 1 && questions[numQuestions] ?
                         <div className="questions-container">
                             <div className="questions" >
-                                <h2 className="">¿Tu personaje le gusta {questions[numQuestions].name}?</h2>
+                                <h2 className="" style={{"textTransform": "uppercase"}} >¿Tu personaje {questions[numQuestions].name}?</h2>
                                 <form>
                                     <div className="form-group d-flex justify-content-around">
                                         <input type="button" value="NO" className="btn btn-danger" onClick={() => noHobbie(questions[numQuestions].idHobbie)} />

@@ -20,13 +20,16 @@ export const GraficaContainer = ({ DataCovid }) => {
 
 
       <ExtrapolacionCasosCovid
-        DataCovid={DataCovid} opcionesGrafica={opcionesGrafica(`Prediccion de Casos COVID-19  en ${DataCovid[0].Country}`)}
+        DataCovid={DataCovid} 
+        opcionesGrafica={opcionesGrafica}
         graficaCasosCovid={datosConfirmadosCovidGrafica}
       />
-      <InterpolacionCasosCovid
-        DataCovid={DataCovid} opcionesGrafica={opcionesGrafica(`Interpolacion de Casos COVID-19  en ${DataCovid[0].Country}`)}
+
+        <InterpolacionCasosCovid
+        DataCovid={DataCovid} opcionesGrafica={opcionesGrafica}
         graficaCasosCovid={datosConfirmadosCovidGrafica}
       />
+      
     </>
   );
 }

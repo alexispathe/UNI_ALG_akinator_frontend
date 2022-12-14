@@ -78,7 +78,7 @@ export const FormPersonaje = () => {
                         {/* Contenedor donde almacena todos los checkbox */}
                         <div className="row m-auto ">
                             {arrayHobbies.map((hobbies) => (
-                                <div className="form-check col col-xl-2 col-lg-3 col-sm-4 col-12" key={hobbies.idHobbie}>
+                                <div className="form-check col col-xl-3 col-lg-3 col-sm-4 col-12" key={hobbies.idHobbie}>
                                     <label className="form-check-label">{hobbies.name}</label>
                                     <input type="checkbox" className="form-check-input" name='hobbies' onChange={(e) => handleChange(e)} value={hobbies.idHobbie} />
                                 </div>

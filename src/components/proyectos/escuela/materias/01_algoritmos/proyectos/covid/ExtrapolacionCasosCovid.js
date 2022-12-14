@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react"
 import { Grafica } from "./Grafica";
 export const ExtrapolacionCasosCovid = ({ DataCovid, opcionesGrafica, graficaCasosCovid }) => {
-    const datos = DataCovid;
-    const [newCasosCovid, setNewCasosCovid] = useState(datos);
+    const [newCasosCovid, setNewCasosCovid] = useState(DataCovid);
     useEffect(() => {
         extrapolacion();
 
-    }, []);
+    },[]);
     const extrapolacion = () => {
         let logitudArreglo = newCasosCovid.length;
         let x = logitudArreglo + 1; //DeVUELVE EL SIGUIENTE DIA PARA PREDECIR LOS CASOS COVID
@@ -25,13 +24,15 @@ export const ExtrapolacionCasosCovid = ({ DataCovid, opcionesGrafica, graficaCas
             Date: (nuevaFecha.getMonth() + 1) + '/' + (nuevaFecha.getDate() + 1) + '/' + nuevaFecha.getFullYear()
         };
         setNewCasosCovid([...newCasosCovid, nuevosCasos]);
+        // console.log(newCasosCovid)
     }
 
     return (
         <>
             <div className='row'>
-                <h1>Extrapolacion casos covid</h1>
-                <div className='col-sm-12 col-lg-6'> <Grafica options={opcionesGrafica} graficaCasosCovid={graficaCasosCovid(newCasosCovid, "Casos con preddicion", "rgb(53, 162, 235)", "rgba(53, 162, 235, 0.5)")} /></div>
+                {/* <h1 className="text-center">Extrapolación e Interpolación </h1> */}
+                <div className='col-sm-12 col-lg-6'> <Grafica options={opcionesGrafica(`Extrapolación e Interpolación en ${DataCovid[0].Country}`)} graficaCasosCovid={graficaCasosCovid(newCasosCovid, "Casos con preddicion", "rgb(53, 162, 235)", "rgba(53, 162, 235, 0.5)")} /></div>
+
             </div>
         </>
     )

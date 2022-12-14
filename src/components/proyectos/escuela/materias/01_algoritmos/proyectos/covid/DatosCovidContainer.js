@@ -8,9 +8,11 @@ export const DatosCovidContainer = () => {
     const [DataCovid, setData] = useState([]);
     const [nombrePais, setNombrePais] = useState([]);
     const [statusSpinner, setStatusSpinner] = useState(false);
+    // const [date, setDate] = useState("2022-12-01")
     const date = "2022-12-01";
+    const [country, setCountry] = useState("mx")
     useEffect(() => {
-        axios.get('https://api.covid19api.com/total/country/' + "mx").then(res => {
+        axios.get('https://api.covid19api.com/total/country/' + country).then(res => {
             // console.log(res.data)
             res.data = res.data.filter(data => data.Date >= date)
             res.data.map(datos => {
@@ -26,10 +28,11 @@ export const DatosCovidContainer = () => {
             setStatusSpinner(true);
         })
     }, []);
-    const handleChange = (option) => {
+   
+    const handleChange = (option,date = "2022-12-01") => {
         setStatusSpinner(false);
-
-        axios.get('https://api.covid19api.com/total/country/' + option.target.value).then(res => {
+        setCountry(option)
+        axios.get('https://api.covid19api.com/total/country/' + option).then(res => {
             res.data = res.data.filter(data => data.Date >= date)
             res.data.map(datos => {
                 datos.Date = new Date(datos.Date);
@@ -39,7 +42,7 @@ export const DatosCovidContainer = () => {
             setData(res.data);
             setStatusSpinner(true);
             // console.log(DataCovid)
-        })
+        }).catch(err=> alert("Error"))
 
     }
 
@@ -52,14 +55,17 @@ export const DatosCovidContainer = () => {
                 <div className="container">
                     <h1 className="text-center">Casos COVID-19</h1>
                     <form>
-                        <div className="form-group">
-                            <select className="form-select" onChange={(value) => handleChange(value)}>
-                                <option value="mx" >México</option>
-                                {nombrePais.map(nombre => (
-                                    // console.log(nombre.ISO2)
-                                    <option value={nombre.ISO2} key={nombre.ISO2}>{nombre.Country}</option>
-                                ))}
-                            </select>
+                        <div className="form-group d-flex">
+                                <select className="form-select" onChange={(e) => handleChange(e.target.value)}>
+                                    <option value="mx" >México</option>
+                                    {nombrePais.map(nombre => (
+                                        // console.log(nombre.ISO2)
+                                        <option value={nombre.ISO2} key={nombre.ISO2}>{nombre.Country}</option>
+                                    ))}
+                                </select>
+                                    <input type="date" name="date"  onChange={(e)=> {
+                                        
+                                        handleChange(country, e.target.value)}} />
                         </div>
                     </form>
 

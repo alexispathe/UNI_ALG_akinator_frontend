@@ -1,13 +1,13 @@
 import { Grafica } from "./Grafica"
 import { useEffect, useState } from "react"
 export const InterpolacionCasosCovid = ({ DataCovid, opcionesGrafica, graficaCasosCovid }) => {
-    const datos = DataCovid;
-    const [casosCovid, setCasosCovid] = useState(datos);
+    const [casosCovid, setCasosCovid] = useState(DataCovid);
+    const dia = "12/4/2022"
     useEffect(() => {
         interpolacion();
     }, []);
     const interpolacion =()=>{
-        const dia = "12/4/2022"
+       
         let fecha = new Date(dia) ; //Devuelve el dia "12/4/2022" en formato de tipo Date
 
         //DESTRUCTURAMOS EL ARRAY CON EL OBJETO PARA SOLO DEVOLVER EL OBJETO
@@ -33,17 +33,17 @@ export const InterpolacionCasosCovid = ({ DataCovid, opcionesGrafica, graficaCas
     }
     return (
         <>
-            <div className='row'>
+            {/* <div className='row'>
                 <h1>Interpolacion casos covid</h1>
                 <div className='col-sm-12 col-lg-6'>
                     <Grafica
-                        options={opcionesGrafica}
+                        options={opcionesGrafica(`Interpolacion para el dia ${dia}`)}
                         graficaCasosCovid={
                             graficaCasosCovid(casosCovid, "Casos con interpolacion", "rgb(53, 162, 235)", "rgba(53, 162, 235, 0.5)")
                         }
                     />
                 </div>
-            </div>
+            </div> */}
         </>
     )
 }
