@@ -14,6 +14,12 @@ export const Home = () => {
               <Link to="proyectos-uaq/materia/algoritmos/akinator/jugar" className='btn btn-primary'>Comenzar Juego</Link>
             </div>
             <div className='btn-link-container'>
+              <Link to="proyectos-uaq/materia/algoritmos/akinator/crear-categoria" className='btn btn-success'>Crear categoria</Link>
+            </div>
+            <div className='btn-link-container'>
+              <Link to="proyectos-uaq/materia/algoritmos/akinator/crear-sub-categoria" className='btn btn-success'>Crear sub categoria</Link>
+            </div>
+            <div className='btn-link-container'>
               <Link to="proyectos-uaq/materia/algoritmos/akinator/crear-nuevo-personaje" className='btn btn-warning'>Crear tu personaje</Link>
             </div>
             <div className='btn-link-container'>

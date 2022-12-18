@@ -2,7 +2,8 @@ import { urlAlgoritmos } from "../urlAlgoritmos";
 import { FormPersonaje } from "../../../../../components/proyectos/escuela/materias/01_algoritmos/proyectos/akinator/forms/FormPersonaje";
 import { FormHobbie } from "../../../../../components/proyectos/escuela/materias/01_algoritmos/proyectos/akinator/forms/FormHobbie";
 import { Game } from "../../../../../components/proyectos/escuela/materias/01_algoritmos/proyectos/akinator/Game";
-
+import { FormCategoryAkinator } from "../../../../../components/proyectos/escuela/materias/01_algoritmos/proyectos/akinator/forms/FormCategoryAkinator";
+import { FormSubCategoryAkinator } from "../../../../../components/proyectos/escuela/materias/01_algoritmos/proyectos/akinator/forms/FormSubCategoryAkinator";
 export const urlAkinator = urlAlgoritmos+"/akinator"
 export const akinatorRoutes =[
     {
@@ -16,5 +17,13 @@ export const akinatorRoutes =[
     {
         path: urlAkinator+'/crear-hobbie',
         element: <FormHobbie/>
+    },
+    {
+        path: urlAkinator+'/crear-categoria',
+        element: <FormCategoryAkinator/>
+    },
+    {
+        path: urlAkinator+'/crear-sub-categoria',
+        element: <FormSubCategoryAkinator/>
     }
 ]
