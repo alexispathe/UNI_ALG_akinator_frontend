@@ -33,7 +33,6 @@ export const FormPersonaje = () => {
         }).catch(err => console.log(err))
     }
     const getSubCategories = (category) => {
-        console.log(category)
         axios.get(urlApi + 'get-sub-categories/' + category).then(res => {
             setSubCategories([...res.data.data]);
         })
@@ -41,8 +40,7 @@ export const FormPersonaje = () => {
 
     }
     const getHobbies = (subCategory) => {
-        console.log(urlApi + 'hobbies/' + subCategory)
-        axios.get(urlApi + 'hobbies/' + subCategory).then(hobbie => {
+        axios.get(urlApi + 'get-category-hobbies/' + subCategory).then(hobbie => {
             setArryHobbies([...hobbie.data.data]);
 
 
