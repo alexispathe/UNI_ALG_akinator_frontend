@@ -34,20 +34,17 @@ export const FormPersonaje = () => {
     }
     const getSubCategories = (category) => {
         axios.get(urlApi + 'get-sub-categories/' + category).then(res => {
-            setSubCategories([...res.data.data]);
+            res.data.data && res.data.data.length>=1? setSubCategories([...res.data.data]): setSubCategories([]) ;
         })
-            .catch(err => console.log(err));
+        .catch(err => console.log(err));
 
     }
     const getHobbies = (subCategory) => {
         console.log(urlApi + 'get-category-hobbies/' + subCategory)
-        axios.get(urlApi + 'get-category-hobbies/' + subCategory).then(hobbie => {
-            setArryHobbies([...hobbie.data.data]);
-
-
-
+        axios.get(urlApi + 'get-category-hobbies/' + subCategory).then(res => {
+            res.data.data && res.data.data.length >=1? setArryHobbies([...res.data.data]): setArryHobbies([]);
         })
-            .catch(err => console.log(err));
+        .catch(err => console.log(err));
         // console.log(hobbiess);
         // setArryHobbies()
     }

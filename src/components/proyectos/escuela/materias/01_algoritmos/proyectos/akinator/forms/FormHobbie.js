@@ -34,7 +34,8 @@ export const FormHobbie = () => {
     }
     const getCategories = () => {
         axios.get(urlApi + '/get-categories').then(res => {
-            if (res.data.data) {
+            console.log(res)
+            if (res.data.data && res.data.data.length >=1) {
                 setCategories(res.data.data);
                 setStatusSpinner(false);
             } else {
@@ -44,7 +45,7 @@ export const FormHobbie = () => {
     }
     const getSubCategories = (category) => {
         axios.get(urlApi + 'get-sub-categories/' + category).then(res => {
-            setSubCategories([...res.data.data]);
+            res.data.data && res.data.data.length >=1? setSubCategories([...res.data.data]): setSubCategories([]);
         })
             .catch(err => console.log(err));
 
