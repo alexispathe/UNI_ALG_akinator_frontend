@@ -40,6 +40,7 @@ export const FormPersonaje = () => {
 
     }
     const getHobbies = (subCategory) => {
+        console.log(urlApi + 'get-category-hobbies/' + subCategory)
         axios.get(urlApi + 'get-category-hobbies/' + subCategory).then(hobbie => {
             setArryHobbies([...hobbie.data.data]);
 

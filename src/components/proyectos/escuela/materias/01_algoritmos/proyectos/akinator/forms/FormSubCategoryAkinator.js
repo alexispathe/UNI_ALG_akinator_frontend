@@ -36,6 +36,7 @@ export const FormSubCategoryAkinator = () => {
         <>
             <div className="container">
                 <h1 className="text-center">Crear nueva sub categoria</h1>
+                
                 <div className="form-container">
                     <div className="form-group">
                         <form onSubmit={handleSubmit}>
