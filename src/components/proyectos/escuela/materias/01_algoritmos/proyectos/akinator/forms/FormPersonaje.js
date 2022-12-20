@@ -16,7 +16,7 @@ export const FormPersonaje = () => {
     const [status, setStatus] = useState(false);
     const [statusSpinner, setStatusSpinner] = useState(true);
 
-    const btnDisabled = document.querySelector('input[type="submit"]'); //llamamos al boton de submit para desactivarlo o activarlo dependiendo el caso
+    // const btnDisabled = document.querySelector('input[type="submit"]'); //llamamos al boton de submit para desactivarlo o activarlo dependiendo el caso
     // AQUI LLAMAMOS A LOS HOBBIES GUARDADOS EN LA BASE DE DATOS
     useEffect(() => {
         getCategories();
@@ -40,7 +40,7 @@ export const FormPersonaje = () => {
 
     }
     const getHobbies = (subCategory) => {
-        console.log(urlApi + 'get-category-hobbies/' + subCategory)
+        // console.log(urlApi + 'get-category-hobbies/' + subCategory)
         axios.get(urlApi + 'get-category-hobbies/' + subCategory).then(res => {
             res.data.data && res.data.data.length >=1? setArryHobbies([...res.data.data]): setArryHobbies([]);
         })
@@ -51,8 +51,7 @@ export const FormPersonaje = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // console.log(btnDisabled)
-        btnDisabled.disabled = true;
+        document.querySelector('input[type="submit"]').disabled = true;
         const data = {
             name,
             hobbies: hobbiesData,

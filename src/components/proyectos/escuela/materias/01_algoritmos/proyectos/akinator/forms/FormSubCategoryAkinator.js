@@ -27,7 +27,7 @@ export const FormSubCategoryAkinator = () => {
     }
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(subCategory)
+        // console.log(subCategory)
         axios.post(urlApi+'/save-sub-category',subCategory).then(res=>{
             if(res.data.data) setStatus(true)
         }).catch(err=> console.log(err))

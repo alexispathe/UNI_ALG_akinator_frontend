@@ -6,7 +6,6 @@ import { Spinner } from '../../../../../../../spinner/Spinner';
 import axios from 'axios';
 export const FormHobbie = () => {
     const [status, setStatus] = useState(false);
-    const [name, setName] = useState([]);
     const [categories, setCategories] = useState([]);
     const [subCategories, setSubCategories] = useState([]);
     const [statusSpinner, setStatusSpinner] = useState(true);
@@ -16,7 +15,7 @@ export const FormHobbie = () => {
     }, [])
     const handleSubmit = (e) => {
         e.preventDefault();
-        document.querySelector('input[type="submit"]').disabled = true;
+        // document.querySelector('input[type="submit"]').disabled = true;
         // Guardado los datos al servidor
         axios.post(urlApi + 'save-hobbies/', hobbie)
             .then(data => {
@@ -34,7 +33,6 @@ export const FormHobbie = () => {
     }
     const getCategories = () => {
         axios.get(urlApi + '/get-categories').then(res => {
-            console.log(res)
             if (res.data.data && res.data.data.length >=1) {
                 setCategories(res.data.data);
                 setStatusSpinner(false);
