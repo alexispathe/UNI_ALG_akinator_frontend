@@ -11,36 +11,38 @@ export const FormCategoryAkinator = () => {
 
 
     const handleChange = (data) => {
-        if (data.target.name === "name") {
-            setCategory({ name: data.target.value })
-        }
-        else if (data.target.name === "characteristics1") {
-            setCharacteristics1({ name: data.target.value })
-        } else if (data.target.name === "characteristics2") {
-            setCharacteristics2({ name: data.target.value })
-        }
+        if (data.target.name === "name") setCategory({ name: data.target.value })
+        else if (data.target.name === "characteristics1") setCharacteristics1({ name: data.target.value })
+        else if (data.target.name === "characteristics2") setCharacteristics2({ name: data.target.value })
+
+
+
+
     }
     const saveCategory = (e) => {
         document.querySelector('input[type="submit"]').disabled = true;
-        axios.post(urlApi+'/save-category',category).then(res=>{
-            if(res) { 
+        axios.post(urlApi + '/save-category', category).then(res => {
+            if (res) {
                 // e.target.name.value = ""
                 saveCharacteristics(res.data.data.categoryID);
                 setStatus(true);
-            }else{
+            } else {
                 setStatus(false)
             }
-        }).catch(err=>console.log(err))
+        }).catch(err => console.log(err))
     };
     const saveCharacteristics = (categoryID) => {
-        setCharacteristics1({...characteristics1, categoryID })
-        setCharacteristics2({...characteristics2, categoryID })
-        axios.post(urlApi+'/save-category-characteristics',characteristics1).catch(err=>console.log(err))
-        axios.post(urlApi+'/save-category-characteristics',characteristics2).catch(err=>console.log(err))
+        // Estrucuramos el objeto para mandarlo correctamente como esta configurado en el model del servidor
+        const characteristics = { categoryID, "characteristics": [characteristics1, characteristics2] }
+        axios.post(urlApi + '/save-category-characteristics', characteristics).catch(err => console.log(err))
     }
     const handleSubmit = (e) => {
         e.preventDefault();
         saveCategory(e);
+
+        // console.log(characteristics)
+
+
     }
     return (
         <>
