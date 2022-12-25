@@ -6,6 +6,8 @@
 PERO AL FINAL NO SALEN MAS preguntas DE SU PERSONAJE Y EL JUEGO TERMINA DANDO COMO RESULTADO OTRO PERSONAJE Y NO EL QUE EL JUGADOR ESTA BUSCANDO
 2. SOLUCIONAR EL PROBLEMA QUE NO SE PASA EL PROP DE "btnHome" al componente GAME
 
+3. ARREGLAR EL LIMIPIADO DE LOS FORMULARIOS
+4. CHEAR LA FECHA EN EL PERFIL 
 STATE DEL COMPONENTE "GAME"
 resValue > SE GUARDAN LOS HOBBIES QUE EL JUGADOR PONE QUE SI 
 hobbiesDB > SE ALMACENAN TODOS LOS HOBBIES QUE ESTAN GUARDADOS EN LA BASE DE datos
@@ -52,72 +54,20 @@ PASOS EN COMO SE EJECUTAN LAS FUNCIONES
 ******************************************************
 
 
-********HOBBIES PARA AGREGAR********
-Ver Anime
-Futbol
-Autos
-Programación
-Desarrollo Web
-Jugar VideoJuegos
-Television
-Dragon Ball 
-Base de datos
-Musica 
-Fiestas
-Hacer ejercicio
-Correr 
-Estudiar
-Manejar de noche
-Manejar de dia
-Comer taquitos 
-Motos
-Viajar
-Matematicas 
-Informatica
-Ver series 
-Ver peliculas
-Comprar por internet
+>>>>PROPIEDADES QUE TENDRA EL USUARIO <<<<
+BD = USERS
+name
+email
+password
+role 
+userStatus
 
-************************************
-FERNANDA
-Informatica
-Comer taquitos
-Programación
-Hacer ejercicio
-Ver peliculas
-Estudiar
 
-CREAR 3 USUARIOS CON 6 caracteristicas iguales y 3 diferentes
-      Base de datos
-      Matematicas 
-      Ver series 
-      Futbol
-      Programación
-      Comprar por internet
-
-Maria Jose
-      Manejar de dia
-      Motos
-      Manejar de noche
-
-Juan Carlos
-      musica 
-      dragon ball
-Mauricio
-      Viajar
-
-CREAR 1 usuario con 3 IGUALES y 6 diferentes
-Julisa nieto
-      Programación
-      Desarrollo Web
-      Jugar VideoJuegos
-      Television
-      Dragon Ball 
-      Base de datos
-      Futbol
-Alexis
-      Motos
-      Desarrollo Web
-      Jugar VideoJuegos
-      Television
-      Futbol
+DB = USERINFORMATION
+lastName
+userName
+birthDay
+phone
+country
+address 
+userID

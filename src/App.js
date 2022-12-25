@@ -15,7 +15,9 @@ import { covidRoutes } from './Router/escuela/materias/algoritmos/proyectos/covi
 import { EjerciciosRoutes } from './Router/escuela/materias/algoritmos/ejercicios/ejerciciosRoutes';
 /******************FIN COMPONENTES DE LOS EJERCICIOS DE ALGORITMOS*********** */
 
-
+/******************RUTAS DEL USUARIO *********************/
+import { userRoutes } from './Router/user/userRoutes';
+/*****************FIN***********************/
 
 const btnHome = () => {
   window.location.href = "/"
@@ -35,7 +37,8 @@ function App() {
 
           {/* RUTAS PARA EJERCICIOS ALGORITMOS */}
           {EjerciciosRoutes.map((route, i) => (<Route key={i} path={route.path} element={route.element} />))}
-
+          {/* RUTAS DEL USUARIO */}
+          {userRoutes.map((route,i)=>(<Route key={i} element={route.element} path = {route.path}/>))}
           <Route path='*' element={<Error />} />
         </Routes>
       </BrowserRouter>

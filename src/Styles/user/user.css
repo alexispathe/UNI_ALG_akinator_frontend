@@ -1,0 +1,9 @@
+/* ESTILOS DEL FORMULARIO PARA REGISTRAR Y HACER LOGIN */
+
+.register-container,.login-container{
+    width: 100%;
+}
+.register,.login{
+    width: 70%;
+    margin: auto;
+}
