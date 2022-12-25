@@ -4,16 +4,19 @@ import axios from 'axios';
 import { urlApi } from '../../global';
 export const Login = () => {
     const [data, setData] = useState({});
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        axios.post(urlApi + 'login-user', data).then(res => {
-            if (res) {
-                localStorage.setItem('token', res.data);
+    const handleSubmit = async (e) => {
+        try {
+            e.preventDefault();
+            const user = await axios.post(urlApi + 'login-user', data);
+            if (user) {
+                localStorage.setItem('token', user.data);
                 if (localStorage.getItem('token')) {
-                    window.location.href ='/perfil'
+                    window.location.href = '/perfil'
                 }
             }
-        }).catch(err => console.log(err))
+        } catch (err) {
+            console.log(err)
+        }
     }
     const handleChange = (e) => {
         setData({
@@ -31,13 +34,13 @@ export const Login = () => {
                             <div className="form-group row mt-2">
                                 <label htmlFor="staticEmail" className="col-sm-2 col-form-label">Correo:</label>
                                 <div className="col-sm-10">
-                                    <input type="text" className="form-control" name="email" onChange={(e) => handleChange(e)} placeholder="Escribe tu correo" required/>
+                                    <input type="text" className="form-control" name="email" onChange={(e) => handleChange(e)} placeholder="Escribe tu correo" required />
                                 </div>
                             </div>
                             <div className="form-group row mt-2">
                                 <label htmlFor="inputPassword" className="col-sm-2 col-form-label">Contraseña:</label>
                                 <div className="col-sm-10">
-                                    <input type="password" className="form-control" name="password" onChange={(e) => handleChange(e)} placeholder="Escribe tu contraseña" required/>
+                                    <input type="password" className="form-control" name="password" onChange={(e) => handleChange(e)} placeholder="Escribe tu contraseña" required />
                                 </div>
                             </div>
                             <div className="w-100 mt-2">

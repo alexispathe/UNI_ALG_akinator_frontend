@@ -11,16 +11,17 @@ export const Register = () => {
             ...data,
             [e.target.name]: e.target.value
         })
-
     }
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        axios.post(urlApi + '/register-user', data).then(res => {
-            if (res) {
+    const handleSubmit = async (e) => {
+        try {
+            e.preventDefault();
+            const register = await axios.post(urlApi + '/register-user', data);
+            if (register) {
                 setStatus(true);
-
             }
-        }).catch(err => console.log(err));
+        } catch(err) {
+          console.log(err)
+        };
 
     }
     return (
@@ -45,7 +46,7 @@ export const Register = () => {
                             <div className="form-group row mt-2">
                                 <label htmlFor="inputPassword" className="col-sm-2 col-form-label">Contraseña:</label>
                                 <div className="col-sm-10">
-                                    <input type="password" className="form-control" name="password" onChange={(e) => handleChange(e)} placeholder="Escribe tu contraseña" required />
+                                    <input type="password" className="form-control" name="password" onChange={(e) => handleChange(e)} placeholder="Escribe tu contraseña" min="3" required />
                                 </div>
                             </div>
                             {status ? <div className='alert alert-success text-center mt-4'>
