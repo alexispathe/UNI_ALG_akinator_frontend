@@ -25,8 +25,9 @@ const btnHome = () => {
 function App() {
   return (
     <>
-      <Header btnHome={btnHome} />
+
       <BrowserRouter>
+        <Header btnHome={btnHome} />
         <Routes>
           <Route path='/' element={<Home />} />
           {/* RUTAS AKINATOR */}
@@ -38,7 +39,7 @@ function App() {
           {/* RUTAS PARA EJERCICIOS ALGORITMOS */}
           {EjerciciosRoutes.map((route, i) => (<Route key={i} path={route.path} element={route.element} />))}
           {/* RUTAS DEL USUARIO */}
-          {userRoutes.map((route,i)=>(<Route key={i} element={route.element} path = {route.path}/>))}
+          {userRoutes.map((route, i) => (<Route key={i} element={route.element} path={route.path} />))}
           <Route path='*' element={<Error />} />
         </Routes>
       </BrowserRouter>

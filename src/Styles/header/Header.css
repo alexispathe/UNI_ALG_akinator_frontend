@@ -1,0 +1,41 @@
+.header-container{
+    width: 100%;
+    height: 75px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 30px;
+}
+.header-right-container{
+    min-width: 30%;
+}
+.header-btn-login-container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.header-right-container .header-btn-login-container  .btn-login-container{
+    min-width: 50%;
+}
+.header-right .header-btn-login-container .btn-login-container a:hover{
+    color: gold;
+}
+.header-container .header-right-container .btn-profile-icon-container{
+    width: 50px;
+    height: 50px;
+    float: right;
+}
+.header-container .btn-profile-icon{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: red;
+    overflow: hidden;
+    cursor: pointer;
+}
+.header-container .btn-profile-icon img{
+    width: 100%;
+}

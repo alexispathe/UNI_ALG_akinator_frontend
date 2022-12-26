@@ -41,6 +41,7 @@ export const Profile = () => {
     const handleSubmit = async (e) => {
         try {
             e.preventDefault();
+            // Validamos que el token exista en el localstorage
             if (localStorage.getItem('token')) {
                 const updatedInformation = await axios.put(urlApi + 'update-information', data, {
                     headers: {
