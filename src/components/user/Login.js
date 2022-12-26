@@ -1,9 +1,12 @@
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import axios from 'axios';
 import { urlApi } from '../../global';
 export const Login = () => {
     const [data, setData] = useState({});
+    useEffect(()=>{
+        localStorage.getItem('token')? window.location.href = '/perfil' : localStorage.clear();
+    },[])
     const handleSubmit = async (e) => {
         try {
             e.preventDefault();

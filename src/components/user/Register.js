@@ -1,11 +1,14 @@
 import '../../Styles/user/user.css';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { urlApi } from '../../global';
 import axios from 'axios';
 export const Register = () => {
     const [data, setData] = useState({});
-    const [status, setStatus] = useState(false)
+    const [status, setStatus] = useState(false);
+    useEffect(() => {
+        localStorage.getItem('token') ? window.location.href = '/perfil' : localStorage.clear();
+    }, []);
     const handleChange = (e) => {
         setData({
             ...data,
@@ -19,8 +22,8 @@ export const Register = () => {
             if (register) {
                 setStatus(true);
             }
-        } catch(err) {
-          console.log(err)
+        } catch (err) {
+            console.log(err)
         };
 
     }
