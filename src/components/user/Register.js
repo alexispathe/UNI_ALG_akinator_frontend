@@ -6,6 +6,7 @@ import axios from 'axios';
 export const Register = () => {
     const [data, setData] = useState({});
     const [status, setStatus] = useState(false);
+    const [duplicate, setDuplicate] = useState(false);
     useEffect(() => {
         localStorage.getItem('token') ? window.location.href = '/perfil' : localStorage.clear();
     }, []);
@@ -19,8 +20,13 @@ export const Register = () => {
         try {
             e.preventDefault();
             const register = await axios.post(urlApi + '/register-user', data);
-            if (register) {
+            if (register.data.code === "ER_DUP_ENTRY") {
+                setDuplicate(true);
+                setStatus(false)
+            }
+            else if (register.data.code !== "ER_DUP_ENTRY") {
                 setStatus(true);
+                setDuplicate(false)
             }
         } catch (err) {
             console.log(err)
@@ -54,6 +60,9 @@ export const Register = () => {
                             </div>
                             {status ? <div className='alert alert-success text-center mt-4'>
                                 <span>Cuenta creada correctamente <Link to="/login">Iniciar sesion</Link></span>
+                            </div> : ''}
+                            {duplicate ? <div className='alert alert-danger text-center mt-4'>
+                                <span>El correo ya se encuentra registrado</span>
                             </div> : ''}
                             <div className="w-100 mt-2">
                                 <Link to="/login" className="btn btn-link " style={{ "float": "left" }} value="Registrar">Iniciar sesion</Link>

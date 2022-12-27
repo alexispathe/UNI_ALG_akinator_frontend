@@ -17,7 +17,7 @@ export const Profile = () => {
                     'Authorization': localStorage.getItem('token')
                 }
             })
-            console.log(userData)
+            // console.log(userData)
             if (userData && userData.data.code !==401) {
                 setData(...userData.data)};
             // Cuando el token haya caducado pasara esta condicion

@@ -1,17 +1,19 @@
 import { Link } from 'react-router-dom';
-import { useState,useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { urlApi } from '../../global';
 export const Login = () => {
     const [data, setData] = useState({});
-    useEffect(()=>{
-        localStorage.getItem('token')? window.location.href = '/perfil' : localStorage.clear();
-    },[])
+    const [loginStatus, setLoginStatus] = useState(false);
+    useEffect(() => {
+        localStorage.getItem('token') ? window.location.href = '/perfil' : localStorage.clear();
+    }, [])
     const handleSubmit = async (e) => {
         try {
             e.preventDefault();
             const user = await axios.post(urlApi + 'login-user', data);
-            if (user) {
+            if (user.data.status === 404) setLoginStatus(true); //cuando no coencida el correo o contraseña
+            if (user.data.status !== 404) {
                 localStorage.setItem('token', user.data);
                 if (localStorage.getItem('token')) {
                     window.location.href = '/perfil'
@@ -46,9 +48,12 @@ export const Login = () => {
                                     <input type="password" className="form-control" name="password" onChange={(e) => handleChange(e)} placeholder="Escribe tu contraseña" required />
                                 </div>
                             </div>
+                            {loginStatus ? <div className='alert alert-danger text-center mt-4'>
+                                    <span>Correo o contraseña invalido </span>
+                                </div> : ''}
                             <div className="w-100 mt-2">
                                 <Link to="/crear-cuenta" className="btn btn-link " style={{ "float": "left" }} value="Registrar">Crear cuenta</Link>
-
+                               
                                 <input type="submit" className="btn btn-primary " style={{ "float": "right" }} value="login" />
                             </div>
                         </form>
