@@ -9,7 +9,7 @@ export const Header = ({ btnHome }) => {
     const [login, setLogin] = useState(false);
     const [profilePicture, setProfilePicture] = useState('');
     useEffect(() => {
-        const token = localStorage.getItem('token');
+        const token = localStorage.getItem('token')
         if (token) {
             getProfilePicture(token);
         }
@@ -30,7 +30,7 @@ export const Header = ({ btnHome }) => {
                 // Si no hay problemas con el token se ejecuta esto
                 const [data] = getPicture.data;
                 if (data) {
-                    setProfilePicture(data.profilePicture);
+                    setProfilePicture(`${urlApi}get-image/${data.profilePicture}`);
                     setLogin(true);
     
                 }

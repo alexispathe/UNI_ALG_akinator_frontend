@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { urlApi } from "../../../global";
 import {Spinner} from '../../spinner/Spinner';
+import {UploadImage} from './UploadImage';
 export const Profile = () => {
     const [data, setData] = useState({});
     const [status, setSatatus] = useState(false);
@@ -125,6 +126,7 @@ export const Profile = () => {
                                 <input type="submit" className="btn btn-primary " style={{ "float": "right" }} value="Actualizar" />
                             </div>
                         </form>
+                        <UploadImage/>
                     </div>
                 </div>
 
