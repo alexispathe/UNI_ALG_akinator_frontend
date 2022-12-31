@@ -1,7 +1,7 @@
 import { useState } from "react";
 import UploadServices from "../../services/UploadServices";
 import '../../../Styles/user/uploadImage.css'
-export const UploadImage = ({ setImages, images }) => {
+export const UploadImage = () => {
     const [name, setName] = useState('');
     const [file, setFile] = useState();
     const [pathImage, setPathImage] = useState("");
@@ -11,7 +11,7 @@ export const UploadImage = ({ setImages, images }) => {
         if (((file.type === "image/png" || file.type === "image/jpg" || file.type === "image/jpeg")) && (file.size <= 100000)) {
             UploadServices.sendImage(name, file)
                 .then((req) => {
-                    console.log(req.data)
+                    // console.log(req.data)
                     req.data.code === 404 ? setStatus(false) : setStatus(true);
                 }
                 ).catch(err => console.log(err));

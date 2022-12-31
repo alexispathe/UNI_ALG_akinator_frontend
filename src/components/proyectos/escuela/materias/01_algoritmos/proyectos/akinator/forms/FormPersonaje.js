@@ -4,6 +4,7 @@ import { Spinner } from '../../../../../../../spinner/Spinner';
 import { Link } from 'react-router-dom';
 import { urlAlgoritmos } from '../../../../../../../../Router/escuela/materias/algoritmos/urlAlgoritmos';
 import { urlApi } from '../../../../../../../../global';
+import { getUserID } from '../../../../../../../services/getUserID';
 import axios from 'axios';
 export const FormPersonaje = () => {
     const [arrayHobbies, setArryHobbies] = useState([]);
@@ -11,7 +12,7 @@ export const FormPersonaje = () => {
     const [categories, setCategories] = useState([]);
     const [subCategories, setSubCategories] = useState([]);
     const [name, setName] = useState("");
-    const [categoryID,setCategoryID] = useState('');
+    const [categoryID, setCategoryID] = useState('');
     const [subCategoryID, setSubCategoryID] = useState('');
     const [status, setStatus] = useState(false);
     const [statusSpinner, setStatusSpinner] = useState(true);
@@ -19,9 +20,26 @@ export const FormPersonaje = () => {
     // const btnDisabled = document.querySelector('input[type="submit"]'); //llamamos al boton de submit para desactivarlo o activarlo dependiendo el caso
     // AQUI LLAMAMOS A LOS HOBBIES GUARDADOS EN LA BASE DE DATOS
     useEffect(() => {
-        getCategories();
+        
+        if (localStorage.getItem('token')) {
+            getID();
+        } else {
+            localStorage.clear();
+            window.location.href = "/login";
+        }
 
     }, []);
+    const getID = () => {
+        getUserID().then(res => {
+            if (res.status === 200) {
+                getCategories();
+            } else if (res.status === 401) {
+                localStorage.clear();
+                window.location.href = '/login'
+            };
+        }).catch(err => console.log(err))
+    }
+
     const getCategories = () => {
         axios.get(urlApi + '/get-categories').then(res => {
             if (res.data.data) {
@@ -34,37 +52,54 @@ export const FormPersonaje = () => {
     }
     const getSubCategories = (category) => {
         axios.get(urlApi + 'get-sub-categories/' + category).then(res => {
-            res.data.data && res.data.data.length>=1? setSubCategories([...res.data.data]): setSubCategories([]) ;
+            res.data.data && res.data.data.length >= 1 ? setSubCategories([...res.data.data]) : setSubCategories([]);
         })
-        .catch(err => console.log(err));
+            .catch(err => console.log(err));
 
     }
     const getHobbies = (subCategory) => {
         // console.log(urlApi + 'get-category-hobbies/' + subCategory)
         axios.get(urlApi + 'get-category-hobbies/' + subCategory).then(res => {
-            res.data.data && res.data.data.length >=1? setArryHobbies([...res.data.data]): setArryHobbies([]);
+            res.data.data && res.data.data.length >= 1 ? setArryHobbies([...res.data.data]) : setArryHobbies([]);
         })
-        .catch(err => console.log(err));
+            .catch(err => console.log(err));
         // console.log(hobbiess);
         // setArryHobbies()
     }
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        document.querySelector('input[type="submit"]').disabled = true;
-        const data = {
-            name,
-            hobbies: hobbiesData,
-            categoryID,
-            subCategoryID
+    const handleSubmit = async (e) => {
+        try {
+            e.preventDefault();
+            // VALIDAMOS QUE EL TOKEN NO HAYA EXPIRADO O ALTERADO
+            getUserID().then(res => {
+                
+                if (res.status === 200) {
+                    document.querySelector('input[type="submit"]').disabled = true;
+                    const data = {
+                        name,
+                        hobbies: hobbiesData,
+                        categoryID,
+                        subCategoryID
+                        
+                    }
+                    // Guardado los datos al servidor
+                    axios.post(urlApi + '/save-personaje', data,{headers:{'Authorization': localStorage.getItem('token')}})
+                        .then(res => {
+                            if(res.status=== 200 ) data ? setStatus(true) : setStatus(false);
+                            if (res.status === 401) {
+                                localStorage.clear();
+                                window.location.href = '/login'
+                            };
+                            
+                        });
+                } else if (res.status === 401 ) {
+                    localStorage.clear();
+                    window.location.href = '/login'
+                };
+            }).catch(err => console.log(err));
+        } catch (err) {
+            console.log(err)
         }
-        // Guardado los datos al servidor
-
-        axios.post(urlApi + '/save-personaje', data)
-            .then(data => {
-                // console.log("Datos ", data)
-                data ? setStatus(true) : setStatus(false);
-            });
 
     }
     const handleChange = (e) => {
@@ -75,7 +110,7 @@ export const FormPersonaje = () => {
         if (e.target.name === "subCategoryID") {
             setSubCategoryID(e.target.value);
             getHobbies(e.target.value);
-            
+
         }
         if (e.target.name === "name") {
             setName(e.target.value)
@@ -140,7 +175,7 @@ export const FormPersonaje = () => {
 
                                 }
                                 {/* Contenedor donde almacena todos los checkbox */}
-                                {arrayHobbies.length >= 1 && subCategories.length >=1?
+                                {arrayHobbies.length >= 1 && subCategories.length >= 1 ?
                                     <div>
                                         <h1 className="text-primary">Pasatiempos:</h1>
                                         <div className="row m-auto ">

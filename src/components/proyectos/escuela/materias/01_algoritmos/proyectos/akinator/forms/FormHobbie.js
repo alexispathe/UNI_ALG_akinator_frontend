@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { urlApi } from '../../../../../../../../global';
 import { urlAlgoritmos } from '../../../../../../../../Router/escuela/materias/algoritmos/urlAlgoritmos';
 import { Spinner } from '../../../../../../../spinner/Spinner';
+import { getUserID } from '../../../../../../../services/getUserID';
 import axios from 'axios';
 export const FormHobbie = () => {
     const [status, setStatus] = useState(false);
@@ -11,29 +12,55 @@ export const FormHobbie = () => {
     const [statusSpinner, setStatusSpinner] = useState(true);
     const [hobbie, setHobbie] = useState({});
     useEffect(() => {
-        getCategories();
+        if (localStorage.getItem('token')) {
+            getID();
+        } else {
+            localStorage.clear();
+            window.location.href = "/login";
+        }
     }, [])
+    const getID = () => {
+        // VALIDAMOS QUE EL USUARIO ESTE ACTIVO PARA CREAR UNA NUEVA CATEGORIA
+        getUserID().then(res => {
+            if (res.status === 200) {
+                getCategories();
+            } else if (res.status === 401) {
+                localStorage.clear();
+                window.location.href = '/login'
+            };
+        }).catch(err => console.log(err));
+    };
+
     const handleSubmit = (e) => {
         e.preventDefault();
         // document.querySelector('input[type="submit"]').disabled = true;
-        // Guardado los datos al servidor
-        axios.post(urlApi + 'save-hobbies/', hobbie)
-            .then(data => {
-                if (data) {
-                    e.target.name.value = "";
-                    setStatus(true)
-                } else {
-                    setStatus(false);
-                }
-            })
-            .catch(err => {
-                console.log(err)
-            })
+        // Guardado los datos al servidor 
+        if (localStorage.getItem('token')) {
+            axios.post(urlApi + 'save-hobbies/', hobbie, { headers: { 'Authorization': localStorage.getItem('token') } })
+                .then(data => {
+                    // console.log(data);
+                    if (data.status === 200) {
+                        e.target.name.value = "";
+                        setStatus(true)
+                    } else if (data.status === 404) {
+                        localStorage.clear();
+                        window.location.href = '/login'
+                    }
+                })
+                .catch(err => {
+                    console.log(err)
+                })
+        } else {
+
+            localStorage.clear();
+            window.location.href = '/login'
+        }
+
 
     }
     const getCategories = () => {
         axios.get(urlApi + '/get-categories').then(res => {
-            if (res.data.data && res.data.data.length >=1) {
+            if (res.data.data && res.data.data.length >= 1) {
                 setCategories(res.data.data);
                 setStatusSpinner(false);
             } else {
@@ -43,7 +70,7 @@ export const FormHobbie = () => {
     }
     const getSubCategories = (category) => {
         axios.get(urlApi + 'get-sub-categories/' + category).then(res => {
-            res.data.data && res.data.data.length >=1? setSubCategories([...res.data.data]): setSubCategories([]);
+            res.data.data && res.data.data.length >= 1 ? setSubCategories([...res.data.data]) : setSubCategories([]);
         })
             .catch(err => console.log(err));
 
