@@ -1,7 +1,7 @@
-import '../../Styles/user/user.css';
+import '../../../Styles/user/user.css';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { urlApi } from '../../global';
+import { urlApi } from '../../../global';
 import axios from 'axios';
 export const Register = () => {
     const [data, setData] = useState({});

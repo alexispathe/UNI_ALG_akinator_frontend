@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { urlApi } from '../../global';
+import { urlApi } from '../../../global';
 export const Login = () => {
     const [data, setData] = useState({});
     const [loginStatus, setLoginStatus] = useState(false);

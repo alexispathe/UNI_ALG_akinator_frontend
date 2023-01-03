@@ -4,6 +4,7 @@ import { getUserID } from '../../../../../../../services/getUserID';
 import { urlApi } from "../../../../../../../../global";
 import { urlAlgoritmos } from "../../../../../../../../Router/escuela/materias/algoritmos/urlAlgoritmos";
 import { Link } from "react-router-dom";
+import { redirectPage } from "../../../../../../../services/redirect";
 export const FormSubCategoryAkinator = () => {
     const [categories, setCategories] = useState([]);
     const [status, setStatus] = useState(false);
@@ -12,19 +13,14 @@ export const FormSubCategoryAkinator = () => {
         if (localStorage.getItem('token')) {
             getID();
         } else {
-            localStorage.clear();
-            window.location.href = "/login";
+            redirectPage('/login');
         }
     }, [])
     const getID = () => {
         // VALIDAMOS QUE EL USUARIO ESTE ACTIVO PARA CREAR UNA NUEVA CATEGORIA
         getUserID().then(res => {
-            if (res.status === 200) {
-                getCategories();
-            } else if (res.status === 401) {
-                localStorage.clear();
-                window.location.href = '/login'
-            };
+            if (res.status === 200) getCategories();
+            else if (res.status === 401) redirectPage('/login');
         }).catch(err => console.log(err));
 
     };
@@ -46,17 +42,14 @@ export const FormSubCategoryAkinator = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (localStorage.getItem('token')) {
-            axios.post(urlApi + '/save-sub-category', subCategory, { headers: { 'Authorization': localStorage.getItem('token') } }).then(res => {
+            axios.post(urlApi + 'save-sub-category', subCategory, { headers: { 'Authorization': localStorage.getItem('token') } }).then(res => {
                 console.log(res)
-                if (res.status === 200) setStatus(true)
-                if (res.status === 401) {
-                    localStorage.clear();
-                    window.location.href = '/login'
-                }
+                if (res.status === 200) setStatus(true);
+                if (res.status === 401) redirectPage('/login');
+                
             }).catch(err => console.log(err))
         } else {
-            localStorage.clear();
-            window.location.href = '/login'
+           redirectPage('/login');
         }
 
     }
@@ -64,7 +57,6 @@ export const FormSubCategoryAkinator = () => {
         <>
             <div className="container">
                 <h1 className="text-center">Crear nueva sub categoria</h1>
-
                 <div className="form-container">
                     <div className="form-group">
                         <form onSubmit={handleSubmit}>

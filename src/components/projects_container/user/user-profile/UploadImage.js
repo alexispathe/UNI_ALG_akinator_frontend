@@ -1,6 +1,6 @@
 import { useState } from "react";
-import UploadServices from "../../services/UploadServices";
-import '../../../Styles/user/uploadImage.css'
+import UploadServices from "../../../services/UploadServices";
+import '../../../../Styles/user/uploadImage.css'
 export const UploadImage = () => {
     const [name, setName] = useState('');
     const [file, setFile] = useState();

@@ -1,6 +1,6 @@
-import { Profile } from "../../components/user/user-profile/Profile";
-import { Register } from "../../components/user/Register";
-import { Login } from "../../components/user/Login";
+import { Profile } from "../../components/projects_container/user/user-profile/Profile";
+import { Register } from "../../components/projects_container/user/Register";
+import { Login } from "../../components/projects_container/user/Login";
 
 export const userRoutes = [
     {

@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { urlApi } from "../../../global";
-import {Spinner} from '../../spinner/Spinner';
+import { urlApi } from "../../../../global";
+import {Spinner} from '../../../spinner/Spinner';
 import {UploadImage} from './UploadImage';
+import { redirectPage } from "../../../services/redirect";
+import moment from 'moment';
 export const Profile = () => {
     const [data, setData] = useState({});
     const [status, setSatatus] = useState(false);
@@ -13,18 +15,21 @@ export const Profile = () => {
     // DEVOLVEMOS LOS DATOS DEL USUARIOS ALMACENADOS EN LA BASE DE DATOS
     const getUserData = async () => {
         try {
-            const userData = await axios.get(urlApi + 'get-user-information', {
+            let userData = await axios.get(urlApi + 'get-user-information', {
                 headers: {
                     'Authorization': localStorage.getItem('token')
                 }
             })
             // console.log(userData)
             if (userData && userData.data.code !==401) {
-                setData(...userData.data)};
+                userData.data[0].birthDay = moment(userData.data[0].birthDay).format('YYYY-MM-DD')
+                console.log(userData.data[0].birthDay )
+                setData(...userData.data)
+            };
+                
             // Cuando el token haya caducado pasara esta condicion
             if(userData.data.code === 401){
-                localStorage.clear();
-                window.location.href = '/';
+                redirectPage('/login')
             }
             
         } catch (err) {
@@ -33,6 +38,7 @@ export const Profile = () => {
     }
     // TRAEMOS LOS DATOS DEL FORMULARIO PARA GUARDARLOS EN EL STATE 
     const handleChange = (e) => {
+        console.log(e.target.value);
         setData({
             ...data,
             [e.target.name]: e.target.value
@@ -61,8 +67,7 @@ export const Profile = () => {
                 }
                 // Esta condicion entra cuenta hay un token expirado
                 if(updatedInformation.data.code ===401){
-                    localStorage.clear();
-                    window.location.href = '/';
+                    redirectPage('/login')
                 }
                
             }
@@ -95,12 +100,12 @@ export const Profile = () => {
                                     <input type="text" className="form-control" name="userName" value={data.userName} onChange={(e) => handleChange(e)} placeholder="Escribe tu usuario" />
                                 </div>
                             </div>
-                            {/* <div className="form-group row mt-2">
-                                <label htmlFor="inputPassword" className="col-sm-2 col-form-label">Fecha de nacimiento:</label>
+                            <div className="form-group row mt-2">
+                                <label htmlFor="inputBirthDay" className="col-sm-2 col-form-label">Fecha de nacimiento:</label>
                                 <div className="col-sm-10">
                                     <input type="date" className="form-control" name="birthDay" value={data.birthDay} onChange={(e)=> handleChange(e)} />
                                 </div>
-                            </div> */}
+                            </div>
                             <div className="form-group row mt-2">
                                 <label htmlFor="inputPassword" className="col-sm-2 col-form-label">Telefono:</label>
                                 <div className="col-sm-10">

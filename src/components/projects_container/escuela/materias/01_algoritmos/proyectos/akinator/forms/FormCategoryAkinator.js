@@ -4,26 +4,22 @@ import { getUserID } from '../../../../../../../services/getUserID';
 import { urlApi } from "../../../../../../../../global";
 import { Link } from "react-router-dom";
 import { urlAlgoritmos } from "../../../../../../../../Router/escuela/materias/algoritmos/urlAlgoritmos";
+import { redirectPage } from "../../../../../../../services/redirect";
 export const FormCategoryAkinator = () => {
     const [status, setStatus] = useState(false);
     const [category, setCategory] = useState({});
     const [characteristics1, setCharacteristics1] = useState({});
     const [characteristics2, setCharacteristics2] = useState({});
     useEffect(() => {
-        if (localStorage.getItem('token')) {
-            getID();
-        } else {
-            localStorage.clear();
-            window.location.href = "/login";
-        }
+        if (localStorage.getItem('token')) getID()
+        else redirectPage('/login');
+
     }, []);
     const getID = () => {
         // VALIDAMOS QUE EL USUARIO ESTE ACTIVO PARA CREAR UNA NUEVA CATEGORIA
         getUserID().then(res => {
-            if (res.status === 401) {
-                localStorage.clear();
-                window.location.href = '/login'
-            };
+            if (res.status === 401) redirectPage('/login');
+
         }).catch(err => console.log(err));
 
     };
@@ -43,27 +39,26 @@ export const FormCategoryAkinator = () => {
                 if (res) {
                     // e.target.name.value = ""
                     console.log(res)
-                    if(res.status === 200) saveCharacteristics(res.data.data.categoryID);
-                    if(res.status ===401){
-                        localStorage.clear();
-                        window.location.href = "/login";
-                    }
-                    
-                    setStatus(true);
+                    if (res.status === 200) {
+                        saveCharacteristics(res.data.data.categoryID)
+                        setStatus(true);
+                    };
+                    if (res.status === 401) redirectPage('/login');
+
+
                 } else {
                     setStatus(false)
                 }
             }).catch(err => console.log(err))
         } else {
-            localStorage.clear();
-            window.location.href = "/login";
+            redirectPage('/login');
         }
 
     };
     const saveCharacteristics = (categoryID) => {
         // Estrucuramos el objeto para mandarlo correctamente como esta configurado en el model del servidor
         const characteristics = { categoryID, "characteristics": [characteristics1, characteristics2] }
-        axios.post(urlApi + '/save-category-characteristics', characteristics,{ headers: { 'Authorization': localStorage.getItem('token') }}).catch(err => console.log(err))
+        axios.post(urlApi + '/save-category-characteristics', characteristics, { headers: { 'Authorization': localStorage.getItem('token') } }).catch(err => console.log(err))
     }
     const handleSubmit = (e) => {
         e.preventDefault();

@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { urlAlgoritmos } from '../../../../../../../../Router/escuela/materias/algoritmos/urlAlgoritmos';
 import { urlApi } from '../../../../../../../../global';
 import { getUserID } from '../../../../../../../services/getUserID';
+import { redirectPage } from '../../../../../../../services/redirect';
 import axios from 'axios';
 export const FormPersonaje = () => {
     const [arrayHobbies, setArryHobbies] = useState([]);
@@ -20,12 +21,11 @@ export const FormPersonaje = () => {
     // const btnDisabled = document.querySelector('input[type="submit"]'); //llamamos al boton de submit para desactivarlo o activarlo dependiendo el caso
     // AQUI LLAMAMOS A LOS HOBBIES GUARDADOS EN LA BASE DE DATOS
     useEffect(() => {
-        
+
         if (localStorage.getItem('token')) {
             getID();
         } else {
-            localStorage.clear();
-            window.location.href = "/login";
+            redirectPage('/login');
         }
 
     }, []);
@@ -34,8 +34,7 @@ export const FormPersonaje = () => {
             if (res.status === 200) {
                 getCategories();
             } else if (res.status === 401) {
-                localStorage.clear();
-                window.location.href = '/login'
+                redirectPage('/login');
             };
         }).catch(err => console.log(err))
     }
@@ -72,7 +71,7 @@ export const FormPersonaje = () => {
             e.preventDefault();
             // VALIDAMOS QUE EL TOKEN NO HAYA EXPIRADO O ALTERADO
             getUserID().then(res => {
-                
+
                 if (res.status === 200) {
                     document.querySelector('input[type="submit"]').disabled = true;
                     const data = {
@@ -80,21 +79,19 @@ export const FormPersonaje = () => {
                         hobbies: hobbiesData,
                         categoryID,
                         subCategoryID
-                        
+
                     }
                     // Guardado los datos al servidor
-                    axios.post(urlApi + '/save-personaje', data,{headers:{'Authorization': localStorage.getItem('token')}})
+                    axios.post(urlApi + '/save-personaje', data, { headers: { 'Authorization': localStorage.getItem('token') } })
                         .then(res => {
-                            if(res.status=== 200 ) data ? setStatus(true) : setStatus(false);
+                            if (res.status === 200) data ? setStatus(true) : setStatus(false);
                             if (res.status === 401) {
-                                localStorage.clear();
-                                window.location.href = '/login'
+                                redirectPage('/login');
                             };
-                            
+
                         });
-                } else if (res.status === 401 ) {
-                    localStorage.clear();
-                    window.location.href = '/login'
+                } else if (res.status === 401) {
+                    redirectPage('/login');
                 };
             }).catch(err => console.log(err));
         } catch (err) {

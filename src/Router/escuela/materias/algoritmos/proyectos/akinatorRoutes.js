@@ -1,9 +1,9 @@
 import { urlAlgoritmos } from "../urlAlgoritmos";
-import { FormPersonaje } from "../../../../../components/proyectos/escuela/materias/01_algoritmos/proyectos/akinator/forms/FormPersonaje";
-import { FormHobbie } from "../../../../../components/proyectos/escuela/materias/01_algoritmos/proyectos/akinator/forms/FormHobbie";
-import { Game } from "../../../../../components/proyectos/escuela/materias/01_algoritmos/proyectos/akinator/Game";
-import { FormCategoryAkinator } from "../../../../../components/proyectos/escuela/materias/01_algoritmos/proyectos/akinator/forms/FormCategoryAkinator";
-import { FormSubCategoryAkinator } from "../../../../../components/proyectos/escuela/materias/01_algoritmos/proyectos/akinator/forms/FormSubCategoryAkinator";
+import { FormPersonaje } from "../../../../../components/projects_container/escuela/materias/01_algoritmos/proyectos/akinator/forms/FormPersonaje";
+import { FormHobbie } from "../../../../../components/projects_container/escuela/materias/01_algoritmos/proyectos/akinator/forms/FormHobbie";
+import { Game } from "../../../../../components/projects_container/escuela/materias/01_algoritmos/proyectos/akinator/Game";
+import { FormCategoryAkinator } from "../../../../../components/projects_container/escuela/materias/01_algoritmos/proyectos/akinator/forms/FormCategoryAkinator";
+import { FormSubCategoryAkinator } from "../../../../../components/projects_container/escuela/materias/01_algoritmos/proyectos/akinator/forms/FormSubCategoryAkinator";
 export const urlAkinator = urlAlgoritmos + "/akinator";
 export const akinatorRoutes = [
     {

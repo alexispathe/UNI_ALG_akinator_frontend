@@ -4,6 +4,7 @@ import { urlApi } from '../../../../../../../../global';
 import { urlAlgoritmos } from '../../../../../../../../Router/escuela/materias/algoritmos/urlAlgoritmos';
 import { Spinner } from '../../../../../../../spinner/Spinner';
 import { getUserID } from '../../../../../../../services/getUserID';
+import { redirectPage } from '../../../../../../../services/redirect';
 import axios from 'axios';
 export const FormHobbie = () => {
     const [status, setStatus] = useState(false);
@@ -12,22 +13,15 @@ export const FormHobbie = () => {
     const [statusSpinner, setStatusSpinner] = useState(true);
     const [hobbie, setHobbie] = useState({});
     useEffect(() => {
-        if (localStorage.getItem('token')) {
-            getID();
-        } else {
-            localStorage.clear();
-            window.location.href = "/login";
-        }
+        if (localStorage.getItem('token')) getID();
+        else redirectPage('/login');
+
     }, [])
     const getID = () => {
         // VALIDAMOS QUE EL USUARIO ESTE ACTIVO PARA CREAR UNA NUEVA CATEGORIA
         getUserID().then(res => {
-            if (res.status === 200) {
-                getCategories();
-            } else if (res.status === 401) {
-                localStorage.clear();
-                window.location.href = '/login'
-            };
+            if (res.status === 200) getCategories();
+            else if (res.status === 401) redirectPage('/login');
         }).catch(err => console.log(err));
     };
 
@@ -43,8 +37,7 @@ export const FormHobbie = () => {
                         e.target.name.value = "";
                         setStatus(true)
                     } else if (data.status === 404) {
-                        localStorage.clear();
-                        window.location.href = '/login'
+                        redirectPage('/login');
                     }
                 })
                 .catch(err => {
@@ -52,8 +45,7 @@ export const FormHobbie = () => {
                 })
         } else {
 
-            localStorage.clear();
-            window.location.href = '/login'
+            redirectPage('/login');
         }
 
 
@@ -71,8 +63,7 @@ export const FormHobbie = () => {
     const getSubCategories = (category) => {
         axios.get(urlApi + 'get-sub-categories/' + category).then(res => {
             res.data.data && res.data.data.length >= 1 ? setSubCategories([...res.data.data]) : setSubCategories([]);
-        })
-            .catch(err => console.log(err));
+        }).catch(err => console.log(err));
 
     }
 
