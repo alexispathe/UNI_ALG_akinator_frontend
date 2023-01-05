@@ -25,6 +25,7 @@ export const Register = () => {
                 setStatus(false)
             }
             else if (register.data.code !== "ER_DUP_ENTRY") {
+                e.target.password.value = ""
                 setStatus(true);
                 setDuplicate(false)
             }

@@ -84,7 +84,15 @@ export const FormPersonaje = () => {
                     // Guardado los datos al servidor
                     axios.post(urlApi + '/save-personaje', data, { headers: { 'Authorization': localStorage.getItem('token') } })
                         .then(res => {
-                            if (res.status === 200) data ? setStatus(true) : setStatus(false);
+                            if (res.status === 200) {
+                                if (data) {
+                                    setStatus(true)
+                                    e.target.name.value = "";
+                                    e.target.categoryID.value = "";
+                                    e.target.subCategoryID.value = "";
+                                    // e.target.hobbies.checked = false;
+                                } else setStatus(false);
+                            }
                             if (res.status === 401) {
                                 redirectPage('/login');
                             };

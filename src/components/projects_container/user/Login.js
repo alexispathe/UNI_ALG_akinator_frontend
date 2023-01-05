@@ -14,6 +14,8 @@ export const Login = () => {
             const user = await axios.post(urlApi + 'login-user', data);
             if (user.data.status === 404) setLoginStatus(true); //cuando no coencida el correo o contraseña
             if (user.data.status !== 404) {
+                e.target.email.value = "";
+                e.target.password.value = "";
                 localStorage.setItem('token', user.data);
                 if (localStorage.getItem('token')) {
                     window.location.href = '/perfil'

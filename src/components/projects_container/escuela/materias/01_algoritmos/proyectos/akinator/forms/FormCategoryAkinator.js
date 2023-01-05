@@ -38,10 +38,13 @@ export const FormCategoryAkinator = () => {
             axios.post(urlApi + '/save-category', category, { headers: { 'Authorization': localStorage.getItem('token') } }).then(res => {
                 if (res) {
                     // e.target.name.value = ""
-                    console.log(res)
+                    // console.log(res)
                     if (res.status === 200) {
                         saveCharacteristics(res.data.data.categoryID)
                         setStatus(true);
+                        e.target.name.value = "";
+                        e.target.characteristics1.value = "";
+                        e.target.characteristics2.value = "";
                     };
                     if (res.status === 401) redirectPage('/login');
 

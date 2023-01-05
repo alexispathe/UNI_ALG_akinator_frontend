@@ -43,8 +43,12 @@ export const FormSubCategoryAkinator = () => {
         e.preventDefault();
         if (localStorage.getItem('token')) {
             axios.post(urlApi + 'save-sub-category', subCategory, { headers: { 'Authorization': localStorage.getItem('token') } }).then(res => {
-                console.log(res)
-                if (res.status === 200) setStatus(true);
+                // console.log(res)
+                if (res.status === 200) {
+                    setStatus(true);
+                    e.target.name.value = "";
+                    e.target.categoryID.value = "";
+                };
                 if (res.status === 401) redirectPage('/login');
                 
             }).catch(err => console.log(err))

@@ -35,6 +35,8 @@ export const FormHobbie = () => {
                     // console.log(data);
                     if (data.status === 200) {
                         e.target.name.value = "";
+                        e.target.categoryID.value ="";
+                        e.target.subCategoryID.value = "";
                         setStatus(true)
                     } else if (data.status === 404) {
                         redirectPage('/login');
