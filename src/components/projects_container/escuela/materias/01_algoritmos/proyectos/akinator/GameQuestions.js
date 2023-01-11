@@ -7,6 +7,7 @@ export const GameQuestions = ({ btnHome, hobbiesDB, users, resValue, questions, 
     const [iterador, setIterador] = useState(1);
     const [noValue, setNoValue] = useState(1);
     const [alert, setAlert] = useState(false);
+    const [image, setImage] = useState();
     const questions2 = []
     let auxQuestions2 = [...questions];
     const aux = [];
@@ -161,7 +162,10 @@ export const GameQuestions = ({ btnHome, hobbiesDB, users, resValue, questions, 
             const indexKey = keys[indexMax];
             // ****
             const personaje = users.filter(user => user.idUser === indexKey);
-            if (personaje.length > 0) setCharacterName(personaje[0].name);
+            if (personaje.length > 0) {
+                setCharacterName(personaje[0].name)
+                setImage(personaje[0].image)
+            };
             setStatus(true)
 
         }
@@ -226,7 +230,7 @@ export const GameQuestions = ({ btnHome, hobbiesDB, users, resValue, questions, 
                             </div>
                         </div> : <div className="w-100"></div>
                 }
-                {status === true && characterName ? <Character name={characterName} /> : ''}
+                {status === true && characterName ? <Character name={characterName} image={image} /> : ''}
                 {alert === true ? <div className="alert alert-danger">Lo sentimos no hay ningun resultado.....<span className="link-primary" style={{ "cursor": "pointer" }} onClick={btnHome}>Regresar al inicio</span></div> : ''}
                 {status === false && questions.length === 0 && alert === false ? <button className="btn btn-primary w-100" onClick={devolverHobbiesConID}>Guardar resultados</button> : ''}
             </div>

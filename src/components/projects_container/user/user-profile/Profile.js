@@ -23,7 +23,7 @@ export const Profile = () => {
             // console.log(userData)
             if (userData && userData.data.code !==401) {
                 userData.data[0].birthDay = moment(userData.data[0].birthDay).format('YYYY-MM-DD')
-                console.log(userData.data[0].birthDay )
+                // console.log(userData.data[0].birthDay )
                 setData(...userData.data)
             };
                 
@@ -38,7 +38,7 @@ export const Profile = () => {
     }
     // TRAEMOS LOS DATOS DEL FORMULARIO PARA GUARDARLOS EN EL STATE 
     const handleChange = (e) => {
-        console.log(e.target.value);
+        // console.log(e.target.value);
         setData({
             ...data,
             [e.target.name]: e.target.value
@@ -113,13 +113,13 @@ export const Profile = () => {
                                 </div>
                             </div>
                             <div className="form-group row mt-2">
-                                <label htmlFor="inputPassword" className="col-sm-2 col-form-label">Pais:</label>
+                                <label htmlFor="inputCountry" className="col-sm-2 col-form-label">Pais:</label>
                                 <div className="col-sm-10">
                                     <input type="text" className="form-control" name="country" value={data.country} onChange={(e) => handleChange(e)} placeholder="Escribe tu pais" />
                                 </div>
                             </div>
                             <div className="form-group row mt-2">
-                                <label htmlFor="inputPassword" className="col-sm-2 col-form-label">Dirección:</label>
+                                <label htmlFor="inputAddress" className="col-sm-2 col-form-label">Dirección:</label>
                                 <div className="col-sm-10">
                                     <input type="text" className="form-control" name="address" value={data.address} onChange={(e) => handleChange(e)} placeholder="Escribe tu direccion" />
                                 </div>

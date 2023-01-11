@@ -17,6 +17,7 @@ export const FormPersonaje = () => {
     const [subCategoryID, setSubCategoryID] = useState('');
     const [status, setStatus] = useState(false);
     const [statusSpinner, setStatusSpinner] = useState(true);
+    const [image, setImage] = useState('')
 
     // const btnDisabled = document.querySelector('input[type="submit"]'); //llamamos al boton de submit para desactivarlo o activarlo dependiendo el caso
     // AQUI LLAMAMOS A LOS HOBBIES GUARDADOS EN LA BASE DE DATOS
@@ -78,7 +79,8 @@ export const FormPersonaje = () => {
                         name,
                         hobbies: hobbiesData,
                         categoryID,
-                        subCategoryID
+                        subCategoryID,
+                        image
 
                     }
                     // Guardado los datos al servidor
@@ -120,6 +122,9 @@ export const FormPersonaje = () => {
         if (e.target.name === "name") {
             setName(e.target.value)
         }
+        if (e.target.name === "image") {
+            setImage(e.target.value)
+        }
         if (e.target.name === "hobbies") {
             // Aqui hacemos la validacion de que este siendo seleccionado alguna casilla del checbox
             if (e.target.checked) {
@@ -146,6 +151,10 @@ export const FormPersonaje = () => {
                                 <div className="form-group">
                                     <h2 className="text-primary">Nombre: </h2>
                                     <input type="text" className="form-control" name="name" required onChange={(e) => handleChange(e)} placeholder="Escribe tu nombre" />
+                                </div>
+                                <div className="form-group">
+                                    <h2 className="text-primary">Url Imagen: </h2>
+                                    <input type="url" className="form-control" name="image" required onChange={(e) => handleChange(e)} placeholder="Escribe tu nombre" />
                                 </div>
                                 {categories.length >= 1 ?
                                     <div className="select-container">

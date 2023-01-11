@@ -62,6 +62,7 @@ export const FormHobbie = () => {
             }
         }).catch(err => console.log(err))
     }
+    // Devolvemos las categorias
     const getSubCategories = (category) => {
         axios.get(urlApi + 'get-sub-categories/' + category).then(res => {
             res.data.data && res.data.data.length >= 1 ? setSubCategories([...res.data.data]) : setSubCategories([]);

@@ -53,6 +53,8 @@ export const UploadImage = () => {
             <div className="">
                 <form className="" onSubmit={sendImage}>
                     <div className="input-file">
+                        <label>Cambiar imagen de perfil</label>
+                        <br></br>
                         <input type="file" onChange={onfileChange} accept="image/jpeg, image/png, image/jpg" name="file" required />
                         {pathImage ?
                             <div>

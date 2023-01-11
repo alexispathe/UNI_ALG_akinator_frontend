@@ -26,6 +26,7 @@ Forms > Hay 2 componentes que nos permite guardar un personaje y otro el pasatie
 Home > Es el componente principal donde puedes comenzar jugar el juego, este componente llama al hijo que es "Game"
 Game > Componente padre para luego llamar las preguntas
 GameQuestions > Componente que sirve para hacer las preguntas del juego
+Character > Componente que sirve para mostrar el personaje
 
 *********COMPONENTE GameQuestions ********************
 ----FUNCIONES----------------------
@@ -41,7 +42,7 @@ buscarPersonajes();
 quitarPregunta();
 -----------------------------------
 PASOS EN COMO SE EJECUTAN LAS FUNCIONES
->>> Si el usuario coloca que "SI" es su personaje para a la funcion "CapRespuestaJugador(name)"
+>>> Si el usuario coloca que "SI" es su personaje se ejecuta a la funcion "CapRespuestaJugador(name)"
 >>>>>> De ahi se va la funcion "quitarPregunta()" para asi pasar a la funcion "preguntaRandom()" 
 >>>>>> En "preguntaRandom()" devolvemos un nuevo aleatorio que viene de la funcion "numPregunta()" que tiene la 
        cantidad de pasatiempos que existen para asi mostrar la nueva pregunta y se repite el ciclo de "CapRespuestaJugador(name)" hasta que pasen 5 preguntas
